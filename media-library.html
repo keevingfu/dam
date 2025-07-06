@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>素材库 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #9333ea;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #9333ea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #7c3aed;
+            box-shadow: 0 2px 8px rgba(147,51,234,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 搜索和筛选栏 */
+        .filter-bar {
+            background: #fff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147,51,234,0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .filter-select {
+            padding: 10px 14px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:hover {
+            border-color: #9333ea;
+        }
+        
+        /* 视图切换 */
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+            background: #f0f2f5;
+            padding: 4px;
+            border-radius: 8px;
+        }
+        
+        .view-btn {
+            padding: 6px 10px;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+        
+        .view-btn.active {
+            background: #fff;
+            color: #9333ea;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* 标签页 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fff;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+        
+        .tab {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab:hover {
+            color: #9333ea;
+        }
+        
+        .tab.active {
+            color: #9333ea;
+            border-bottom-color: #9333ea;
+        }
+        
+        .tab-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ea4335;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        /* 素材网格 */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 24px;
+            background: #fff;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .media-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-color: #9333ea;
+        }
+        
+        .media-card.selected {
+            border-color: #9333ea;
+            box-shadow: 0 0 0 2px rgba(147,51,234,0.2);
+        }
+        
+        .media-preview {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #f0f2f5;
+            overflow: hidden;
+        }
+        
+        .media-preview img,
+        .media-preview video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .media-card:hover .media-overlay {
+            opacity: 1;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 24px;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .media-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .media-checkbox {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #e5e7eb;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .media-card:hover .media-checkbox,
+        .media-card.selected .media-checkbox {
+            opacity: 1;
+        }
+        
+        .media-card.selected .media-checkbox {
+            background: #9333ea;
+            border-color: #9333ea;
+        }
+        
+        .media-card.selected .media-checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+        }
+        
+        .media-info {
+            padding: 16px;
+        }
+        
+        .media-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .media-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+        
+        .media-date {
+            color: #999;
+        }
+        
+        .media-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .status-published {
+            background: #e6f4ea;
+            color: #34a853;
+        }
+        
+        .status-draft {
+            background: #fef7e0;
+            color: #f9ab00;
+        }
+        
+        .status-reviewing {
+            background: #e8f0fe;
+            color: #1a73e8;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            background: #f0f2f5;
+            color: #666;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: #e8d4ff;
+            color: #9333ea;
+        }
+        
+        /* 批量操作栏 */
+        .batch-actions {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .batch-actions.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .batch-count {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 上传区域 */
+        .upload-zone {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .upload-zone.active {
+            display: flex;
+        }
+        
+        .upload-content {
+            background: #fff;
+            padding: 60px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .upload-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .upload-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .upload-hint {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .media-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">素材库</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+                    </svg>
+                    浏览器插件
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">素材库</h2>
+                <p class="page-subtitle">集中管理所有视频素材，支持智能搜索和标签管理</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    高级搜索
+                </button>
+                <button class="btn btn-primary" onclick="showUpload()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    上传素材
+                </button>
+            </div>
+        </div>
+        
+        <!-- 搜索和筛选栏 -->
+        <div class="filter-bar">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="搜索素材名称、标签或描述...">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+            
+            <select class="filter-select">
+                <option>所有类型</option>
+                <option>视频</option>
+                <option>图片</option>
+                <option>音频</option>
+            </select>
+            
+            <select class="filter-select">
+                <option>所有平台</option>
+                <option>TikTok</option>
+                <option>Instagram</option>
+                <option>Facebook</option>
+                <option>YouTube</option>
+                <option>视频号</option>
+            </select>
+            
+            <select class="filter-select">
+                <option>上传时间</option>
+                <option>今天</option>
+                <option>本周</option>
+                <option>本月</option>
+                <option>全部</option>
+            </select>
+            
+            <div style="flex: 1;"></div>
+            
+            <div class="view-toggle">
+                <button class="view-btn active">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </button>
+                <button class="view-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 素材内容区 -->
+        <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden;">
+            <div class="tabs">
+                <div class="tab active">全部素材 (845)</div>
+                <div class="tab">视频 (612)</div>
+                <div class="tab">图片 (198)</div>
+                <div class="tab">音频 (35)</div>
+                <div class="tab">
+                    收藏夹
+                    <span class="tab-badge">12</span>
+                </div>
+            </div>
+            
+            <div class="media-grid">
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E产品展示%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:05</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">产品360度展示</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-15</span>
+                            <span class="media-status status-published">已发布</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">产品展示</span>
+                            <span class="tag">3D动画</span>
+                            <span class="tag">新品</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E用户反馈%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:48</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">用户真实反馈合集</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-14</span>
+                            <span class="media-status status-published">已发布</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">用户评价</span>
+                            <span class="tag">口碑营销</span>
+                            <span class="tag" style="background: #fef7e0; color: #f9ab00;">爆款</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E教程指南%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:15</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">产品使用教程</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-13</span>
+                            <span class="media-status status-draft">草稿</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">教程</span>
+                            <span class="tag">使用指南</span>
+                            <span class="tag">新手向</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E品牌故事%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">3:20</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">品牌创始人访谈</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-12</span>
+                            <span class="media-status status-reviewing">审核中</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">品牌故事</span>
+                            <span class="tag">人物访谈</span>
+                            <span class="tag">深度内容</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E活动预告%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:30</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">618大促预热视频</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-11</span>
+                            <span class="media-status status-published">已发布</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">活动营销</span>
+                            <span class="tag">促销</span>
+                            <span class="tag">618</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E开箱测评%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:30</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">新品开箱体验</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-10</span>
+                            <span class="media-status status-published">已发布</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">开箱</span>
+                            <span class="tag">测评</span>
+                            <span class="tag">真实体验</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 批量操作栏 -->
+        <div class="batch-actions" id="batchActions">
+            <span class="batch-count">已选择 <span id="selectedCount">0</span> 个素材</span>
+            <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                下载
+            </button>
+            <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                编辑标签
+            </button>
+            <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                移动到
+            </button>
+            <button class="btn btn-secondary" style="color: #ea4335;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                删除
+            </button>
+        </div>
+        
+        <!-- 上传区域 -->
+        <div class="upload-zone" id="uploadZone">
+            <div class="upload-content">
+                <div class="upload-icon">📁</div>
+                <h3 class="upload-title">拖拽文件到此处上传</h3>
+                <p class="upload-hint">支持 MP4、MOV、JPG、PNG 等格式，单个文件最大 2GB</p>
+                <button class="btn btn-primary" style="margin-top: 24px;">选择文件</button>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // 标签页切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 视图切换
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 素材选择
+        let selectedCount = 0;
+        
+        function toggleSelect(card) {
+            card.classList.toggle('selected');
+            
+            if (card.classList.contains('selected')) {
+                selectedCount++;
+            } else {
+                selectedCount--;
+            }
+            
+            updateBatchActions();
+        }
+        
+        function updateBatchActions() {
+            const batchActions = document.getElementById('batchActions');
+            const countSpan = document.getElementById('selectedCount');
+            
+            countSpan.textContent = selectedCount;
+            
+            if (selectedCount > 0) {
+                batchActions.classList.add('show');
+            } else {
+                batchActions.classList.remove('show');
+            }
+        }
+        
+        // 显示上传区域
+        function showUpload() {
+            document.getElementById('uploadZone').classList.add('active');
+        }
+        
+        // 点击上传区域外部关闭
+        document.getElementById('uploadZone').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+        
+        // 拖拽上传
+        const uploadZone = document.getElementById('uploadZone');
+        
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const files = e.dataTransfer.files;
+            console.log('上传文件:', files);
+            uploadZone.classList.remove('active');
+            alert(`准备上传 ${files.length} 个文件`);
+        });
+        
+        // 全局拖拽上传
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('active');
+        });
+        
+        document.addEventListener('dragleave', (e) => {
+            if (e.clientX === 0 && e.clientY === 0) {
+                uploadZone.classList.remove('active');
+            }
+        });
+        
+        // 搜索功能
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            console.log('搜索:', e.target.value);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多人拉片分析 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #34a853;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #34a853;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2d9141;
+            box-shadow: 0 2px 8px rgba(52,168,83,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 分析容器 */
+        .analysis-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+            height: calc(100vh - 180px);
+        }
+        
+        /* 视频分析区 */
+        .video-analysis-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .video-player {
+            background: #000;
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-placeholder {
+            color: white;
+            font-size: 48px;
+        }
+        
+        /* 视频控制栏 */
+        .video-controls {
+            background: #f8f9fa;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .play-pause-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #34a853;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .play-pause-btn:hover {
+            background: #2d9141;
+            transform: scale(1.1);
+        }
+        
+        .timeline {
+            flex: 1;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #34a853;
+            border-radius: 3px;
+            width: 35%;
+        }
+        
+        .timeline-markers {
+            position: absolute;
+            top: -8px;
+            left: 0;
+            right: 0;
+            height: 22px;
+        }
+        
+        .marker {
+            position: absolute;
+            width: 6px;
+            height: 22px;
+            background: #ea4335;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .marker:hover {
+            transform: scaleY(1.2);
+        }
+        
+        .marker.hook {
+            background: #fbbc04;
+        }
+        
+        .marker.cta {
+            background: #34a853;
+        }
+        
+        .marker-tooltip {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .marker:hover .marker-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .time-display {
+            font-size: 13px;
+            color: #666;
+            white-space: nowrap;
+        }
+        
+        /* 快捷键提示 */
+        .shortcuts {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .shortcut {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .key {
+            background: #e5e7eb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #666;
+        }
+        
+        /* 侧边栏 */
+        .analysis-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+        
+        /* 面板样式 */
+        .analysis-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .panel-action {
+            font-size: 12px;
+            color: #1a73e8;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .panel-action:hover {
+            color: #1557b0;
+        }
+        
+        .panel-content {
+            padding: 20px;
+        }
+        
+        /* AI脚本解析 */
+        .script-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .script-highlight {
+            background: #fef7e0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .script-section {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        
+        .script-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .script-timestamp {
+            font-size: 12px;
+            color: #34a853;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        /* 拆解要素 */
+        .analysis-item {
+            margin-bottom: 20px;
+        }
+        
+        .analysis-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .analysis-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .analysis-value {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            font-size: 12px;
+            padding: 4px 10px;
+            background: #f0f2f5;
+            color: #666;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: #e6f4ea;
+            color: #34a853;
+        }
+        
+        .tag.active {
+            background: #e6f4ea;
+            color: #34a853;
+            font-weight: 500;
+        }
+        
+        /* 参与成员 */
+        .participants {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .participant-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .participant-avatar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .participant-add {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px dashed #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #999;
+        }
+        
+        .participant-add:hover {
+            border-color: #34a853;
+            background: #f8f9fb;
+            color: #34a853;
+        }
+        
+        .participant-status {
+            width: 8px;
+            height: 8px;
+            background: #34a853;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            border: 2px solid #fff;
+        }
+        
+        /* 评论区 */
+        .comments-section {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .comment {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .comment-content {
+            flex: 1;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        
+        .comment-author {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .comment-time {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .comment-text {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #666;
+        }
+        
+        .comment-input {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .comment-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        
+        .comment-input input:focus {
+            outline: none;
+            border-color: #34a853;
+            box-shadow: 0 0 0 3px rgba(52,168,83,0.1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .analysis-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .analysis-sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">多人拉片分析</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    保存分析
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">多人拉片分析</h2>
+                <p class="page-subtitle">团队协同分析视频，AI智能解析脚本，快速提炼爆款成功要素</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    邀请成员
+                </button>
+                <button class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    发起拉片
+                </button>
+            </div>
+        </div>
+        
+        <!-- 分析容器 -->
+        <div class="analysis-container">
+            <!-- 视频分析区 -->
+            <div class="video-analysis-section">
+                <div class="video-player">
+                    <div class="video-placeholder">🎬</div>
+                </div>
+                
+                <div class="video-controls">
+                    <button class="play-pause-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                    
+                    <div class="timeline">
+                        <div class="timeline-progress"></div>
+                        <div class="timeline-markers">
+                            <div class="marker hook" style="left: 5%;">
+                                <div class="marker-tooltip">黄金3秒钩子</div>
+                            </div>
+                            <div class="marker" style="left: 25%;">
+                                <div class="marker-tooltip">痛点展示</div>
+                            </div>
+                            <div class="marker" style="left: 45%;">
+                                <div class="marker-tooltip">产品亮点</div>
+                            </div>
+                            <div class="marker cta" style="left: 85%;">
+                                <div class="marker-tooltip">行动引导</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <span class="time-display">00:35 / 01:45</span>
+                    
+                    <div class="shortcuts">
+                        <div class="shortcut">
+                            <span class="key">Space</span>
+                            <span>播放/暂停</span>
+                        </div>
+                        <div class="shortcut">
+                            <span class="key">M</span>
+                            <span>添加标记</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分析侧边栏 -->
+            <div class="analysis-sidebar">
+                <!-- AI脚本解析 -->
+                <div class="analysis-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">AI脚本解析</h3>
+                        <span class="panel-action">刷新解析</span>
+                    </div>
+                    <div class="panel-content">
+                        <div class="script-text">
+                            <div class="script-section">
+                                <div class="script-timestamp">【开头钩子 0:00-0:03】</div>
+                                <span class="script-highlight">你还在为选择护肤品而烦恼吗？</span>
+                            </div>
+                            
+                            <div class="script-section">
+                                <div class="script-timestamp">【痛点展示 0:03-0:10】</div>
+                                每天面对镜子，看着暗沉的皮肤，试过无数产品都没效果...
+                            </div>
+                            
+                            <div class="script-section">
+                                <div class="script-timestamp">【产品引入 0:10-0:25】</div>
+                                今天给大家推荐这款明星同款精华液，蕴含高浓度烟酰胺...
+                            </div>
+                            
+                            <div class="script-section">
+                                <div class="script-timestamp">【效果展示 0:25-0:40】</div>
+                                使用两周后的对比效果，肤色明显提亮了2个度！
+                            </div>
+                            
+                            <div class="script-section">
+                                <div class="script-timestamp">【行动引导 0:40-0:45】</div>
+                                <span class="script-highlight">点击下方小黄车，限时优惠仅剩最后100份！</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 拆解要素 -->
+                <div class="analysis-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">拆解要素</h3>
+                    </div>
+                    <div class="panel-content">
+                        <div class="analysis-item">
+                            <div class="analysis-label">脚本结构</div>
+                            <div class="analysis-value">标准五段式：钩子-痛点-方案-效果-CTA</div>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <div class="analysis-label">人群洞察</div>
+                            <div class="analysis-value">25-35岁女性，注重护肤，追求性价比</div>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <div class="analysis-label">产品卖点</div>
+                            <div class="tags">
+                                <span class="tag active">明星同款</span>
+                                <span class="tag">高浓度成分</span>
+                                <span class="tag active">效果可见</span>
+                                <span class="tag">限时优惠</span>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <div class="analysis-label">视频元素</div>
+                            <div class="tags">
+                                <span class="tag">真人出镜</span>
+                                <span class="tag active">对比效果</span>
+                                <span class="tag">产品特写</span>
+                                <span class="tag active">字幕强调</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 参与成员与讨论 -->
+                <div class="analysis-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">参与成员</h3>
+                    </div>
+                    <div class="panel-content">
+                        <div class="participants">
+                            <div class="participant-avatar" style="background: #4285f4; position: relative;">
+                                王
+                                <div class="participant-status"></div>
+                            </div>
+                            <div class="participant-avatar" style="background: #34a853; position: relative;">
+                                李
+                                <div class="participant-status"></div>
+                            </div>
+                            <div class="participant-avatar" style="background: #fbbc04; position: relative;">
+                                张
+                                <div class="participant-status"></div>
+                            </div>
+                            <div class="participant-avatar" style="background: #ea4335;">
+                                陈
+                            </div>
+                            <div class="participant-add">+</div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <h4 style="font-size: 14px; margin-bottom: 12px;">实时讨论</h4>
+                            <div class="comments-section">
+                                <div class="comment">
+                                    <div class="comment-avatar" style="background: #4285f4; color: white;">王</div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <span class="comment-author">王经理</span>
+                                            <span class="comment-time">2分钟前</span>
+                                        </div>
+                                        <div class="comment-text">开头的提问很有效，直接击中目标用户痛点</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comment">
+                                    <div class="comment-avatar" style="background: #34a853; color: white;">李</div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <span class="comment-author">李策划</span>
+                                            <span class="comment-time">刚刚</span>
+                                        </div>
+                                        <div class="comment-text">对比效果展示很棒，建议我们也采用这种方式</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comment-input">
+                                <input type="text" placeholder="输入评论...">
+                                <button class="btn btn-primary" style="padding: 8px 16px;">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // 播放/暂停切换
+        let isPlaying = false;
+        const playPauseBtn = document.querySelector('.play-pause-btn');
+        
+        playPauseBtn.addEventListener('click', function() {
+            isPlaying = !isPlaying;
+            
+            if (isPlaying) {
+                this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                `;
+            } else {
+                this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                `;
+            }
+        });
+        
+        // 时间轴进度模拟
+        let progress = 35;
+        const timeline = document.querySelector('.timeline');
+        const progressBar = document.querySelector('.timeline-progress');
+        
+        timeline.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            progress = (x / rect.width) * 100;
+            progressBar.style.width = progress + '%';
+        });
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                playPauseBtn.click();
+            }
+        });
+        
+        // 标签点击切换
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+        
+        // 评论发送
+        const commentInput = document.querySelector('.comment-input input');
+        const sendBtn = document.querySelector('.comment-input button');
+        
+        sendBtn.addEventListener('click', function() {
+            const text = commentInput.value.trim();
+            if (text) {
+                // 这里添加发送评论的逻辑
+                console.log('发送评论:', text);
+                commentInput.value = '';
+            }
+        });
+        
+        commentInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
+        });
+        
+        // 模拟进度更新
+        setInterval(() => {
+            if (isPlaying && progress < 100) {
+                progress += 0.1;
+                progressBar.style.width = progress + '%';
+                
+                // 更新时间显示
+                const currentTime = Math.floor((progress / 100) * 105);
+                const minutes = Math.floor(currentTime / 60);
+                const seconds = currentTime % 60;
+                document.querySelector('.time-display').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} / 01:45`;
+            }
+        }, 100);
+    </script>
+</body>
+</html>

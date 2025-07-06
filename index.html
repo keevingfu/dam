@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短视频营销DAM门户平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .notification-btn:hover {
+            background: #f0f2f5;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ea4335;
+            color: white;
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 10px;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        .user-menu:hover {
+            background: #f0f2f5;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 主体布局 */
+        .main-wrapper {
+            display: flex;
+            margin-top: 60px;
+            height: calc(100vh - 60px);
+        }
+        
+        /* 侧边导航栏 */
+        .sidebar {
+            width: 260px;
+            background: #fff;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 60px;
+            bottom: 0;
+        }
+        
+        .nav-menu {
+            padding: 20px 0;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .nav-link:hover {
+            background: #f5f6fa;
+            color: #1a73e8;
+        }
+        
+        .nav-link.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-right: 3px solid #1a73e8;
+        }
+        
+        .nav-icon {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .nav-arrow {
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+        
+        .nav-arrow.expanded {
+            transform: rotate(90deg);
+        }
+        
+        /* 二级菜单 */
+        .sub-menu {
+            display: none;
+            background: #f8f9fa;
+        }
+        
+        .sub-menu.show {
+            display: block;
+        }
+        
+        .sub-menu-item {
+            display: block;
+            padding: 12px 20px 12px 52px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .sub-menu-item:hover {
+            color: #1a73e8;
+            background: #e8f0fe;
+        }
+        
+        .sub-menu-item.active {
+            color: #1a73e8;
+            background: #e8f0fe;
+            font-weight: 500;
+        }
+        
+        /* 内容区域 */
+        .content-area {
+            flex: 1;
+            margin-left: 260px;
+            height: calc(100vh - 60px);
+            position: relative;
+        }
+        
+        /* 默认内容 */
+        .default-content {
+            padding: 20px;
+            overflow-y: auto;
+            height: 100%;
+            background: #f5f6fa;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* iframe样式 */
+        .content-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+        
+        .content-iframe.active {
+            display: block;
+        }
+        
+        /* 原有内容样式 */
+        .welcome-section {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .welcome-title {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .welcome-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .quick-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .quick-stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .quick-stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 快捷入口 */
+        .quick-links {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .quick-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .quick-link:hover {
+            background: #e8f0fe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .quick-link-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .quick-link-text {
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        /* 应用分类 */
+        .app-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        /* 应用卡片网格 */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .app-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--app-color) 0%, var(--app-color-light) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--app-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .app-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .app-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .app-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .app-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* 应用颜色主题 */
+        .app-blue { --app-color: #1a73e8; --app-color-light: #4285f4; --app-bg: #e8f0fe; }
+        .app-green { --app-color: #34a853; --app-color-light: #81c784; --app-bg: #e6f4ea; }
+        .app-yellow { --app-color: #fbbc04; --app-color-light: #fdd835; --app-bg: #fef7e0; }
+        .app-red { --app-color: #ea4335; --app-color-light: #e57373; --app-bg: #fce8e6; }
+        .app-purple { --app-color: #9333ea; --app-color-light: #ba68c8; --app-bg: #f3e8ff; }
+        .app-teal { --app-color: #10b981; --app-color-light: #4db6ac; --app-bg: #d1fae5; }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: fixed;
+                left: -100%;
+                transition: left 0.3s;
+            }
+            
+            .sidebar.open {
+                left: 0;
+            }
+            
+            .content-area {
+                margin-left: 0;
+            }
+            
+            .quick-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                短视频营销DAM平台
+            </div>
+            
+            <div class="header-actions">
+                <button class="notification-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <div class="user-menu">
+                    <div class="user-avatar">M</div>
+                    <span>营销经理</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主体内容 -->
+    <div class="main-wrapper">
+        <!-- 侧边导航栏 -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="nav-menu">
+                <!-- 工作台 -->
+                <div class="nav-item">
+                    <button class="nav-link" onclick="toggleMenu('workbench')">
+                        <div>
+                            <span class="nav-icon">💼</span>
+                            <span>工作台</span>
+                        </div>
+                        <svg class="nav-arrow" id="workbench-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="sub-menu" id="workbench-menu">
+                        <button class="sub-menu-item" onclick="loadPage('dashboard.html', this)">数据概览</button>
+                        <button class="sub-menu-item" onclick="loadPage('projects.html', this)">项目管理</button>
+                        <button class="sub-menu-item" onclick="loadPage('tasks.html', this)">任务中心</button>
+                    </div>
+                </div>
+                
+                <!-- 素材管理 -->
+                <div class="nav-item">
+                    <button class="nav-link" onclick="toggleMenu('material')">
+                        <div>
+                            <span class="nav-icon">🎬</span>
+                            <span>素材管理</span>
+                        </div>
+                        <svg class="nav-arrow" id="material-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="sub-menu" id="material-menu">
+                        <button class="sub-menu-item" onclick="loadPage('media-library.html', this)">素材库</button>
+                        <button class="sub-menu-item" onclick="loadPage('competitor-collection.html', this)">竞品收集</button>
+                        <button class="sub-menu-item" onclick="loadPage('highlights.html', this)">爆点片段</button>
+                        <button class="sub-menu-item" onclick="loadPage('smart-folders.html', this)">智能文件夹</button>
+                    </div>
+                </div>
+                
+                <!-- 创作协同 -->
+                <div class="nav-item">
+                    <button class="nav-link" onclick="toggleMenu('collaboration')">
+                        <div>
+                            <span class="nav-icon">🤝</span>
+                            <span>创作协同</span>
+                        </div>
+                        <svg class="nav-arrow" id="collaboration-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="sub-menu" id="collaboration-menu">
+                        <button class="sub-menu-item" onclick="loadPage('video-analysis.html', this)">多人拉片</button>
+                        <button class="sub-menu-item" onclick="loadPage('script-editor.html', this)">脚本创作</button>
+                        <button class="sub-menu-item" onclick="loadPage('review.html', this)">在线审阅</button>
+                        <button class="sub-menu-item" onclick="loadPage('publishing.html', this)">发布管理</button>
+                    </div>
+                </div>
+                
+                <!-- 数据分析 -->
+                <div class="nav-item">
+                    <button class="nav-link" onclick="toggleMenu('analytics')">
+                        <div>
+                            <span class="nav-icon">📊</span>
+                            <span>数据分析</span>
+                        </div>
+                        <svg class="nav-arrow" id="analytics-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="sub-menu" id="analytics-menu">
+                        <button class="sub-menu-item" onclick="loadPage('performance.html', this)">效果分析</button>
+                        <button class="sub-menu-item" onclick="loadPage('scoring.html', this)">素材评分</button>
+                        <button class="sub-menu-item" onclick="loadPage('reuse-analysis.html', this)">复用分析</button>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- 内容区域 -->
+        <main class="content-area">
+            <!-- 默认内容 -->
+            <div id="default-content" class="default-content">
+                <div class="content-wrapper">
+                    <!-- 欢迎区域 -->
+                    <div class="welcome-section">
+                        <div class="welcome-content">
+                            <h1 class="welcome-title">欢迎回来，营销经理！</h1>
+                            <p class="welcome-subtitle">今天让我们一起创造更多爆款内容</p>
+                            
+                            <div class="quick-stats">
+                                <div class="quick-stat">
+                                    <div class="quick-stat-value">12,845</div>
+                                    <div class="quick-stat-label">素材总量</div>
+                                </div>
+                                <div class="quick-stat">
+                                    <div class="quick-stat-value">12.5%</div>
+                                    <div class="quick-stat-label">爆款率</div>
+                                </div>
+                                <div class="quick-stat">
+                                    <div class="quick-stat-value">45.3%</div>
+                                    <div class="quick-stat-label">素材复用率</div>
+                                </div>
+                                <div class="quick-stat">
+                                    <div class="quick-stat-value">2.8天</div>
+                                    <div class="quick-stat-label">平均制作周期</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 快捷入口 -->
+                    <div class="quick-links">
+                        <h3 style="font-size: 18px; margin-bottom: 4px;">快捷操作</h3>
+                        <p style="font-size: 14px; color: #666;">常用功能，一键直达</p>
+                        <div class="quick-links-grid">
+                            <button class="quick-link" onclick="quickLoadPage('media-library.html')">
+                                <div class="quick-link-icon">📤</div>
+                                <span class="quick-link-text">上传素材</span>
+                            </button>
+                            <button class="quick-link" onclick="quickLoadPage('script-editor.html')">
+                                <div class="quick-link-icon">📝</div>
+                                <span class="quick-link-text">创建脚本</span>
+                            </button>
+                            <button class="quick-link" onclick="quickLoadPage('video-analysis.html')">
+                                <div class="quick-link-icon">🎥</div>
+                                <span class="quick-link-text">发起拉片</span>
+                            </button>
+                            <button class="quick-link" onclick="quickLoadPage('publishing.html')">
+                                <div class="quick-link-icon">🚀</div>
+                                <span class="quick-link-text">立即发布</span>
+                            </button>
+                            <button class="quick-link" onclick="quickLoadPage('performance.html')">
+                                <div class="quick-link-icon">📊</div>
+                                <span class="quick-link-text">数据分析</span>
+                            </button>
+                            <button class="quick-link" onclick="quickLoadPage('competitor-collection.html')">
+                                <div class="quick-link-icon">🔍</div>
+                                <span class="quick-link-text">竞品收集</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 工作台应用 -->
+                    <div class="app-section">
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">工作台</h2>
+                                <p class="section-subtitle">项目管理与任务协作</p>
+                            </div>
+                        </div>
+                        <div class="app-grid">
+                            <button class="app-card app-blue" onclick="quickLoadPage('dashboard.html')">
+                                <div class="app-icon">📊</div>
+                                <h3 class="app-name">数据概览</h3>
+                                <p class="app-description">实时监控短视频营销效果，洞察内容价值，支持自定义看板和数据导出</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        日活跃 98%
+                                    </span>
+                                    <span class="app-stat">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                        </svg>
+                                        实时更新
+                                    </span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-green" onclick="quickLoadPage('projects.html')">
+                                <div class="app-icon">📋</div>
+                                <h3 class="app-name">项目管理</h3>
+                                <p class="app-description">统一管理营销项目，跟踪进度和协作状态，支持多团队协同工作</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                        </svg>
+                                        15个活跃项目
+                                    </span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-yellow" onclick="quickLoadPage('tasks.html')">
+                                <div class="app-icon">🎯</div>
+                                <h3 class="app-name">任务中心</h3>
+                                <p class="app-description">管理日常任务，确保项目按时交付，支持优先级管理和进度追踪</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        5个待处理
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 素材管理应用 -->
+                    <div class="app-section">
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">素材管理</h2>
+                                <p class="section-subtitle">智能化素材存储与管理</p>
+                            </div>
+                        </div>
+                        <div class="app-grid">
+                            <button class="app-card app-purple" onclick="quickLoadPage('media-library.html')">
+                                <div class="app-icon">🎬</div>
+                                <h3 class="app-name">素材库</h3>
+                                <p class="app-description">集中管理所有视频素材，支持智能搜索、标签管理和批量操作</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">12,845个素材</span>
+                                    <span class="app-stat">AI标签</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-red" onclick="quickLoadPage('competitor-collection.html')">
+                                <div class="app-icon">🔍</div>
+                                <h3 class="app-name">竞品收集</h3>
+                                <p class="app-description">一键收集竞品优质内容，分析行业趋势，洞察爆款规律</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">256个竞品</span>
+                                    <span class="app-stat">日更新</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-blue" onclick="quickLoadPage('highlights.html')">
+                                <div class="app-icon">🔥</div>
+                                <h3 class="app-name">爆点片段</h3>
+                                <p class="app-description">智能识别高价值片段，建立爆款素材库，快速复用成功元素</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">1,234个片段</span>
+                                    <span class="app-stat">87%复用率</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-green" onclick="quickLoadPage('smart-folders.html')">
+                                <div class="app-icon">📁</div>
+                                <h3 class="app-name">智能文件夹</h3>
+                                <p class="app-description">基于规则自动分类，动态更新素材组织，让管理更加智能高效</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">32个规则</span>
+                                    <span class="app-stat">自动分类</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 创作协同应用 -->
+                    <div class="app-section">
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">创作协同</h2>
+                                <p class="section-subtitle">团队协作创意工具</p>
+                            </div>
+                        </div>
+                        <div class="app-grid">
+                            <button class="app-card app-teal" onclick="quickLoadPage('video-analysis.html')">
+                                <div class="app-icon">🎞️</div>
+                                <h3 class="app-name">多人拉片</h3>
+                                <p class="app-description">实时同步观看分析，AI智能提取脚本，团队协作拆解爆款</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">实时协作</span>
+                                    <span class="app-stat">AI解析</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-yellow" onclick="quickLoadPage('script-editor.html')">
+                                <div class="app-icon">✍️</div>
+                                <h3 class="app-name">脚本创作</h3>
+                                <p class="app-description">结构化脚本编写，支持多人协同编辑，内置爆款脚本模板</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">128个模板</span>
+                                    <span class="app-stat">协同编辑</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-red" onclick="quickLoadPage('review.html')">
+                                <div class="app-icon">👁️</div>
+                                <h3 class="app-name">在线审阅</h3>
+                                <p class="app-description">精准标注反馈意见，多级审核流程，高效完成内容审核</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">3个待审核</span>
+                                    <span class="app-stat">帧级标注</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-purple" onclick="quickLoadPage('publishing.html')">
+                                <div class="app-icon">🚀</div>
+                                <h3 class="app-name">发布管理</h3>
+                                <p class="app-description">多平台智能发布，自动适配格式，定时发布，一键分发管理</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">5个平台</span>
+                                    <span class="app-stat">智能适配</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据分析应用 -->
+                    <div class="app-section">
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">数据分析</h2>
+                                <p class="section-subtitle">数据驱动内容优化</p>
+                            </div>
+                        </div>
+                        <div class="app-grid">
+                            <button class="app-card app-teal" onclick="quickLoadPage('performance.html')">
+                                <div class="app-icon">📈</div>
+                                <h3 class="app-name">效果分析</h3>
+                                <p class="app-description">深度分析内容表现，多维度数据展示，优化创作策略</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">实时数据</span>
+                                    <span class="app-stat">趋势预测</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-blue" onclick="quickLoadPage('scoring.html')">
+                                <div class="app-icon">🏆</div>
+                                <h3 class="app-name">素材评分</h3>
+                                <p class="app-description">基于数据表现进行素材评级，建立内容质量标准体系</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">S级12个</span>
+                                    <span class="app-stat">多维评分</span>
+                                </div>
+                            </button>
+                            
+                            <button class="app-card app-green" onclick="quickLoadPage('reuse-analysis.html')">
+                                <div class="app-icon">🔄</div>
+                                <h3 class="app-name">复用分析</h3>
+                                <p class="app-description">追踪素材复用效果，分析价值链路，最大化内容价值</p>
+                                <div class="app-stats">
+                                    <span class="app-stat">复用率45.3%</span>
+                                    <span class="app-stat">节省45.6万</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 页脚 -->
+                    <footer class="footer">
+                        <p>&copy; 2024 短视频营销DAM平台. All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+            
+            <!-- iframe容器 -->
+            <iframe id="content-iframe" class="content-iframe"></iframe>
+        </main>
+    </div>
+    
+    <script>
+        // 当前激活的菜单
+        let currentMenu = null;
+        let currentSubMenuItem = null;
+        
+        // 切换菜单展开/收起
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId + '-menu');
+            const arrow = document.getElementById(menuId + '-arrow');
+            const navLink = arrow.parentElement;
+            
+            // 如果点击的是当前已展开的菜单，则收起
+            if (currentMenu === menuId) {
+                menu.classList.remove('show');
+                arrow.classList.remove('expanded');
+                navLink.classList.remove('active');
+                currentMenu = null;
+                return;
+            }
+            
+            // 收起其他菜单
+            const allMenus = document.querySelectorAll('.sub-menu');
+            const allArrows = document.querySelectorAll('.nav-arrow');
+            const allNavLinks = document.querySelectorAll('.nav-link');
+            
+            allMenus.forEach(m => m.classList.remove('show'));
+            allArrows.forEach(a => a.classList.remove('expanded'));
+            allNavLinks.forEach(l => l.classList.remove('active'));
+            
+            // 展开当前菜单
+            menu.classList.add('show');
+            arrow.classList.add('expanded');
+            navLink.classList.add('active');
+            currentMenu = menuId;
+        }
+        
+        // 加载页面到iframe
+        function loadPage(url, element) {
+            // 移除所有子菜单项的active状态
+            const allSubMenuItems = document.querySelectorAll('.sub-menu-item');
+            allSubMenuItems.forEach(item => item.classList.remove('active'));
+            
+            // 设置当前菜单项为active
+            element.classList.add('active');
+            currentSubMenuItem = element;
+            
+            // 隐藏默认内容，显示iframe
+            document.getElementById('default-content').style.display = 'none';
+            const iframe = document.getElementById('content-iframe');
+            iframe.classList.add('active');
+            iframe.src = url;
+        }
+        
+        // 快捷操作加载页面
+        function quickLoadPage(url) {
+            // 首先根据URL找到对应的菜单项
+            const menuMap = {
+                'dashboard.html': { menu: 'workbench', text: '数据概览' },
+                'projects.html': { menu: 'workbench', text: '项目管理' },
+                'tasks.html': { menu: 'workbench', text: '任务中心' },
+                'media-library.html': { menu: 'material', text: '素材库' },
+                'competitor-collection.html': { menu: 'material', text: '竞品收集' },
+                'highlights.html': { menu: 'material', text: '爆点片段' },
+                'smart-folders.html': { menu: 'material', text: '智能文件夹' },
+                'video-analysis.html': { menu: 'collaboration', text: '多人拉片' },
+                'script-editor.html': { menu: 'collaboration', text: '脚本创作' },
+                'review.html': { menu: 'collaboration', text: '在线审阅' },
+                'publishing.html': { menu: 'collaboration', text: '发布管理' },
+                'performance.html': { menu: 'analytics', text: '效果分析' },
+                'scoring.html': { menu: 'analytics', text: '素材评分' },
+                'reuse-analysis.html': { menu: 'analytics', text: '复用分析' }
+            };
+            
+            const menuInfo = menuMap[url];
+            if (menuInfo) {
+                // 展开对应的菜单
+                toggleMenu(menuInfo.menu);
+                
+                // 找到对应的子菜单项并激活
+                const subMenuItems = document.querySelectorAll(`#${menuInfo.menu}-menu .sub-menu-item`);
+                subMenuItems.forEach(item => {
+                    if (item.textContent === menuInfo.text) {
+                        loadPage(url, item);
+                    }
+                });
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 通知功能
+            document.querySelector('.notification-btn').addEventListener('click', function() {
+                alert('您有3条新通知');
+            });
+            
+            // 用户菜单
+            document.querySelector('.user-menu').addEventListener('click', function() {
+                alert('用户菜单功能开发中...');
+            });
+            
+            // iframe加载完成后的处理
+            const iframe = document.getElementById('content-iframe');
+            iframe.addEventListener('load', function() {
+                // 可以在这里添加iframe加载完成后的处理逻辑
+            });
+        });
+    </script>
+</body>
+</html>

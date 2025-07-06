@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线审阅 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ea4335;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #ea4335;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #d33b2c;
+            box-shadow: 0 2px 8px rgba(234,67,53,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        .btn-success {
+            background: #34a853;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #2d9141;
+        }
+        
+        /* 审核状态栏 */
+        .review-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #fef1f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .status-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ea4335;
+        }
+        
+        .status-dot.pending {
+            background: #fbbc04;
+        }
+        
+        .status-dot.approved {
+            background: #34a853;
+        }
+        
+        /* 审阅容器 */
+        .review-container {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 20px;
+            height: calc(100vh - 240px);
+        }
+        
+        /* 视频播放区 */
+        .video-section {
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .video-placeholder {
+            color: white;
+            font-size: 64px;
+        }
+        
+        /* 标注层 */
+        .annotation-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 60px;
+            cursor: crosshair;
+        }
+        
+        .annotation-point {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: #ea4335;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .annotation-point:hover {
+            transform: scale(1.2);
+        }
+        
+        .annotation-tooltip {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .annotation-point:hover .annotation-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 视频控制栏 */
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.8);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background: #ea4335;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .play-btn:hover {
+            background: #d33b2c;
+            transform: scale(1.1);
+        }
+        
+        .timeline {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #ea4335;
+            border-radius: 3px;
+            width: 35%;
+        }
+        
+        .timeline-comments {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 26px;
+        }
+        
+        .comment-marker {
+            position: absolute;
+            width: 4px;
+            height: 26px;
+            background: #fbbc04;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .comment-marker:hover {
+            transform: scaleY(1.2);
+            background: #f9ab00;
+        }
+        
+        .time-display {
+            color: white;
+            font-size: 13px;
+        }
+        
+        /* 标注工具栏 */
+        .annotation-toolbar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .tool-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .tool-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .tool-btn.active {
+            background: #ea4335;
+        }
+        
+        /* 评论面板 */
+        .comment-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .comment-filter {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .filter-btn {
+            padding: 4px 12px;
+            background: transparent;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover {
+            border-color: #ea4335;
+            color: #ea4335;
+        }
+        
+        .filter-btn.active {
+            background: #ea4335;
+            color: white;
+            border-color: #ea4335;
+        }
+        
+        /* 评论列表 */
+        .comment-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+        
+        .comment-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        
+        .comment-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .comment-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .comment-time {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .comment-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+        
+        .status-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #f59e0b;
+        }
+        
+        .status-badge.resolved {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .comment-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .comment-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .priority-high {
+            color: #ea4335;
+            font-weight: 500;
+        }
+        
+        .priority-medium {
+            color: #fbbc04;
+            font-weight: 500;
+        }
+        
+        .priority-low {
+            color: #34a853;
+            font-weight: 500;
+        }
+        
+        /* 评论输入 */
+        .comment-input-area {
+            padding: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .comment-input {
+            width: 100%;
+            padding: 10px 12px 36px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: none;
+            min-height: 80px;
+            transition: all 0.3s;
+        }
+        
+        .comment-input:focus {
+            outline: none;
+            border-color: #ea4335;
+            box-shadow: 0 0 0 3px rgba(234,67,53,0.1);
+        }
+        
+        .input-actions {
+            position: absolute;
+            bottom: 8px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .input-tools {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .tool-icon {
+            width: 28px;
+            height: 28px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .tool-icon:hover {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .send-btn {
+            padding: 6px 16px;
+            background: #ea4335;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .send-btn:hover {
+            background: #d33b2c;
+        }
+        
+        /* 版本对比 */
+        .version-bar {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .version-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .version-select {
+            padding: 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+        }
+        
+        .compare-btn {
+            margin-left: auto;
+            padding: 6px 16px;
+            background: transparent;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .compare-btn:hover {
+            border-color: #ea4335;
+            color: #ea4335;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .review-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .comment-panel {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">在线审阅</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    参与人员
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div class="review-header">
+                <div>
+                    <h2 class="page-title">618大促主推视频 - 第二版审核</h2>
+                </div>
+                <div class="page-actions">
+                    <button class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        导出批注
+                    </button>
+                    <button class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        审核通过
+                    </button>
+                </div>
+            </div>
+            
+            <div class="review-status-bar">
+                <div class="status-info">
+                    <div class="status-item">
+                        <span class="status-dot pending"></span>
+                        <span>待处理批注：5个</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot approved"></span>
+                        <span>已解决：12个</span>
+                    </div>
+                    <div class="status-item">
+                        <span>参与审核：4人</span>
+                    </div>
+                </div>
+                <div>
+                    <span style="font-size: 13px; color: #666;">提交时间：2小时前</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 版本对比栏 -->
+        <div class="version-bar">
+            <span class="version-label">当前版本：</span>
+            <select class="version-select">
+                <option>第二版（当前）</option>
+                <option>第一版</option>
+                <option>初稿</option>
+            </select>
+            <button class="compare-btn">版本对比</button>
+        </div>
+        
+        <!-- 审阅容器 -->
+        <div class="review-container">
+            <!-- 视频播放区 -->
+            <div class="video-section">
+                <div class="video-player">
+                    <div class="video-placeholder">🎬</div>
+                    
+                    <!-- 标注层 -->
+                    <div class="annotation-layer" id="annotationLayer">
+                        <div class="annotation-point" style="left: 30%; top: 25%;">
+                            1
+                            <div class="annotation-tooltip">字体太小，看不清楚</div>
+                        </div>
+                        <div class="annotation-point" style="left: 65%; top: 40%;">
+                            2
+                            <div class="annotation-tooltip">产品特写不够清晰</div>
+                        </div>
+                        <div class="annotation-point" style="left: 45%; top: 70%;">
+                            3
+                            <div class="annotation-tooltip">Logo位置需要调整</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 标注工具栏 -->
+                    <div class="annotation-toolbar">
+                        <button class="tool-btn active" title="选择">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
+                                <path d="M13 13l6 6"></path>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" title="圆圈">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" title="矩形">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" title="画笔">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                                <path d="M2 2l7.586 7.586"></path>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" title="文字">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                                <line x1="9" y1="20" x2="15" y2="20"></line>
+                                <line x1="12" y1="4" x2="12" y2="20"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- 视频控制栏 -->
+                    <div class="video-controls">
+                        <button class="play-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </button>
+                        
+                        <div class="timeline">
+                            <div class="timeline-comments">
+                                <div class="comment-marker" style="left: 15%;"></div>
+                                <div class="comment-marker" style="left: 35%;"></div>
+                                <div class="comment-marker" style="left: 60%;"></div>
+                                <div class="comment-marker" style="left: 80%;"></div>
+                            </div>
+                            <div class="timeline-progress"></div>
+                        </div>
+                        
+                        <span class="time-display">00:21 / 01:00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 评论面板 -->
+            <div class="comment-panel">
+                <div class="panel-header">
+                    <h3 class="panel-title">批注与讨论</h3>
+                    <div class="comment-filter">
+                        <button class="filter-btn active">全部</button>
+                        <button class="filter-btn">待处理</button>
+                        <button class="filter-btn">已解决</button>
+                    </div>
+                </div>
+                
+                <div class="comment-list">
+                    <!-- 评论1 -->
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-author">
+                                <div class="author-avatar">王</div>
+                                <div class="author-info">
+                                    <span class="author-name">王经理</span>
+                                    <span class="comment-time">10分钟前</span>
+                                </div>
+                            </div>
+                            <div class="comment-status">
+                                <span class="status-badge pending">待处理</span>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            开头3秒的文案字体太小了，在手机上看不清楚，建议放大到现在的1.5倍
+                        </div>
+                        <div class="comment-meta">
+                            <span class="meta-item">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                00:03
+                            </span>
+                            <span class="meta-item priority-high">
+                                高优先级
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- 评论2 -->
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-author">
+                                <div class="author-avatar">李</div>
+                                <div class="author-info">
+                                    <span class="author-name">李设计师</span>
+                                    <span class="comment-time">25分钟前</span>
+                                </div>
+                            </div>
+                            <div class="comment-status">
+                                <span class="status-badge resolved">已解决</span>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            背景音乐节奏很好，但是音量稍微有点大，可能会盖过口播声音
+                        </div>
+                        <div class="comment-meta">
+                            <span class="meta-item">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                全程
+                            </span>
+                            <span class="meta-item priority-medium">
+                                中优先级
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- 评论3 -->
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-author">
+                                <div class="author-avatar">张</div>
+                                <div class="author-info">
+                                    <span class="author-name">张运营</span>
+                                    <span class="comment-time">1小时前</span>
+                                </div>
+                            </div>
+                            <div class="comment-status">
+                                <span class="status-badge pending">待处理</span>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            产品展示部分建议增加一个360度旋转的镜头，让用户看得更清楚。另外价格标签的位置能不能再突出一些？
+                        </div>
+                        <div class="comment-meta">
+                            <span class="meta-item">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                00:25-00:35
+                            </span>
+                            <span class="meta-item priority-high">
+                                高优先级
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- 评论4 -->
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <div class="comment-author">
+                                <div class="author-avatar">陈</div>
+                                <div class="author-info">
+                                    <span class="author-name">陈总监</span>
+                                    <span class="comment-time">2小时前</span>
+                                </div>
+                            </div>
+                            <div class="comment-status">
+                                <span class="status-badge resolved">已解决</span>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            整体效果不错！建议在结尾加上品牌slogan，加深用户印象
+                        </div>
+                        <div class="comment-meta">
+                            <span class="meta-item">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                00:55
+                            </span>
+                            <span class="meta-item priority-low">
+                                低优先级
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评论输入 -->
+                <div class="comment-input-area">
+                    <div class="input-wrapper">
+                        <textarea class="comment-input" placeholder="添加批注..."></textarea>
+                        <div class="input-actions">
+                            <div class="input-tools">
+                                <button class="tool-icon" title="附件">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                                    </svg>
+                                </button>
+                                <button class="tool-icon" title="优先级">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                </button>
+                                <button class="tool-icon" title="@提及">
+                                    @
+                                </button>
+                            </div>
+                            <button class="send-btn">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // 标注工具切换
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                console.log('切换工具:', this.getAttribute('title'));
+            });
+        });
+        
+        // 添加标注点
+        document.getElementById('annotationLayer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                const rect = this.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                console.log('添加标注点:', x, y);
+                // 这里可以添加创建新标注点的逻辑
+            }
+        });
+        
+        // 评论筛选
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                console.log('筛选:', this.textContent);
+            });
+        });
+        
+        // 播放控制
+        document.querySelector('.play-btn').addEventListener('click', function() {
+            const isPlaying = this.querySelector('polygon');
+            if (isPlaying) {
+                this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                `;
+            } else {
+                this.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                `;
+            }
+        });
+        
+        // 时间轴点击
+        document.querySelector('.timeline').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percentage = (x / rect.width) * 100;
+            document.querySelector('.timeline-progress').style.width = percentage + '%';
+        });
+        
+        // 评论标记点击
+        document.querySelectorAll('.comment-marker').forEach(marker => {
+            marker.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('跳转到评论时间点');
+            });
+        });
+        
+        // 发送评论
+        document.querySelector('.send-btn').addEventListener('click', function() {
+            const input = document.querySelector('.comment-input');
+            if (input.value.trim()) {
+                console.log('发送评论:', input.value);
+                input.value = '';
+            }
+        });
+        
+        // 工具图标点击
+        document.querySelectorAll('.tool-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                console.log('工具:', this.getAttribute('title'));
+            });
+        });
+        
+        // 版本切换
+        document.querySelector('.version-select').addEventListener('change', function() {
+            console.log('切换版本:', this.value);
+        });
+        
+        // 版本对比
+        document.querySelector('.compare-btn').addEventListener('click', function() {
+            console.log('版本对比');
+        });
+    </script>
+</body>
+</html>

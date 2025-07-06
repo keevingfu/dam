@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞品收集 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ea4335;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #ea4335;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #dc3545;
+            box-shadow: 0 2px 8px rgba(234,67,53,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 账号监控区域 */
+        .accounts-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        /* 账号卡片 */
+        .accounts-grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        
+        .account-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #ea4335;
+        }
+        
+        .account-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .account-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .account-platform {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .account-platform svg {
+            opacity: 0.7;
+        }
+        
+        .account-stats {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .account-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
+            font-size: 12px;
+            padding: 4px 8px;
+            background: #e6f4ea;
+            color: #34a853;
+            border-radius: 4px;
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #34a853;
+            border-radius: 50%;
+        }
+        
+        /* 添加账号卡片 */
+        .add-account-card {
+            background: transparent;
+            border: 2px dashed #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+            color: #999;
+            transition: all 0.3s;
+        }
+        
+        .add-account-card:hover {
+            border-color: #ea4335;
+            background: #fff;
+            color: #ea4335;
+        }
+        
+        /* 素材内容区 */
+        .content-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        
+        /* 标签页 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fff;
+        }
+        
+        .tab {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            color: #ea4335;
+        }
+        
+        .tab.active {
+            color: #ea4335;
+            border-bottom-color: #ea4335;
+        }
+        
+        /* 筛选栏 */
+        .filter-bar {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: #f8f9fa;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:hover {
+            border-color: #ea4335;
+        }
+        
+        .date-range {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .date-input {
+            padding: 6px 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        
+        /* 素材网格 */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 24px;
+        }
+        
+        .media-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-color: #ea4335;
+        }
+        
+        .media-preview {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #f0f2f5;
+            overflow: hidden;
+        }
+        
+        .media-preview img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .media-card:hover .media-overlay {
+            opacity: 1;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 24px;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .media-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .media-source {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .source-douyin {
+            color: #161823;
+        }
+        
+        .source-xiaohongshu {
+            color: #fe2c55;
+        }
+        
+        .source-kuaishou {
+            color: #ff6600;
+        }
+        
+        .media-info {
+            padding: 16px;
+        }
+        
+        .media-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .media-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .media-date {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .trending-badge {
+            background: #fce8e6;
+            color: #ea4335;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .media-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .media-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* 快速操作 */
+        .quick-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .media-card:hover .quick-actions {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .action-btn:hover {
+            background: #fff;
+            transform: scale(1.1);
+        }
+        
+        /* 浏览器插件提示 */
+        .plugin-banner {
+            background: linear-gradient(135deg, #ea4335 0%, #dc3545 100%);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .plugin-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .plugin-icon {
+            font-size: 32px;
+        }
+        
+        .plugin-text h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .plugin-text p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .plugin-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .plugin-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .accounts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .media-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .filter-bar {
+                flex-wrap: wrap;
+            }
+            
+            .plugin-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">竞品收集</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    同步更新
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">竞品收集</h2>
+                <p class="page-subtitle">收集和分析竞品优质内容，洞察行业趋势</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
+                    </svg>
+                    浏览器插件
+                </button>
+                <button class="btn btn-primary" onclick="collectContent()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    收集素材
+                </button>
+            </div>
+        </div>
+        
+        <!-- 浏览器插件提示 -->
+        <div class="plugin-banner">
+            <div class="plugin-content">
+                <div class="plugin-icon">🚀</div>
+                <div class="plugin-text">
+                    <h3>安装浏览器插件，一键收集各平台优质素材</h3>
+                    <p>支持TikTok、Instagram、Facebook等主流平台，智能识别并保存高清素材</p>
+                </div>
+            </div>
+            <button class="plugin-btn">立即安装</button>
+        </div>
+        
+        <!-- 竞品账号监控 -->
+        <div class="accounts-section">
+            <div class="section-header">
+                <h3 class="section-title">竞品账号监控</h3>
+                <button class="btn btn-secondary" onclick="addAccount()">添加账号</button>
+            </div>
+            <div class="accounts-grid">
+                <div class="account-card">
+                    <div class="account-icon">🏢</div>
+                    <div class="account-name">竞品A官方</div>
+                    <div class="account-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="TikTok">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </div>
+                    <div class="account-stats">245.3万粉丝</div>
+                    <div class="account-status">
+                        <span class="status-dot"></span>
+                        监控中
+                    </div>
+                </div>
+                
+                <div class="account-card">
+                    <div class="account-icon">🏪</div>
+                    <div class="account-name">竞品B旗舰店</div>
+                    <div class="account-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="Instagram">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                        </svg>
+                    </div>
+                    <div class="account-stats">89.7万粉丝</div>
+                    <div class="account-status">
+                        <span class="status-dot"></span>
+                        监控中
+                    </div>
+                </div>
+                
+                <div class="account-card">
+                    <div class="account-icon">🎯</div>
+                    <div class="account-name">行业KOL-张大师</div>
+                    <div class="account-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="Facebook">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <div class="account-stats">156.2万粉丝</div>
+                    <div class="account-status">
+                        <span class="status-dot"></span>
+                        监控中
+                    </div>
+                </div>
+                
+                <div class="account-card">
+                    <div class="account-icon">🌟</div>
+                    <div class="account-name">竞品C创意号</div>
+                    <div class="account-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="YouTube">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </div>
+                    <div class="account-stats">67.8万粉丝</div>
+                    <div class="account-status">
+                        <span class="status-dot"></span>
+                        监控中
+                    </div>
+                </div>
+                
+                <div class="account-card">
+                    <div class="account-icon">💡</div>
+                    <div class="account-name">行业趋势研究</div>
+                    <div class="account-platform">视频号</div>
+                    <div class="account-stats">34.5万粉丝</div>
+                    <div class="account-status">
+                        <span class="status-dot"></span>
+                        监控中
+                    </div>
+                </div>
+                
+                <div class="account-card add-account-card" onclick="addAccount()">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span style="margin-top: 8px;">添加账号</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 收集的素材 -->
+        <div class="content-section">
+            <div class="tabs">
+                <div class="tab active">最新收集</div>
+                <div class="tab">爆款素材</div>
+                <div class="tab">创意参考</div>
+                <div class="tab">数据分析</div>
+            </div>
+            
+            <div class="filter-bar">
+                <select class="filter-select">
+                    <option>全部平台</option>
+                    <option>TikTok</option>
+                    <option>Instagram</option>
+                    <option>Facebook</option>
+                    <option>YouTube</option>
+                    <option>视频号</option>
+                </select>
+                
+                <select class="filter-select">
+                    <option>全部账号</option>
+                    <option>竞品A官方</option>
+                    <option>竞品B旗舰店</option>
+                    <option>行业KOL</option>
+                </select>
+                
+                <select class="filter-select">
+                    <option>全部类型</option>
+                    <option>产品展示</option>
+                    <option>用户评测</option>
+                    <option>活动营销</option>
+                    <option>品牌故事</option>
+                </select>
+                
+                <div class="date-range">
+                    <span>时间范围：</span>
+                    <input type="date" class="date-input">
+                    <span>至</span>
+                    <input type="date" class="date-input">
+                </div>
+            </div>
+            
+            <div class="media-grid">
+                <!-- 素材卡片1 -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e91e63' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E竞品爆款%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:38</span>
+                        <span class="media-source source-douyin">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="TikTok">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="收藏">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="分析">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">竞品A - 新品发布视频</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                2小时前
+                            </span>
+                            <span class="trending-badge">🔥 爆款</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 523万</span>
+                            <span class="media-stat">❤️ 45.2万</span>
+                            <span class="media-stat">💬 8.9万</span>
+                            <span class="media-stat">🔄 3.2万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 素材卡片2 -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23795548' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E创意参考%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:12</span>
+                        <span class="media-source source-xiaohongshu">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Instagram">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                            </svg>
+                        </span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="收藏">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="分析">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">行业KOL - 产品深度评测</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                5小时前
+                            </span>
+                            <span style="font-size: 11px; color: #1a73e8;">值得学习</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 234万</span>
+                            <span class="media-stat">❤️ 18.7万</span>
+                            <span class="media-stat">💬 3.2万</span>
+                            <span class="media-stat">⭐ 2.8万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 素材卡片3 -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23607d8b' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E营销活动%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:25</span>
+                        <span class="media-source source-kuaishou">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Facebook">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="收藏">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="分析">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">竞品B - 限时优惠活动</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                昨天
+                            </span>
+                            <span style="font-size: 11px; color: #f9ab00;">活动营销</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 156万</span>
+                            <span class="media-stat">❤️ 12.3万</span>
+                            <span class="media-stat">💬 2.1万</span>
+                            <span class="media-stat">🛒 5.6万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 素材卡片4 -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E用户故事%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:15</span>
+                        <span class="media-source source-douyin">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="TikTok">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="收藏">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="分析">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">竞品C - 用户真实故事分享</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                2天前
+                            </span>
+                            <span style="font-size: 11px; color: #34a853;">情感营销</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 89万</span>
+                            <span class="media-stat">❤️ 8.9万</span>
+                            <span class="media-stat">💬 1.5万</span>
+                            <span class="media-stat">🔄 2.1万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 素材卡片5 -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E技术展示%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:45</span>
+                        <span class="media-source source-xiaohongshu">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Instagram">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                            </svg>
+                        </span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="收藏">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="分析">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">竞品A - 黑科技功能演示</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                3天前
+                            </span>
+                            <span style="font-size: 11px; color: #9c27b0;">技术创新</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 178万</span>
+                            <span class="media-stat">❤️ 15.6万</span>
+                            <span class="media-stat">💬 4.2万</span>
+                            <span class="media-stat">⭐ 3.8万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 素材卡片6 -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E品牌联名%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:45</span>
+                        <span class="media-source source-kuaishou">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Facebook">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="收藏">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="分析">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">竞品B - 品牌联名款发布</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                4天前
+                            </span>
+                            <span style="font-size: 11px; color: #ff5722;">品牌合作</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 267万</span>
+                            <span class="media-stat">❤️ 22.3万</span>
+                            <span class="media-stat">💬 5.8万</span>
+                            <span class="media-stat">🔄 4.5万</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // 收集素材
+        function collectContent() {
+            alert('打开素材收集功能...');
+        }
+        
+        // 添加账号
+        function addAccount() {
+            alert('添加监控账号功能开发中...');
+        }
+        
+        // 标签页切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 这里可以添加切换内容的逻辑
+                console.log('切换到:', this.textContent.trim());
+            });
+        });
+        
+        // 素材卡片点击
+        document.querySelectorAll('.media-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // 如果点击的是操作按钮，不触发卡片点击事件
+                if (e.target.closest('.action-btn')) {
+                    return;
+                }
+                console.log('查看素材详情');
+            });
+        });
+        
+        // 快速操作按钮
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const title = this.getAttribute('title');
+                console.log(`执行操作: ${title}`);
+            });
+        });
+        
+        // 账号卡片点击
+        document.querySelectorAll('.account-card:not(.add-account-card)').forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('查看账号详情:', this.querySelector('.account-name').textContent);
+            });
+        });
+        
+        // 筛选功能
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function(e) {
+                console.log('筛选条件变更:', e.target.value);
+            });
+        });
+    </script>
+</body>
+</html>

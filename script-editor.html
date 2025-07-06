@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脚本创作 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fbbc04;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #fbbc04;
+            color: #333;
+        }
+        
+        .btn-primary:hover {
+            background: #f9ab00;
+            box-shadow: 0 2px 8px rgba(251,188,4,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 编辑器容器 */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 300px 1fr 350px;
+            gap: 20px;
+            height: calc(100vh - 180px);
+        }
+        
+        /* 模板库 */
+        .template-sidebar {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .template-list {
+            padding: 12px;
+        }
+        
+        .template-item {
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .template-item:hover {
+            background: #f8f9fa;
+            border-color: #fbbc04;
+        }
+        
+        .template-item.active {
+            background: #fef3c7;
+            border-color: #fbbc04;
+        }
+        
+        .template-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .template-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .template-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        /* 脚本编辑区 */
+        .script-editor {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .editor-toolbar {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .toolbar-btn {
+            width: 32px;
+            height: 32px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .toolbar-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .toolbar-separator {
+            width: 1px;
+            height: 24px;
+            background: #e5e7eb;
+            margin: 0 8px;
+        }
+        
+        /* 分镜编辑区 */
+        .storyboard-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .scene-block {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .scene-block:hover {
+            border-color: #fbbc04;
+        }
+        
+        .scene-number {
+            position: absolute;
+            top: 20px;
+            left: -40px;
+            width: 32px;
+            height: 32px;
+            background: #fbbc04;
+            color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .scene-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .scene-time {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .scene-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .scene-action-btn {
+            width: 28px;
+            height: 28px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .scene-action-btn:hover {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .scene-content {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 20px;
+        }
+        
+        .scene-media {
+            background: #fff;
+            border: 2px dashed #e5e7eb;
+            border-radius: 8px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .scene-media:hover {
+            border-color: #fbbc04;
+            background: #fef3c7;
+        }
+        
+        .scene-media.has-media {
+            border-style: solid;
+            overflow: hidden;
+        }
+        
+        .media-placeholder {
+            text-align: center;
+            color: #999;
+        }
+        
+        .media-placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .media-placeholder-text {
+            font-size: 12px;
+        }
+        
+        .scene-text {
+            flex: 1;
+        }
+        
+        .scene-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+        
+        .scene-input:focus {
+            outline: none;
+            border-color: #fbbc04;
+            box-shadow: 0 0 0 3px rgba(251,188,4,0.1);
+        }
+        
+        .scene-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            transition: all 0.3s;
+        }
+        
+        .scene-textarea:focus {
+            outline: none;
+            border-color: #fbbc04;
+            box-shadow: 0 0 0 3px rgba(251,188,4,0.1);
+        }
+        
+        /* 素材面板 */
+        .asset-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .panel-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .panel-tab:hover {
+            color: #333;
+        }
+        
+        .panel-tab.active {
+            color: #fbbc04;
+            border-bottom-color: #fbbc04;
+        }
+        
+        .asset-search {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>') 12px center no-repeat;
+        }
+        
+        .asset-grid {
+            padding: 12px;
+            overflow-y: auto;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .asset-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .asset-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .asset-preview {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #999;
+        }
+        
+        .asset-info {
+            padding: 8px;
+        }
+        
+        .asset-name {
+            font-size: 12px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+        
+        .asset-meta {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        /* 添加场景按钮 */
+        .add-scene-btn {
+            width: 100%;
+            padding: 16px;
+            border: 2px dashed #e5e7eb;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .add-scene-btn:hover {
+            border-color: #fbbc04;
+            color: #fbbc04;
+            background: #fef3c7;
+        }
+        
+        /* AI助手 */
+        .ai-assistant {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #fbbc04 0%, #f9ab00 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(251,188,4,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+        
+        .ai-assistant:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(251,188,4,0.4);
+        }
+        
+        .ai-menu {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            padding: 8px;
+            min-width: 200px;
+            display: none;
+        }
+        
+        .ai-menu.show {
+            display: block;
+        }
+        
+        .ai-menu-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .ai-menu-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .ai-menu-icon {
+            font-size: 18px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .template-sidebar,
+            .asset-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">脚本创作</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    预览
+                </button>
+                <button class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    保存脚本
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">新建脚本</h2>
+                <p class="page-subtitle">可视化脚本编辑器，快速生成专业短视频脚本</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    历史版本
+                </button>
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                    更多操作
+                </button>
+            </div>
+        </div>
+        
+        <!-- 编辑器容器 -->
+        <div class="editor-container">
+            <!-- 模板库 -->
+            <aside class="template-sidebar">
+                <div class="sidebar-header">脚本模板</div>
+                <div class="template-list">
+                    <div class="template-item active">
+                        <div class="template-icon">🎯</div>
+                        <div class="template-name">标准带货模板</div>
+                        <div class="template-desc">钩子-痛点-产品-效果-引导</div>
+                    </div>
+                    
+                    <div class="template-item">
+                        <div class="template-icon">📖</div>
+                        <div class="template-name">剧情种草模板</div>
+                        <div class="template-desc">场景代入-冲突-解决方案</div>
+                    </div>
+                    
+                    <div class="template-item">
+                        <div class="template-icon">🎨</div>
+                        <div class="template-name">产品展示模板</div>
+                        <div class="template-desc">开箱-细节-使用-总结</div>
+                    </div>
+                    
+                    <div class="template-item">
+                        <div class="template-icon">💡</div>
+                        <div class="template-name">知识科普模板</div>
+                        <div class="template-desc">引入-知识点-应用-总结</div>
+                    </div>
+                    
+                    <div class="template-item">
+                        <div class="template-icon">🎭</div>
+                        <div class="template-name">情感共鸣模板</div>
+                        <div class="template-desc">情境-共鸣-转折-升华</div>
+                    </div>
+                    
+                    <div class="template-item">
+                        <div class="template-icon">✨</div>
+                        <div class="template-name">空白模板</div>
+                        <div class="template-desc">自由创作，不限框架</div>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- 脚本编辑区 -->
+            <div class="script-editor">
+                <div class="editor-toolbar">
+                    <button class="toolbar-btn" title="撤销">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 14 4 9 9 4"></polyline>
+                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                        </svg>
+                    </button>
+                    <button class="toolbar-btn" title="重做">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 14 20 9 15 4"></polyline>
+                            <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
+                        </svg>
+                    </button>
+                    <div class="toolbar-separator"></div>
+                    <button class="toolbar-btn" title="加粗">
+                        <strong>B</strong>
+                    </button>
+                    <button class="toolbar-btn" title="斜体">
+                        <em>I</em>
+                    </button>
+                    <button class="toolbar-btn" title="下划线">
+                        <u>U</u>
+                    </button>
+                    <div class="toolbar-separator"></div>
+                    <button class="toolbar-btn" title="添加标记">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="storyboard-area">
+                    <!-- 场景1 -->
+                    <div class="scene-block">
+                        <div class="scene-number">1</div>
+                        <div class="scene-header">
+                            <div class="scene-time">0:00 - 0:03 · 黄金3秒</div>
+                            <div class="scene-actions">
+                                <button class="scene-action-btn" title="复制">📋</button>
+                                <button class="scene-action-btn" title="删除">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="scene-content">
+                            <div class="scene-media">
+                                <div class="media-placeholder">
+                                    <div class="media-placeholder-icon">🎬</div>
+                                    <div class="media-placeholder-text">点击添加素材</div>
+                                </div>
+                            </div>
+                            <div class="scene-text">
+                                <input type="text" class="scene-input" placeholder="场景标题..." value="开场钩子">
+                                <textarea class="scene-textarea" placeholder="输入文案内容...">你还在为选择护肤品而烦恼吗？</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 场景2 -->
+                    <div class="scene-block">
+                        <div class="scene-number">2</div>
+                        <div class="scene-header">
+                            <div class="scene-time">0:03 - 0:10 · 痛点展示</div>
+                            <div class="scene-actions">
+                                <button class="scene-action-btn" title="复制">📋</button>
+                                <button class="scene-action-btn" title="删除">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="scene-content">
+                            <div class="scene-media has-media">
+                                <img src="data:image/svg+xml,%3Csvg width='200' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23fbbf24' width='200' height='120'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E痛点素材%3C/text%3E%3C/svg%3E" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="scene-text">
+                                <input type="text" class="scene-input" placeholder="场景标题..." value="用户痛点">
+                                <textarea class="scene-textarea" placeholder="输入文案内容...">每天面对镜子，看着暗沉的皮肤，试过无数产品都没效果...</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 场景3 -->
+                    <div class="scene-block">
+                        <div class="scene-number">3</div>
+                        <div class="scene-header">
+                            <div class="scene-time">0:10 - 0:25 · 产品介绍</div>
+                            <div class="scene-actions">
+                                <button class="scene-action-btn" title="复制">📋</button>
+                                <button class="scene-action-btn" title="删除">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="scene-content">
+                            <div class="scene-media">
+                                <div class="media-placeholder">
+                                    <div class="media-placeholder-icon">🎬</div>
+                                    <div class="media-placeholder-text">点击添加素材</div>
+                                </div>
+                            </div>
+                            <div class="scene-text">
+                                <input type="text" class="scene-input" placeholder="场景标题..." value="产品展示">
+                                <textarea class="scene-textarea" placeholder="输入文案内容...">今天给大家推荐这款明星同款精华液，蕴含高浓度烟酰胺...</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 添加场景按钮 -->
+                    <button class="add-scene-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        添加场景
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 素材面板 -->
+            <aside class="asset-panel">
+                <div class="panel-tabs">
+                    <div class="panel-tab active">素材库</div>
+                    <div class="panel-tab">爆点片段</div>
+                    <div class="panel-tab">参考素材</div>
+                </div>
+                
+                <div class="asset-search">
+                    <input type="text" class="search-input" placeholder="搜索素材...">
+                </div>
+                
+                <div class="asset-grid">
+                    <div class="asset-item">
+                        <div class="asset-preview">🎬</div>
+                        <div class="asset-info">
+                            <div class="asset-name">产品展示.mp4</div>
+                            <div class="asset-meta">1:05 · 2天前</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">🖼️</div>
+                        <div class="asset-info">
+                            <div class="asset-name">对比效果.jpg</div>
+                            <div class="asset-meta">1.2MB · 5天前</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">🎵</div>
+                        <div class="asset-info">
+                            <div class="asset-name">背景音乐.mp3</div>
+                            <div class="asset-meta">0:30 · 1周前</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">💡</div>
+                        <div class="asset-info">
+                            <div class="asset-name">黄金开头</div>
+                            <div class="asset-meta">爆点片段 · 95%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">✨</div>
+                        <div class="asset-info">
+                            <div class="asset-name">转场特效</div>
+                            <div class="asset-meta">动效 · 2天前</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">📝</div>
+                        <div class="asset-info">
+                            <div class="asset-name">文案模板</div>
+                            <div class="asset-meta">参考 · 3天前</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <!-- AI助手 -->
+    <div class="ai-assistant" onclick="toggleAIMenu()">
+        🤖
+        <div class="ai-menu" id="aiMenu">
+            <div class="ai-menu-item">
+                <span class="ai-menu-icon">✨</span>
+                <span>AI优化文案</span>
+            </div>
+            <div class="ai-menu-item">
+                <span class="ai-menu-icon">🎯</span>
+                <span>生成爆款开头</span>
+            </div>
+            <div class="ai-menu-item">
+                <span class="ai-menu-icon">⏱️</span>
+                <span>调整节奏</span>
+            </div>
+            <div class="ai-menu-item">
+                <span class="ai-menu-icon">🎬</span>
+                <span>推荐素材</span>
+            </div>
+            <div class="ai-menu-item">
+                <span class="ai-menu-icon">📊</span>
+                <span>预测效果</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // AI菜单切换
+        function toggleAIMenu() {
+            const menu = document.getElementById('aiMenu');
+            menu.classList.toggle('show');
+        }
+        
+        // 点击外部关闭AI菜单
+        document.addEventListener('click', function(e) {
+            const assistant = document.querySelector('.ai-assistant');
+            if (!assistant.contains(e.target)) {
+                document.getElementById('aiMenu').classList.remove('show');
+            }
+        });
+        
+        // 模板选择
+        document.querySelectorAll('.template-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.template-item').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                console.log('选择模板:', this.querySelector('.template-name').textContent);
+            });
+        });
+        
+        // 添加场景
+        document.querySelector('.add-scene-btn').addEventListener('click', function() {
+            console.log('添加新场景');
+            // 这里可以添加创建新场景块的逻辑
+        });
+        
+        // 素材拖拽
+        document.querySelectorAll('.asset-item').forEach(item => {
+            item.draggable = true;
+            item.addEventListener('dragstart', function(e) {
+                e.dataTransfer.effectAllowed = 'copy';
+                e.dataTransfer.setData('text/plain', this.querySelector('.asset-name').textContent);
+            });
+        });
+        
+        // 场景媒体区域放置
+        document.querySelectorAll('.scene-media').forEach(media => {
+            media.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#fbbc04';
+            });
+            
+            media.addEventListener('dragleave', function() {
+                this.style.borderColor = '#e5e7eb';
+            });
+            
+            media.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#e5e7eb';
+                const assetName = e.dataTransfer.getData('text/plain');
+                console.log('添加素材:', assetName);
+                // 这里可以添加更新媒体显示的逻辑
+            });
+        });
+        
+        // 场景操作
+        document.querySelectorAll('.scene-action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const action = this.getAttribute('title');
+                console.log('场景操作:', action);
+            });
+        });
+        
+        // 面板标签切换
+        document.querySelectorAll('.panel-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                console.log('切换到:', this.textContent);
+            });
+        });
+        
+        // AI菜单项点击
+        document.querySelectorAll('.ai-menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('AI功能:', this.textContent);
+                document.getElementById('aiMenu').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>

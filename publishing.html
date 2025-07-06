@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布管理 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ff6f00;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #ff6f00;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #e65100;
+            box-shadow: 0 2px 8px rgba(255,111,0,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 选项卡 */
+        .tabs {
+            display: flex;
+            gap: 32px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .tab {
+            padding: 16px 0;
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab:hover {
+            color: #ff6f00;
+        }
+        
+        .tab.active {
+            color: #ff6f00;
+            border-bottom-color: #ff6f00;
+        }
+        
+        .tab-badge {
+            position: absolute;
+            top: 8px;
+            right: -16px;
+            background: #ea4335;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        /* 发布列表 */
+        .publish-list {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        
+        .list-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .search-bar {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            background: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>') 12px center no-repeat;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fff;
+            cursor: pointer;
+        }
+        
+        /* 发布项 */
+        .publish-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f2f5;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        
+        .publish-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .publish-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .item-info {
+            flex: 1;
+        }
+        
+        .item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .item-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            border-color: #ff6f00;
+            color: #ff6f00;
+        }
+        
+        /* 发布状态 */
+        .publish-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-scheduled {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-publishing {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .status-published {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-failed {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        /* 平台标签 */
+        .platform-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .platform-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            background: #f0f2f5;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .platform-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            padding: 2px;
+        }
+        
+        .platform-icon svg {
+            width: 12px;
+            height: 12px;
+        }
+        
+        .platform-icon.douyin {
+            background: #000;
+        }
+        
+        .platform-icon.xiaohongshu {
+            background: #E4405F;
+        }
+        
+        .platform-icon.kuaishou {
+            background: #1877F2;
+        }
+        
+        .platform-icon.bilibili {
+            background: #FF0000;
+        }
+        
+        /* 发布进度 */
+        .publish-progress {
+            margin-top: 12px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #ff6f00;
+            transition: width 0.3s;
+        }
+        
+        /* 创建发布弹窗 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            width: 800px;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 32px;
+        }
+        
+        .modal-header {
+            margin-bottom: 24px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .modal-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 步骤指示器 */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: -1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            padding: 0 8px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .step.active .step-number {
+            background: #ff6f00;
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: #34a853;
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* 表单样式 */
+        .form-section {
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ff6f00;
+            box-shadow: 0 0 0 3px rgba(255,111,0,0.1);
+        }
+        
+        /* 平台选择 */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        
+        .platform-card {
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .platform-card:hover {
+            border-color: #ff6f00;
+            background: #fff8f0;
+        }
+        
+        .platform-card.selected {
+            border-color: #ff6f00;
+            background: #fff8f0;
+        }
+        
+        .platform-logo {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 8px;
+            background: #f0f2f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .platform-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        /* 素材预览 */
+        .media-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .preview-placeholder {
+            width: 200px;
+            height: 112px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #999;
+        }
+        
+        .preview-info {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 时间选择 */
+        .datetime-picker {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .date-input,
+        .time-input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .platform-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">发布管理</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h18v18H3zM12 8v8m-4-4h8"></path>
+                    </svg>
+                    发布日历
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">发布管理</h2>
+                <p class="page-subtitle">多平台智能发布，一键分发管理</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    刷新状态
+                </button>
+                <button class="btn btn-primary" onclick="showPublishModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    创建发布
+                </button>
+            </div>
+        </div>
+        
+        <!-- 选项卡 -->
+        <div class="tabs">
+            <div class="tab active">
+                全部发布
+            </div>
+            <div class="tab">
+                定时待发
+                <span class="tab-badge">3</span>
+            </div>
+            <div class="tab">
+                发布中
+                <span class="tab-badge">2</span>
+            </div>
+            <div class="tab">
+                已发布
+            </div>
+            <div class="tab">
+                发布失败
+            </div>
+        </div>
+        
+        <!-- 发布列表 -->
+        <div class="publish-list">
+            <div class="list-header">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="搜索发布内容...">
+                    <select class="filter-select">
+                        <option>所有平台</option>
+                        <option>TikTok</option>
+                        <option>Instagram</option>
+                        <option>Facebook</option>
+                        <option>YouTube</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>最近7天</option>
+                        <option>最近30天</option>
+                        <option>自定义时间</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 发布项1 - 定时待发 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            618大促主推视频
+                            <span class="publish-status status-scheduled">定时待发</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                计划发布：今天 20:00
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                创建人：王经理
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">编辑</button>
+                        <button class="action-btn">取消发布</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon douyin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 5v13M8 9l4-4 4 4M8 15l4 4 4-4" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon xiaohongshu">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon kuaishou">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 发布项2 - 发布中 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            新品开箱测评
+                            <span class="publish-status status-publishing">发布中</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                开始时间：5分钟前
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                创建人：李运营
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">查看详情</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon douyin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 5v13M8 9l4-4 4 4M8 15l4 4 4-4" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                        </span>
+                        <span>TikTok ✓</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon xiaohongshu">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                            </svg>
+                        </span>
+                        <span>Instagram ...</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon bilibili">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube ...</span>
+                    </div>
+                </div>
+                <div class="publish-progress">
+                    <div class="progress-info">
+                        <span>发布进度</span>
+                        <span>1/3 完成</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 33%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 发布项3 - 已发布 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            母亲节特别企划
+                            <span class="publish-status status-published">已发布</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                发布时间：2天前
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                总播放：523万
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                                </svg>
+                                总点赞：45.2万
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">数据分析</button>
+                        <button class="action-btn">再次发布</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon douyin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 5v13M8 9l4-4 4 4M8 15l4 4 4-4" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon xiaohongshu">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon kuaishou">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon bilibili">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 发布项4 - 失败 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            产品使用教程
+                            <span class="publish-status status-failed">发布失败</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                失败时间：1小时前
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                                原因：视频格式不符合平台要求
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">查看原因</button>
+                        <button class="action-btn">重新发布</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon bilibili">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube ✗</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 创建发布弹窗 -->
+    <div class="modal-overlay" id="publishModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">创建发布任务</h3>
+                <p class="modal-subtitle">选择素材，配置发布信息，一键分发到多个平台</p>
+            </div>
+            
+            <!-- 步骤指示器 -->
+            <div class="steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">选择素材</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">选择平台</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">配置信息</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">确认发布</div>
+                </div>
+            </div>
+            
+            <!-- 步骤1：选择素材 -->
+            <div class="step-content" id="step1">
+                <div class="form-section">
+                    <h4 class="section-title">选择要发布的素材</h4>
+                    <div class="media-preview">
+                        <div class="preview-placeholder">🎬</div>
+                        <div class="preview-info">
+                            <button class="btn btn-secondary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                从素材库选择
+                            </button>
+                            <p style="margin-top: 12px; font-size: 13px; color: #999;">或拖拽文件到此处</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 步骤2：选择平台 -->
+            <div class="step-content" id="step2" style="display: none;">
+                <div class="form-section">
+                    <h4 class="section-title">选择发布平台</h4>
+                    <div class="platform-grid">
+                        <div class="platform-card selected">
+                            <div class="platform-logo">🎵</div>
+                            <div class="platform-name">TikTok</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">📕</div>
+                            <div class="platform-name">Instagram</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">🎬</div>
+                            <div class="platform-name">Facebook</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">📺</div>
+                            <div class="platform-name">YouTube</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">📱</div>
+                            <div class="platform-name">视频号</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">🎞️</div>
+                            <div class="platform-name">西瓜视频</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 步骤3：配置信息 -->
+            <div class="step-content" id="step3" style="display: none;">
+                <div class="form-section">
+                    <h4 class="section-title">基础信息</h4>
+                    <div class="form-group">
+                        <label class="form-label">发布标题</label>
+                        <input type="text" class="form-input" placeholder="输入视频标题...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">视频描述</label>
+                        <textarea class="form-textarea" placeholder="输入视频描述文案..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">话题标签</label>
+                        <input type="text" class="form-input" placeholder="#新品上市 #好物推荐">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h4 class="section-title">发布时间</h4>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="radio" name="publish-time" checked> 立即发布
+                        </label>
+                        <label class="form-label" style="margin-top: 12px;">
+                            <input type="radio" name="publish-time"> 定时发布
+                        </label>
+                        <div class="datetime-picker" style="margin-top: 12px;">
+                            <input type="date" class="date-input">
+                            <input type="time" class="time-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 步骤4：确认发布 -->
+            <div class="step-content" id="step4" style="display: none;">
+                <div class="form-section">
+                    <h4 class="section-title">确认发布信息</h4>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                        <div style="margin-bottom: 16px;">
+                            <strong>素材名称：</strong>618大促主推视频.mp4
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <strong>发布平台：</strong>TikTok、Instagram、Facebook
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <strong>发布时间：</strong>今天 20:00
+                        </div>
+                        <div>
+                            <strong>预计完成：</strong>20:15（15分钟）
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div style="display: flex; gap: 12px; margin-top: 32px;">
+                <button class="btn btn-secondary" style="flex: 1;" onclick="closeModal()">取消</button>
+                <button class="btn btn-secondary" id="prevBtn" style="flex: 1; display: none;" onclick="prevStep()">上一步</button>
+                <button class="btn btn-primary" id="nextBtn" style="flex: 1;" onclick="nextStep()">下一步</button>
+                <button class="btn btn-primary" id="publishBtn" style="flex: 1; display: none;" onclick="confirmPublish()">确认发布</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+        
+        // 显示发布弹窗
+        function showPublishModal() {
+            document.getElementById('publishModal').style.display = 'flex';
+        }
+        
+        // 关闭弹窗
+        function closeModal() {
+            document.getElementById('publishModal').style.display = 'none';
+            currentStep = 1;
+            updateStepDisplay();
+        }
+        
+        // 下一步
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepDisplay();
+            }
+        }
+        
+        // 上一步
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        }
+        
+        // 更新步骤显示
+        function updateStepDisplay() {
+            // 更新步骤指示器
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+            
+            // 更新步骤内容
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(`step${currentStep}`).style.display = 'block';
+            
+            // 更新按钮
+            document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').style.display = currentStep < totalSteps ? 'block' : 'none';
+            document.getElementById('publishBtn').style.display = currentStep === totalSteps ? 'block' : 'none';
+        }
+        
+        // 确认发布
+        function confirmPublish() {
+            console.log('确认发布');
+            closeModal();
+            alert('发布任务已创建！');
+        }
+        
+        // 点击遮罩关闭
+        document.getElementById('publishModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // 选项卡切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                console.log('切换到:', this.textContent.trim());
+            });
+        });
+        
+        // 平台卡片选择
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+        
+        // 操作按钮
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('操作:', this.textContent);
+            });
+        });
+        
+        // 发布项点击
+        document.querySelectorAll('.publish-item').forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('查看发布详情');
+            });
+        });
+    </script>
+</body>
+</html>

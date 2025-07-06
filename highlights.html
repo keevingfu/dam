@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爆点片段 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #10b981;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #059669;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 统计卡片 */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .stat-icon.green {
+            background: #d1fae5;
+            color: #10b981;
+        }
+        
+        .stat-icon.yellow {
+            background: #fef7e0;
+            color: #fbbc04;
+        }
+        
+        .stat-icon.blue {
+            background: #e8f0fe;
+            color: #1a73e8;
+        }
+        
+        .stat-icon.red {
+            background: #fce8e6;
+            color: #ea4335;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        
+        /* 标签页 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fff;
+        }
+        
+        .tab {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab:hover {
+            color: #10b981;
+        }
+        
+        .tab.active {
+            color: #10b981;
+            border-bottom-color: #10b981;
+        }
+        
+        .tab-count {
+            margin-left: 6px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* 筛选栏 */
+        .filter-bar {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: #f8f9fa;
+            flex-wrap: wrap;
+        }
+        
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:hover {
+            border-color: #10b981;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px 36px 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        /* 爆点片段网格 */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px;
+        }
+        
+        .highlight-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: move;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #10b981;
+        }
+        
+        .highlight-card.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+        
+        .highlight-preview {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .highlight-preview img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .highlight-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .highlight-card:hover .highlight-play {
+            opacity: 1;
+        }
+        
+        .highlight-duration {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .highlight-type {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.9);
+        }
+        
+        .type-hook {
+            color: #fbbc04;
+        }
+        
+        .type-climax {
+            color: #ea4335;
+        }
+        
+        .type-cta {
+            color: #10b981;
+        }
+        
+        .type-transition {
+            color: #1a73e8;
+        }
+        
+        .highlight-info {
+            padding: 12px;
+        }
+        
+        .highlight-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .highlight-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .highlight-stat {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        /* 操作按钮 */
+        .highlight-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .highlight-card:hover .highlight-actions {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .action-btn {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .action-btn:hover {
+            background: #fff;
+            transform: scale(1.1);
+        }
+        
+        /* 使用提示 */
+        .usage-tip {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #065f46;
+        }
+        
+        .tip-icon {
+            font-size: 18px;
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .empty-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .empty-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* 拖拽提示 */
+        .drop-zone {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 100px;
+            background: #e8f5e9;
+            border: 2px dashed #10b981;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .drop-zone.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .drop-zone.over {
+            background: #c8e6c9;
+            transform: scale(1.05);
+        }
+        
+        .drop-text {
+            font-size: 14px;
+            color: #065f46;
+            text-align: center;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .highlights-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">爆点片段</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    导入片段
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">爆点片段库</h2>
+                <p class="page-subtitle">管理和复用高价值片段，快速创作爆款内容</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    筛选类型
+                </button>
+                <button class="btn btn-primary" onclick="createHighlight()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    创建片段
+                </button>
+            </div>
+        </div>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon green">💡</div>
+                <div class="stat-value">126</div>
+                <div class="stat-label">爆点片段总数</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon yellow">🔥</div>
+                <div class="stat-value">45</div>
+                <div class="stat-label">黄金开头</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon blue">📈</div>
+                <div class="stat-value">15.2%</div>
+                <div class="stat-label">平均转化率</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon red">🔄</div>
+                <div class="stat-value">3.2k</div>
+                <div class="stat-label">总使用次数</div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content-section">
+            <div class="tabs">
+                <div class="tab active">
+                    黄金开头
+                    <span class="tab-count">(45)</span>
+                </div>
+                <div class="tab">
+                    转折点
+                    <span class="tab-count">(32)</span>
+                </div>
+                <div class="tab">
+                    情感高潮
+                    <span class="tab-count">(28)</span>
+                </div>
+                <div class="tab">
+                    行动引导
+                    <span class="tab-count">(21)</span>
+                </div>
+                <div class="tab">
+                    全部片段
+                    <span class="tab-count">(126)</span>
+                </div>
+            </div>
+            
+            <div class="filter-bar">
+                <div class="filter-item">
+                    <select class="filter-select">
+                        <option>所有项目</option>
+                        <option>春季新品推广</option>
+                        <option>618大促活动</option>
+                        <option>品牌升级宣传</option>
+                    </select>
+                </div>
+                
+                <div class="filter-item">
+                    <select class="filter-select">
+                        <option>使用次数</option>
+                        <option>高频使用 (>50次)</option>
+                        <option>中频使用 (10-50次)</option>
+                        <option>低频使用 (<10次)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-item">
+                    <select class="filter-select">
+                        <option>转化率</option>
+                        <option>高转化 (>20%)</option>
+                        <option>中转化 (10%-20%)</option>
+                        <option>低转化 (<10%)</option>
+                    </select>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="搜索片段名称或标签...">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="usage-tip">
+                <span class="tip-icon">💡</span>
+                <span>提示：拖拽片段到剪辑软件或脚本编辑器中快速复用，支持批量选择</span>
+            </div>
+            
+            <div class="highlights-grid">
+                <!-- 片段卡片1 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E黄金3秒%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:03</span>
+                        <span class="highlight-type type-hook">开头钩子</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">悬念式开头</div>
+                        <div class="highlight-meta">
+                            <span>使用 156 次</span>
+                            <span>12.5%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                89万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                </svg>
+                                78%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片2 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E问题痛点%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:05</span>
+                        <span class="highlight-type type-hook">开头钩子</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">用户痛点展示</div>
+                        <div class="highlight-meta">
+                            <span>使用 98 次</span>
+                            <span>15.2%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                67万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                </svg>
+                                82%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片3 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%232196f3' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E视觉冲击%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:02</span>
+                        <span class="highlight-type type-hook">开头钩子</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">视觉冲击开场</div>
+                        <div class="highlight-meta">
+                            <span>使用 124 次</span>
+                            <span>18.7%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                123万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                </svg>
+                                85%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片4 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23f44336' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ECTA引导%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:04</span>
+                        <span class="highlight-type type-cta">行动引导</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">强力行动号召</div>
+                        <div class="highlight-meta">
+                            <span>使用 87 次</span>
+                            <span>22.1%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                56万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                    <path d="M4 12h16v9H4z"></path>
+                                </svg>
+                                8.2%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片5 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E情感共鸣%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:06</span>
+                        <span class="highlight-type type-climax">情感高潮</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">情感高潮点</div>
+                        <div class="highlight-meta">
+                            <span>使用 65 次</span>
+                            <span>19.8%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                45万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                16.5%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片6 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E反转剧情%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:04</span>
+                        <span class="highlight-type type-transition">转折点</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">剧情反转点</div>
+                        <div class="highlight-meta">
+                            <span>使用 43 次</span>
+                            <span>16.5%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                38万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                </svg>
+                                72%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片7 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E对比效果%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:05</span>
+                        <span class="highlight-type type-hook">开头钩子</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">前后对比展示</div>
+                        <div class="highlight-meta">
+                            <span>使用 112 次</span>
+                            <span>20.3%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                98万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                </svg>
+                                88%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 片段卡片8 -->
+                <div class="highlight-card" draggable="true">
+                    <div class="highlight-actions">
+                        <button class="action-btn" title="编辑">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="action-btn" title="删除">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="highlight-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E紧迫感%3C/text%3E%3C/svg%3E">
+                        <div class="highlight-play">▶️</div>
+                        <span class="highlight-duration">0:03</span>
+                        <span class="highlight-type type-cta">行动引导</span>
+                    </div>
+                    <div class="highlight-info">
+                        <div class="highlight-title">限时优惠提醒</div>
+                        <div class="highlight-meta">
+                            <span>使用 76 次</span>
+                            <span>24.5%</span>
+                        </div>
+                        <div class="highlight-stats">
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                52万
+                            </span>
+                            <span class="highlight-stat">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                    <path d="M4 12h16v9H4z"></path>
+                                </svg>
+                                12.3%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 拖拽提示区域 -->
+        <div class="drop-zone" id="dropZone">
+            <div class="drop-text">
+                🎬<br>
+                拖拽到此处复用
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // 创建片段
+        function createHighlight() {
+            alert('创建新片段功能开发中...');
+        }
+        
+        // 标签页切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 这里可以添加切换内容的逻辑
+                console.log('切换到:', this.textContent.trim());
+            });
+        });
+        
+        // 拖拽功能
+        const highlights = document.querySelectorAll('.highlight-card');
+        const dropZone = document.getElementById('dropZone');
+        let draggedElement = null;
+        
+        highlights.forEach(card => {
+            card.addEventListener('dragstart', function(e) {
+                draggedElement = this;
+                this.classList.add('dragging');
+                dropZone.classList.add('active');
+                
+                // 设置拖拽数据
+                e.dataTransfer.effectAllowed = 'copy';
+                e.dataTransfer.setData('text/plain', this.querySelector('.highlight-title').textContent);
+            });
+            
+            card.addEventListener('dragend', function() {
+                this.classList.remove('dragging');
+                dropZone.classList.remove('active');
+                dropZone.classList.remove('over');
+            });
+        });
+        
+        // 拖拽区域事件
+        dropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('over');
+        });
+        
+        dropZone.addEventListener('dragleave', function() {
+            this.classList.remove('over');
+        });
+        
+        dropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('over');
+            this.classList.remove('active');
+            
+            if (draggedElement) {
+                const title = draggedElement.querySelector('.highlight-title').textContent;
+                console.log('复用片段:', title);
+                alert(`已复用片段: ${title}`);
+            }
+        });
+        
+        // 播放按钮点击
+        document.querySelectorAll('.highlight-play').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('播放片段预览');
+            });
+        });
+        
+        // 操作按钮
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const action = this.getAttribute('title');
+                console.log(`执行操作: ${action}`);
+            });
+        });
+        
+        // 搜索功能
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            console.log('搜索片段:', e.target.value);
+        });
+        
+        // 筛选功能
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function(e) {
+                console.log('筛选条件变更:', e.target.value);
+            });
+        });
+    </script>
+</body>
+</html>

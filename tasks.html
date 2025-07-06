@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务中心 - 短视频营销DAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #e4e6e9;
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fbbc04;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            padding: 80px 20px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 页面标题栏 */
+        .page-header {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .page-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .page-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: #fbbc04;
+            color: #333;
+        }
+        
+        .btn-primary:hover {
+            background: #f9ab00;
+            box-shadow: 0 2px 8px rgba(251,188,4,0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e4e6e9;
+        }
+        
+        /* 任务统计卡片 */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .stat-icon.blue {
+            background: #e8f0fe;
+            color: #1a73e8;
+        }
+        
+        .stat-icon.green {
+            background: #e6f4ea;
+            color: #34a853;
+        }
+        
+        .stat-icon.yellow {
+            background: #fef7e0;
+            color: #fbbc04;
+        }
+        
+        .stat-icon.red {
+            background: #fce8e6;
+            color: #ea4335;
+        }
+        
+        .stat-info {
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* 任务内容区 */
+        .content-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        
+        /* 标签页 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fff;
+        }
+        
+        .tab {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab:hover {
+            color: #fbbc04;
+        }
+        
+        .tab.active {
+            color: #fbbc04;
+            border-bottom-color: #fbbc04;
+        }
+        
+        .tab-badge {
+            position: absolute;
+            top: 12px;
+            right: 8px;
+            background: #ea4335;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            line-height: 1;
+        }
+        
+        /* 任务列表 */
+        .task-list {
+            padding: 20px;
+        }
+        
+        .task-item {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .task-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transform: translateX(4px);
+            border-color: #fbbc04;
+        }
+        
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .task-checkbox:hover {
+            border-color: #fbbc04;
+        }
+        
+        .task-checkbox.checked {
+            background: #fbbc04;
+            border-color: #fbbc04;
+        }
+        
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .task-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        
+        .task-project {
+            font-size: 12px;
+            color: #1a73e8;
+            padding: 2px 8px;
+            background: #e8f0fe;
+            border-radius: 4px;
+        }
+        
+        .task-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .task-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .task-priority {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-left: auto;
+        }
+        
+        .priority-high {
+            background: #fce8e6;
+            color: #ea4335;
+        }
+        
+        .priority-medium {
+            background: #fef7e0;
+            color: #f9ab00;
+        }
+        
+        .priority-low {
+            background: #e8f0fe;
+            color: #1a73e8;
+        }
+        
+        .task-assignee {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .assignee-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        /* 过滤器栏 */
+        .filter-bar {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: #f8f9fa;
+        }
+        
+        .filter-select {
+            padding: 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:hover {
+            border-color: #fbbc04;
+        }
+        
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 6px 36px 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #fbbc04;
+            box-shadow: 0 0 0 3px rgba(251,188,4,0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .empty-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .empty-description {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 日历视图 */
+        .calendar-view {
+            padding: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: #e5e7eb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .calendar-cell {
+            background: #fff;
+            padding: 8px;
+            min-height: 80px;
+            position: relative;
+        }
+        
+        .calendar-cell-header {
+            font-size: 11px;
+            color: #999;
+            text-align: center;
+            padding: 8px;
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .calendar-day {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .calendar-day.today {
+            color: #fbbc04;
+            font-weight: 700;
+        }
+        
+        .calendar-task {
+            font-size: 11px;
+            padding: 2px 4px;
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 3px;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        
+        .calendar-task:hover {
+            background: #1a73e8;
+            color: white;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-bar {
+                flex-wrap: wrap;
+            }
+            
+            .search-box {
+                width: 100%;
+                order: -1;
+            }
+            
+            .task-meta {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, minmax(40px, 1fr));
+            }
+            
+            .calendar-cell {
+                padding: 4px;
+                min-height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">任务中心</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="toggleView()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    日历视图
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 页面标题栏 -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">任务中心</h2>
+                <p class="page-subtitle">管理日常任务，确保项目按时交付</p>
+            </div>
+            <div class="page-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    导出任务
+                </button>
+                <button class="btn btn-primary" onclick="createTask()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    新建任务
+                </button>
+            </div>
+        </div>
+        
+        <!-- 任务统计 -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon blue">📋</div>
+                <div class="stat-info">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">全部任务</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon yellow">⏳</div>
+                <div class="stat-info">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">待处理</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon green">🚀</div>
+                <div class="stat-info">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">进行中</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon red">⚠️</div>
+                <div class="stat-info">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">已逾期</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 任务内容区 -->
+        <div class="content-section" id="listView">
+            <div class="tabs">
+                <div class="tab active">
+                    待处理
+                    <span class="tab-badge">5</span>
+                </div>
+                <div class="tab">进行中 (3)</div>
+                <div class="tab">已完成 (12)</div>
+                <div class="tab">
+                    已逾期
+                    <span class="tab-badge">1</span>
+                </div>
+                <div class="tab">全部任务 (15)</div>
+            </div>
+            
+            <div class="filter-bar">
+                <select class="filter-select">
+                    <option>所有项目</option>
+                    <option>春季新品推广</option>
+                    <option>618大促活动</option>
+                    <option>品牌升级宣传</option>
+                </select>
+                
+                <select class="filter-select">
+                    <option>所有成员</option>
+                    <option>分配给我</option>
+                    <option>我创建的</option>
+                </select>
+                
+                <select class="filter-select">
+                    <option>所有优先级</option>
+                    <option>高优先级</option>
+                    <option>中优先级</option>
+                    <option>低优先级</option>
+                </select>
+                
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="搜索任务...">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="task-list">
+                <!-- 任务1 -->
+                <div class="task-item">
+                    <div class="task-checkbox" onclick="toggleCheckbox(this)"></div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <span class="task-title">完成春季新品视频剪辑</span>
+                            <span class="task-project">春季新品推广</span>
+                        </div>
+                        <div class="task-meta">
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                今天 18:00
+                            </span>
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                @剪辑师小王
+                            </span>
+                        </div>
+                    </div>
+                    <div class="task-assignee">
+                        <div class="assignee-avatar" style="background: #4285f4;">王</div>
+                    </div>
+                    <span class="task-priority priority-high">高优先级</span>
+                </div>
+                
+                <!-- 任务2 -->
+                <div class="task-item">
+                    <div class="task-checkbox" onclick="toggleCheckbox(this)"></div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <span class="task-title">收集竞品618活动素材</span>
+                            <span class="task-project">618大促活动</span>
+                        </div>
+                        <div class="task-meta">
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                明天 12:00
+                            </span>
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                @运营小李
+                            </span>
+                        </div>
+                    </div>
+                    <div class="task-assignee">
+                        <div class="assignee-avatar" style="background: #34a853;">李</div>
+                    </div>
+                    <span class="task-priority priority-medium">中优先级</span>
+                </div>
+                
+                <!-- 任务3 -->
+                <div class="task-item">
+                    <div class="task-checkbox" onclick="toggleCheckbox(this)"></div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <span class="task-title">撰写产品卖点脚本</span>
+                            <span class="task-project">春季新品推广</span>
+                        </div>
+                        <div class="task-meta">
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                03-18 16:00
+                            </span>
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                @文案小张
+                            </span>
+                        </div>
+                    </div>
+                    <div class="task-assignee">
+                        <div class="assignee-avatar" style="background: #fbbc04;">张</div>
+                    </div>
+                    <span class="task-priority priority-high">高优先级</span>
+                </div>
+                
+                <!-- 任务4 -->
+                <div class="task-item">
+                    <div class="task-checkbox" onclick="toggleCheckbox(this)"></div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <span class="task-title">多平台素材适配</span>
+                            <span class="task-project">春季新品推广</span>
+                        </div>
+                        <div class="task-meta">
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                03-19 10:00
+                            </span>
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                @设计师小陈
+                            </span>
+                        </div>
+                    </div>
+                    <div class="task-assignee">
+                        <div class="assignee-avatar" style="background: #ea4335;">陈</div>
+                    </div>
+                    <span class="task-priority priority-low">低优先级</span>
+                </div>
+                
+                <!-- 任务5 -->
+                <div class="task-item">
+                    <div class="task-checkbox" onclick="toggleCheckbox(this)"></div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <span class="task-title">爆款素材数据分析</span>
+                            <span class="task-project">品牌升级宣传</span>
+                        </div>
+                        <div class="task-meta">
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                03-20 14:00
+                            </span>
+                            <span class="task-meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                @数据分析师
+                            </span>
+                        </div>
+                    </div>
+                    <div class="task-assignee">
+                        <div class="assignee-avatar" style="background: #9333ea;">刘</div>
+                    </div>
+                    <span class="task-priority priority-medium">中优先级</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 日历视图 -->
+        <div class="content-section" id="calendarView" style="display: none;">
+            <div class="calendar-view">
+                <div class="calendar-header">
+                    <button class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <h3 class="calendar-title">2024年3月</h3>
+                    <button class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="calendar-grid">
+                    <!-- 星期标题 -->
+                    <div class="calendar-cell-header">日</div>
+                    <div class="calendar-cell-header">一</div>
+                    <div class="calendar-cell-header">二</div>
+                    <div class="calendar-cell-header">三</div>
+                    <div class="calendar-cell-header">四</div>
+                    <div class="calendar-cell-header">五</div>
+                    <div class="calendar-cell-header">六</div>
+                    
+                    <!-- 日期格子示例 -->
+                    <div class="calendar-cell" style="background: #fafafa;"></div>
+                    <div class="calendar-cell" style="background: #fafafa;"></div>
+                    <div class="calendar-cell" style="background: #fafafa;"></div>
+                    <div class="calendar-cell" style="background: #fafafa;"></div>
+                    <div class="calendar-cell" style="background: #fafafa;"></div>
+                    <div class="calendar-cell">
+                        <div class="calendar-day">1</div>
+                    </div>
+                    <div class="calendar-cell">
+                        <div class="calendar-day">2</div>
+                    </div>
+                    
+                    <!-- 更多日期... -->
+                    <div class="calendar-cell">
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-task">春季视频剪辑</div>
+                        <div class="calendar-task" style="background: #fce8e6; color: #ea4335;">618素材收集</div>
+                    </div>
+                    <div class="calendar-cell">
+                        <div class="calendar-day today">16</div>
+                        <div class="calendar-task">脚本撰写</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // 创建任务
+        function createTask() {
+            alert('创建新任务功能开发中...');
+        }
+        
+        // 切换视图
+        let isCalendarView = false;
+        function toggleView() {
+            isCalendarView = !isCalendarView;
+            const listView = document.getElementById('listView');
+            const calendarView = document.getElementById('calendarView');
+            const viewBtn = document.querySelector('.header-actions .btn-secondary');
+            
+            if (isCalendarView) {
+                listView.style.display = 'none';
+                calendarView.style.display = 'block';
+                viewBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    列表视图
+                `;
+            } else {
+                listView.style.display = 'block';
+                calendarView.style.display = 'none';
+                viewBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    日历视图
+                `;
+            }
+        }
+        
+        // 切换复选框
+        function toggleCheckbox(checkbox) {
+            checkbox.classList.toggle('checked');
+            const taskItem = checkbox.closest('.task-item');
+            if (checkbox.classList.contains('checked')) {
+                taskItem.style.opacity = '0.6';
+            } else {
+                taskItem.style.opacity = '1';
+            }
+        }
+        
+        // 标签页切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 这里可以添加切换内容的逻辑
+                console.log('切换到:', this.textContent.trim());
+            });
+        });
+        
+        // 任务项点击
+        document.querySelectorAll('.task-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                // 如果点击的是复选框，不触发任务详情
+                if (e.target.closest('.task-checkbox')) {
+                    return;
+                }
+                console.log('查看任务详情');
+            });
+        });
+        
+        // 搜索功能
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            console.log('搜索任务:', e.target.value);
+        });
+    </script>
+</body>
+</html>
