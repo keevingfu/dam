@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能文件夹 - 短视频营销DAM</title>
+    <title>Smart Folders - Eureka Robot Vacuum Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #4285f4;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,14 +137,14 @@
             background: #e4e6e9;
         }
         
-        /* 文件夹网格 */
+        /* Folder grid */
         .folders-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
         }
         
-        /* 文件夹卡片 */
+        /* Folder card */
         .folder-card {
             background: #fff;
             border-radius: 12px;
@@ -209,7 +209,7 @@
             margin-bottom: 16px;
         }
         
-        /* 规则显示 */
+        /* Rules display */
         .folder-rules {
             background: #f8f9fa;
             padding: 12px;
@@ -229,7 +229,7 @@
             color: #333;
         }
         
-        /* 文件夹统计 */
+        /* Folder statistics */
         .folder-stats {
             display: flex;
             gap: 20px;
@@ -253,7 +253,7 @@
             margin-top: 4px;
         }
         
-        /* 创建向导 */
+        /* Creation wizard */
         .wizard-overlay {
             position: fixed;
             top: 0;
@@ -293,7 +293,7 @@
             color: #666;
         }
         
-        /* 表单元素 */
+        /* Form elements */
         .form-group {
             margin-bottom: 20px;
         }
@@ -321,7 +321,7 @@
             box-shadow: 0 0 0 3px rgba(66,133,244,0.1);
         }
         
-        /* 规则构建器 */
+        /* Rule builder */
         .rule-builder {
             background: #f8f9fa;
             padding: 16px;
@@ -387,7 +387,7 @@
             background: #e3f2fd;
         }
         
-        /* 空状态 */
+        /* Empty state */
         .empty-state {
             text-align: center;
             padding: 80px 20px;
@@ -411,7 +411,7 @@
             margin-bottom: 24px;
         }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 768px) {
             .folders-grid {
                 grid-template-columns: 1fr;
@@ -426,11 +426,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">智能文件夹</h1>
+                <h1 class="app-title">Smart Folders</h1>
             </div>
             
             <div class="header-actions">
@@ -440,323 +440,325 @@
                         <circle cx="12" cy="5" r="1"></circle>
                         <circle cx="12" cy="19" r="1"></circle>
                     </svg>
-                    更多操作
+                    More Actions
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">智能文件夹</h2>
-                <p class="page-subtitle">基于规则自动分类管理素材，让素材组织更智能高效</p>
+                <h2 class="page-title">Smart Folders</h2>
+                <p class="page-subtitle">Automatically organize and categorize your Eureka robot vacuum marketing content with intelligent rules</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 3h18v18H3zM12 8v8m-4-4h8"></path>
                     </svg>
-                    文件夹模板
+                    Folder Templates
                 </button>
                 <button class="btn btn-primary" onclick="createSmartFolder()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                    创建智能文件夹
+                    Create Smart Folder
                 </button>
             </div>
         </div>
         
-        <!-- 文件夹列表 -->
+        <!-- Folder list -->
         <div class="folders-grid">
-            <!-- 自动文件夹1 -->
+            <!-- Auto folder 1 -->
             <div class="folder-card auto">
                 <div class="folder-header">
                     <div>
                         <div class="folder-icon">🔥</div>
-                        <div class="folder-type auto">自动更新</div>
+                        <div class="folder-type auto">Auto Update</div>
                     </div>
                 </div>
-                <h3 class="folder-title">本周爆款素材</h3>
-                <p class="folder-description">自动收集本周内播放量超过10万的视频素材</p>
+                <h3 class="folder-title">Viral Product Demos</h3>
+                <p class="folder-description">Automatically collect videos with over 100K views showcasing Eureka robot vacuum features</p>
                 
                 <div class="folder-rules">
-                    <div class="rule-label">筛选规则：</div>
+                    <div class="rule-label">Filter Rules:</div>
                     <div class="rule-item">
-                        • 创建时间：最近7天<br>
-                        • 播放量：≥ 100,000<br>
-                        • 互动率：≥ 8%
+                        • Date: Last 7 days<br>
+                        • Views: ≥ 100,000<br>
+                        • Engagement: ≥ 8%<br>
+                        • Product: Eureka
                     </div>
                 </div>
                 
                 <div class="folder-stats">
                     <div class="folder-stat">
                         <div class="stat-value">23</div>
-                        <div class="stat-label">匹配素材</div>
+                        <div class="stat-label">Matched Assets</div>
                     </div>
                     <div class="folder-stat">
-                        <div class="stat-value">实时</div>
-                        <div class="stat-label">更新频率</div>
+                        <div class="stat-value">Real-time</div>
+                        <div class="stat-label">Update Frequency</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 自动文件夹2 -->
+            <!-- Auto folder 2 -->
             <div class="folder-card auto">
                 <div class="folder-header">
                     <div>
-                        <div class="folder-icon">💄</div>
-                        <div class="folder-type auto">自动更新</div>
+                        <div class="folder-icon">🧹</div>
+                        <div class="folder-type auto">Auto Update</div>
                     </div>
                 </div>
-                <h3 class="folder-title">美妆类素材</h3>
-                <p class="folder-description">包含"美妆"或"护肤"标签的所有素材</p>
+                <h3 class="folder-title">Cleaning Demonstrations</h3>
+                <p class="folder-description">Videos showing Eureka robot vacuums cleaning various floor types and messes</p>
                 
                 <div class="folder-rules">
-                    <div class="rule-label">筛选规则：</div>
+                    <div class="rule-label">Filter Rules:</div>
                     <div class="rule-item">
-                        • 标签包含：美妆 OR 护肤<br>
-                        • 类型：视频 + 图片<br>
-                        • 状态：所有
+                        • Tags: Cleaning OR Demo<br>
+                        • Type: Video + Images<br>
+                        • Floor Type: All<br>
+                        • Status: Published
                     </div>
                 </div>
                 
                 <div class="folder-stats">
                     <div class="folder-stat">
-                        <div class="stat-value">156</div>
-                        <div class="stat-label">匹配素材</div>
+                        <div class="stat-value">89</div>
+                        <div class="stat-label">Matched Assets</div>
                     </div>
                     <div class="folder-stat">
-                        <div class="stat-value">实时</div>
-                        <div class="stat-label">更新频率</div>
+                        <div class="stat-value">Real-time</div>
+                        <div class="stat-label">Update Frequency</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 自动文件夹3 -->
+            <!-- Auto Folder3 -->
             <div class="folder-card auto">
                 <div class="folder-header">
                     <div>
                         <div class="folder-icon">⏳</div>
-                        <div class="folder-type auto">自动更新</div>
+                        <div class="folder-type auto">Auto Update</div>
                     </div>
                 </div>
-                <h3 class="folder-title">待优化素材</h3>
-                <p class="folder-description">发布超过3天但播放量低于1000的素材</p>
+                <h3 class="folder-title">Content to Optimize</h3>
+                <p class="folder-description">Published over3days but Views below1000 assets</p>
                 
                 <div class="folder-rules">
-                    <div class="rule-label">筛选规则：</div>
+                    <div class="rule-label">Filter Rules：</div>
                     <div class="rule-item">
-                        • 发布时间：≥ 3天前<br>
-                        • 播放量：< 1,000<br>
-                        • 状态：已发布
+                        • Published：≥ 3daysago<br>
+                        • Views：< 1,000<br>
+                        • Status: Publish
                     </div>
                 </div>
                 
                 <div class="folder-stats">
                     <div class="folder-stat">
                         <div class="stat-value">42</div>
-                        <div class="stat-label">匹配素材</div>
+                        <div class="stat-label">Matched Assets</div>
                     </div>
                     <div class="folder-stat">
-                        <div class="stat-value">每日</div>
-                        <div class="stat-label">更新频率</div>
+                        <div class="stat-value">Daily</div>
+                        <div class="stat-label">Update Frequency</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 手动文件夹1 -->
+            <!-- Manual Folder 1 -->
             <div class="folder-card manual">
                 <div class="folder-header">
                     <div>
                         <div class="folder-icon">🎯</div>
-                        <div class="folder-type">手动管理</div>
+                        <div class="folder-type">Manual Management</div>
                     </div>
                 </div>
-                <h3 class="folder-title">618大促素材</h3>
-                <p class="folder-description">手动整理的618促销活动相关素材</p>
+                <h3 class="folder-title">618 Sale Assets</h3>
+                <p class="folder-description">Manualorganized 618 sale event related assets</p>
                 
                 <div class="folder-stats">
                     <div class="folder-stat">
                         <div class="stat-value">87</div>
-                        <div class="stat-label">素材数量</div>
+                        <div class="stat-label">Asset count</div>
                     </div>
                     <div class="folder-stat">
-                        <div class="stat-value">手动</div>
-                        <div class="stat-label">更新方式</div>
+                        <div class="stat-value">Manual</div>
+                        <div class="stat-label">Update Method</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 自动文件夹4 -->
+            <!-- Auto Folder4 -->
             <div class="folder-card auto">
                 <div class="folder-header">
                     <div>
                         <div class="folder-icon">🎬</div>
-                        <div class="folder-type auto">自动更新</div>
+                        <div class="folder-type auto">Auto Update</div>
                     </div>
                 </div>
-                <h3 class="folder-title">竞品素材</h3>
-                <p class="folder-description">来源为"竞品收集"的所有素材</p>
+                <h3 class="folder-title">Competitor Assets</h3>
+                <p class="folder-description">Source is"Competitor Collection" all assets</p>
                 
                 <div class="folder-rules">
-                    <div class="rule-label">筛选规则：</div>
+                    <div class="rule-label">Filter Rules：</div>
                     <div class="rule-item">
-                        • 来源：竞品收集<br>
-                        • 时间：最近30天<br>
-                        • 排序：播放量降序
+                        • Source：Competitor Collection<br>
+                        • Time: Recent30days<br>
+                        • Sort：Views descending
                     </div>
                 </div>
                 
                 <div class="folder-stats">
                     <div class="folder-stat">
                         <div class="stat-value">234</div>
-                        <div class="stat-label">匹配素材</div>
+                        <div class="stat-label">Matched Assets</div>
                     </div>
                     <div class="folder-stat">
-                        <div class="stat-value">实时</div>
-                        <div class="stat-label">更新频率</div>
+                        <div class="stat-value">Real-time</div>
+                        <div class="stat-label">Update Frequency</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 自动文件夹5 -->
+            <!-- Auto Folder5 -->
             <div class="folder-card auto">
                 <div class="folder-header">
                     <div>
                         <div class="folder-icon">⭐</div>
-                        <div class="folder-type auto">自动更新</div>
+                        <div class="folder-type auto">Auto Update</div>
                     </div>
                 </div>
-                <h3 class="folder-title">高评分素材</h3>
-                <p class="folder-description">团队评分4星以上的优质素材</p>
+                <h3 class="folder-title">High-rated Content</h3>
+                <p class="folder-description">Team rating 4 star+ quality content</p>
                 
                 <div class="folder-rules">
-                    <div class="rule-label">筛选规则：</div>
+                    <div class="rule-label">Filter Rules：</div>
                     <div class="rule-item">
-                        • 评分：≥ 4星<br>
-                        • 类型：所有<br>
-                        • 排序：评分降序
+                        • Rating：≥ 4 star<br>
+                        • Type: All<br>
+                        • Sort：Rating descending
                     </div>
                 </div>
                 
                 <div class="folder-stats">
                     <div class="folder-stat">
                         <div class="stat-value">68</div>
-                        <div class="stat-label">匹配素材</div>
+                        <div class="stat-label">Matched Assets</div>
                     </div>
                     <div class="folder-stat">
-                        <div class="stat-value">实时</div>
-                        <div class="stat-label">更新频率</div>
+                        <div class="stat-value">Real-time</div>
+                        <div class="stat-label">Update Frequency</div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     
-    <!-- 创建向导 -->
+    <!-- Create wizard -->
     <div class="wizard-overlay" id="wizardOverlay">
         <div class="wizard-content">
             <div class="wizard-header">
-                <h3 class="wizard-title">创建智能文件夹</h3>
-                <p class="wizard-subtitle">设置筛选规则，自动归类管理素材</p>
+                <h3 class="wizard-title">Create Smart Folder</h3>
+                <p class="wizard-subtitle">Set filter rules to automatically categorize assets</p>
             </div>
             
             <form id="folderForm">
                 <div class="form-group">
-                    <label class="form-label">文件夹名称</label>
-                    <input type="text" class="form-input" placeholder="例如：本月爆款素材" required>
+                    <label class="form-label">Folder Name</label>
+                    <input type="text" class="form-input" placeholder="e.g.: This Month's Hot Content" required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">描述</label>
-                    <input type="text" class="form-input" placeholder="简单描述文件夹用途">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-input" placeholder="Briefly describe folder purpose">
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">筛选规则</label>
+                    <label class="form-label">Filter Rules</label>
                     <div class="rule-builder">
                         <div class="rule-row">
                             <select class="rule-select">
-                                <option>文件类型</option>
-                                <option>创建时间</option>
-                                <option>标签包含</option>
-                                <option>播放量</option>
-                                <option>评分</option>
+                                <option>File Type</option>
+                                <option>Created Time</option>
+                                <option>TagsContains</option>
+                                <option>Views</option>
+                                <option>Rating</option>
                             </select>
                             <select class="rule-select">
-                                <option>等于</option>
-                                <option>大于</option>
-                                <option>小于</option>
-                                <option>包含</option>
+                                <option>Equals</option>
+                                <option>Greater than</option>
+                                <option>Less than</option>
+                                <option>Contains</option>
                             </select>
-                            <input type="text" class="rule-input" placeholder="输入条件值">
+                            <input type="text" class="rule-input" placeholder="Enter condition value">
                             <button type="button" class="rule-remove">×</button>
                         </div>
-                        <button type="button" class="add-rule-btn">+ 添加筛选条件</button>
+                        <button type="button" class="add-rule-btn">+ Add Filter Condition</button>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">更新频率</label>
+                    <label class="form-label">Update Frequency</label>
                     <select class="form-input">
-                        <option>实时更新</option>
-                        <option>每小时更新</option>
-                        <option>每天更新</option>
-                        <option>手动更新</option>
+                        <option>Real-time</option>
+                        <option>Hourly</option>
+                        <option>Daily</option>
+                        <option>Manual</option>
                     </select>
                 </div>
                 
                 <div style="display: flex; gap: 12px; margin-top: 32px;">
-                    <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeWizard()">取消</button>
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">创建文件夹</button>
+                    <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeWizard()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Create Folder</button>
                 </div>
             </form>
         </div>
     </div>
     
     <script>
-        // 创建智能文件夹
+        // Create Smart Folder
         function createSmartFolder() {
             document.getElementById('wizardOverlay').style.display = 'flex';
         }
         
-        // 关闭向导
+        // Close wizard
         function closeWizard() {
             document.getElementById('wizardOverlay').style.display = 'none';
         }
         
-        // 点击遮罩关闭
+        // Click overlay to close
         document.getElementById('wizardOverlay').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeWizard();
             }
         });
         
-        // 表单提交
+        // Form submit
         document.getElementById('folderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log('创建智能文件夹');
+            console.log('Create Smart Folder');
             closeWizard();
-            alert('智能文件夹创建成功！');
+            alert('Smart folder created successfully!');
         });
         
-        // 添加规则
+        // Add rule
         document.querySelector('.add-rule-btn').addEventListener('click', function() {
             const newRule = document.querySelector('.rule-row').cloneNode(true);
             this.parentNode.insertBefore(newRule, this);
             
-            // 重新绑定删除事件
+            // Rebind delete event
             newRule.querySelector('.rule-remove').addEventListener('click', function() {
                 this.parentNode.remove();
             });
         });
         
-        // 删除规则
+        // Delete rule
         document.querySelectorAll('.rule-remove').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (document.querySelectorAll('.rule-row').length > 1) {
@@ -765,12 +767,12 @@
             });
         });
         
-        // 文件夹点击
+        // Folder click
         document.querySelectorAll('.folder-card').forEach(card => {
             card.addEventListener('click', function() {
                 const title = this.querySelector('.folder-title').textContent;
-                console.log('打开文件夹:', title);
-                // 这里可以跳转到素材列表页面
+                console.log('Open folder:', title);
+                // Can navigate to asset list page here
             });
         });
     </script>

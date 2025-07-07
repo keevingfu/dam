@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>效果分析 - 短视频营销DAM</title>
+    <title>Performance Analytics - Eureka Robot Vacuum Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top Navigation Bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #673ab7;
         }
         
-        /* 主内容区 */
+        /* Main Content Area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1600px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page Title Bar */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button Styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 时间筛选栏 */
+        /* Time Filter Bar */
         .filter-bar {
             background: #fff;
             padding: 16px 20px;
@@ -226,7 +226,7 @@
             transform: translateX(20px);
         }
         
-        /* 数据卡片网格 */
+        /* Metrics Card Grid */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -313,7 +313,7 @@
             color: #f57c00;
         }
         
-        /* 图表区域 */
+        /* Chart Area */
         .charts-section {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -378,7 +378,7 @@
             color: #e5e7eb;
         }
         
-        /* 平台分布 */
+        /* Platform Distribution */
         .platform-distribution {
             padding: 20px 0;
         }
@@ -451,7 +451,7 @@
             transition: width 0.3s;
         }
         
-        /* 内容列表 */
+        /* Content List */
         .content-list {
             background: #fff;
             border-radius: 12px;
@@ -484,7 +484,7 @@
             color: #5e35b1;
         }
         
-        /* 内容项 */
+        /* Content Item */
         .content-item {
             padding: 16px 24px;
             border-bottom: 1px solid #f0f2f5;
@@ -582,7 +582,7 @@
             color: #333;
         }
         
-        /* 热力图 */
+        /* Heatmap */
         .heatmap-section {
             background: #fff;
             padding: 24px;
@@ -641,7 +641,7 @@
             color: #666;
         }
         
-        /* 响应式设计 */
+        /* Responsive Design */
         @media (max-width: 1200px) {
             .charts-section {
                 grid-template-columns: 1fr;
@@ -666,13 +666,15 @@
             }
         }
     </style>
+    <!-- ECharts Library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top Navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">效果分析</h1>
+                <h1 class="app-title">Performance Analytics</h1>
             </div>
             
             <div class="header-actions">
@@ -680,48 +682,48 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2v6m0 4v6m0 4v2M8 12h8M4 12h2m12 0h2"></path>
                     </svg>
-                    自定义指标
+                    Custom Metrics
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main Content Area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page Title Bar -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">效果分析</h2>
-                <p class="page-subtitle">全面分析内容表现，洞察流量密码</p>
+                <h2 class="page-title">Performance Analytics</h2>
+                <p class="page-subtitle">Comprehensive analysis of product video performance and conversion insights</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
-                    导出报告
+                    Export Report
                 </button>
                 <button class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                     </svg>
-                    创建分析报告
+                    Create Analytics Report
                 </button>
             </div>
         </div>
         
-        <!-- 时间筛选栏 -->
+        <!-- Time Filter Bar -->
         <div class="filter-bar">
             <div class="time-filters">
-                <button class="time-btn">今日</button>
-                <button class="time-btn active">最近7天</button>
-                <button class="time-btn">最近30天</button>
-                <button class="time-btn">最近90天</button>
-                <button class="time-btn">自定义</button>
+                <button class="time-btn">Today</button>
+                <button class="time-btn active">Last 7 Days</button>
+                <button class="time-btn">Last 30 Days</button>
+                <button class="time-btn">Last 90 Days</button>
+                <button class="time-btn">Custom</button>
             </div>
             <div class="comparison-mode">
-                <span>对比模式</span>
+                <span>Comparison Mode</span>
                 <label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
@@ -729,13 +731,13 @@
             </div>
         </div>
         
-        <!-- 核心指标卡片 -->
+        <!-- Core Metrics Cards -->
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-header">
                     <div>
-                        <div class="metric-title">总播放量</div>
-                        <div class="metric-value">2.34M</div>
+                        <div class="metric-title">Total Video Views</div>
+                        <div class="metric-value">1.85M</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
@@ -751,8 +753,8 @@
             <div class="metric-card">
                 <div class="metric-header">
                     <div>
-                        <div class="metric-title">平均完播率</div>
-                        <div class="metric-value">68.5%</div>
+                        <div class="metric-title">Avg. Watch Time</div>
+                        <div class="metric-value">72.3%</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
@@ -768,8 +770,8 @@
             <div class="metric-card">
                 <div class="metric-header">
                     <div>
-                        <div class="metric-title">互动率</div>
-                        <div class="metric-value">12.8%</div>
+                        <div class="metric-title">Engagement Rate</div>
+                        <div class="metric-value">14.2%</div>
                         <div class="metric-change change-negative">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
@@ -785,8 +787,8 @@
             <div class="metric-card">
                 <div class="metric-header">
                     <div>
-                        <div class="metric-title">转化率</div>
-                        <div class="metric-value">3.2%</div>
+                        <div class="metric-title">Conversion Rate</div>
+                        <div class="metric-value">5.8%</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
@@ -800,26 +802,28 @@
             </div>
         </div>
         
-        <!-- 图表区域 -->
+        <!-- Chart Area -->
         <div class="charts-section">
-            <!-- 趋势图 -->
+            <!-- Trend Chart -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <h3 class="chart-title">流量趋势</h3>
+                    <h3 class="chart-title">Performance Trends</h3>
                     <div class="chart-actions">
-                        <button class="chart-btn active">播放量</button>
-                        <button class="chart-btn">点赞数</button>
-                        <button class="chart-btn">评论数</button>
-                        <button class="chart-btn">分享数</button>
+                        <button class="chart-btn active">Views</button>
+                        <button class="chart-btn">Click-through</button>
+                        <button class="chart-btn">Demo Requests</button>
+                        <button class="chart-btn">Purchases</button>
                     </div>
                 </div>
-                <div class="chart-placeholder">📊</div>
+                <div class="chart-placeholder" id="performanceTrendsChart" style="height: 350px;">
+                    <!-- ECharts Performance Trends will be rendered here -->
+                </div>
             </div>
             
-            <!-- 平台分布 -->
+            <!-- Platform Distribution -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <h3 class="chart-title">平台流量分布</h3>
+                    <h3 class="chart-title">Platform Performance Distribution</h3>
                 </div>
                 <div class="platform-distribution">
                     <div class="platform-item">
@@ -832,9 +836,9 @@
                             <span class="platform-name">TikTok</span>
                         </div>
                         <div class="platform-bar">
-                            <div class="platform-fill" style="width: 45%;"></div>
+                            <div class="platform-fill" style="width: 42%;"></div>
                         </div>
-                        <span class="platform-percentage">45%</span>
+                        <span class="platform-percentage">42%</span>
                     </div>
                     
                     <div class="platform-item">
@@ -849,9 +853,9 @@
                             <span class="platform-name">Instagram</span>
                         </div>
                         <div class="platform-bar">
-                            <div class="platform-fill" style="width: 28%;"></div>
+                            <div class="platform-fill" style="width: 31%;"></div>
                         </div>
-                        <span class="platform-percentage">28%</span>
+                        <span class="platform-percentage">31%</span>
                     </div>
                     
                     <div class="platform-item">
@@ -864,9 +868,9 @@
                             <span class="platform-name">Facebook</span>
                         </div>
                         <div class="platform-bar">
-                            <div class="platform-fill" style="width: 18%;"></div>
+                            <div class="platform-fill" style="width: 19%;"></div>
                         </div>
-                        <span class="platform-percentage">18%</span>
+                        <span class="platform-percentage">19%</span>
                     </div>
                     
                     <div class="platform-item">
@@ -879,42 +883,42 @@
                             <span class="platform-name">YouTube</span>
                         </div>
                         <div class="platform-bar">
-                            <div class="platform-fill" style="width: 9%;"></div>
+                            <div class="platform-fill" style="width: 8%;"></div>
                         </div>
-                        <span class="platform-percentage">9%</span>
+                        <span class="platform-percentage">8%</span>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 热门内容列表 -->
+        <!-- Top Performing Content List -->
         <div class="content-list">
             <div class="list-header">
-                <h3 class="list-title">本期爆款内容 TOP 10</h3>
-                <span class="view-all-btn">查看全部 →</span>
+                <h3 class="list-title">Top Performing Eureka Videos</h3>
+                <span class="view-all-btn">View All →</span>
             </div>
             
             <div class="content-item">
                 <span class="content-rank top1">1</span>
                 <div class="content-preview">🎬</div>
                 <div class="content-info">
-                    <div class="content-title">618大促主推视频 - 限时秒杀版</div>
-                    <div class="content-meta">发布于 3天前 · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="TikTok">
+                    <div class="content-title">Eureka J15 Pro Max - Full House Cleaning Demo</div>
+                    <div class="content-meta">Published 3 days ago · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="TikTok">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                     </svg></div>
                 </div>
                 <div class="content-stats">
                     <span class="stat-item">
-                        <span class="stat-value">523K</span>
-                        <span>播放</span>
+                        <span class="stat-value">685K</span>
+                        <span>Views</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">82%</span>
-                        <span>完播率</span>
+                        <span class="stat-value">78%</span>
+                        <span>Watch Rate</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">15.6%</span>
-                        <span>互动率</span>
+                        <span class="stat-value">18.3%</span>
+                        <span>Engagement</span>
                     </span>
                 </div>
             </div>
@@ -923,8 +927,8 @@
                 <span class="content-rank top2">2</span>
                 <div class="content-preview">🎬</div>
                 <div class="content-info">
-                    <div class="content-title">新品开箱测评 - 真实体验分享</div>
-                    <div class="content-meta">发布于 5天前 · <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="Instagram">
+                    <div class="content-title">Eureka J15 vs Competitors - Side by Side Comparison</div>
+                    <div class="content-meta">Published 5 days ago · <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="Instagram">
                         <rect x="2" y="2" width="20" height="20" rx="5"/>
                         <circle cx="12" cy="12" r="5"/>
                         <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
@@ -932,16 +936,16 @@
                 </div>
                 <div class="content-stats">
                     <span class="stat-item">
-                        <span class="stat-value">412K</span>
-                        <span>播放</span>
+                        <span class="stat-value">542K</span>
+                        <span>Views</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">75%</span>
-                        <span>完播率</span>
+                        <span class="stat-value">81%</span>
+                        <span>Watch Rate</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">18.2%</span>
-                        <span>互动率</span>
+                        <span class="stat-value">21.5%</span>
+                        <span>Engagement</span>
                     </span>
                 </div>
             </div>
@@ -950,23 +954,23 @@
                 <span class="content-rank top3">3</span>
                 <div class="content-preview">🎬</div>
                 <div class="content-info">
-                    <div class="content-title">母亲节温情短片 - 妈妈的味道</div>
-                    <div class="content-meta">发布于 1周前 · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="Facebook">
+                    <div class="content-title">Pet Hair Challenge - Eureka's Advanced Filtration System</div>
+                    <div class="content-meta">Published 1 week ago · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="Facebook">
                         <path d="M5.25 3C3.45 3 2 4.35 2 6v12c0 1.65 1.45 3 3.25 3H12v-7.5h-2v-3h2V9c0-2.63 1.37-4 3.88-4 1.17 0 2.12.09 2.12.09v2.34h-1.45c-1.3 0-1.55.62-1.55 1.57v1.5h3l-.5 3H15V21h3.75c1.8 0 3.25-1.35 3.25-3V6c0-1.65-1.45-3-3.25-3H5.25z"/>
                     </svg></div>
                 </div>
                 <div class="content-stats">
                     <span class="stat-item">
-                        <span class="stat-value">385K</span>
-                        <span>播放</span>
+                        <span class="stat-value">498K</span>
+                        <span>Views</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">88%</span>
-                        <span>完播率</span>
+                        <span class="stat-value">85%</span>
+                        <span>Watch Rate</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">22.5%</span>
-                        <span>互动率</span>
+                        <span class="stat-value">24.8%</span>
+                        <span>Engagement</span>
                     </span>
                 </div>
             </div>
@@ -975,23 +979,23 @@
                 <span class="content-rank">4</span>
                 <div class="content-preview">🎬</div>
                 <div class="content-info">
-                    <div class="content-title">护肤小知识 - 夏季防晒指南</div>
-                    <div class="content-meta">发布于 2天前 · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="TikTok">
+                    <div class="content-title">Smart Features Tutorial - App Control & Mapping</div>
+                    <div class="content-meta">Published 2 days ago · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="TikTok">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                     </svg></div>
                 </div>
                 <div class="content-stats">
                     <span class="stat-item">
-                        <span class="stat-value">298K</span>
-                        <span>播放</span>
+                        <span class="stat-value">376K</span>
+                        <span>Views</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">72%</span>
-                        <span>完播率</span>
+                        <span class="stat-value">76%</span>
+                        <span>Watch Rate</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">12.8%</span>
-                        <span>互动率</span>
+                        <span class="stat-value">16.2%</span>
+                        <span>Engagement</span>
                     </span>
                 </div>
             </div>
@@ -1000,33 +1004,33 @@
                 <span class="content-rank">5</span>
                 <div class="content-preview">🎬</div>
                 <div class="content-info">
-                    <div class="content-title">产品使用教程 - 新手入门篇</div>
-                    <div class="content-meta">发布于 4天前 · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="YouTube">
+                    <div class="content-title">Unboxing & Setup Guide - Getting Started with Eureka</div>
+                    <div class="content-meta">Published 4 days ago · <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;" title="YouTube">
                         <path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 11 2 11s0 3.254.418 4.814a2.506 2.506 0 0 0 1.768 1.768C5.746 18 12 18 12 18s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 14.254 22 11 22 11s0-3.254-.418-4.814zM10 14V8l5 3-5 3z"/>
                     </svg></div>
                 </div>
                 <div class="content-stats">
                     <span class="stat-item">
-                        <span class="stat-value">186K</span>
-                        <span>播放</span>
+                        <span class="stat-value">285K</span>
+                        <span>Views</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">91%</span>
-                        <span>完播率</span>
+                        <span class="stat-value">92%</span>
+                        <span>Watch Rate</span>
                     </span>
                     <span class="stat-item">
-                        <span class="stat-value">9.5%</span>
-                        <span>互动率</span>
+                        <span class="stat-value">12.7%</span>
+                        <span>Engagement</span>
                     </span>
                 </div>
             </div>
         </div>
         
-        <!-- 发布时间热力图 -->
+        <!-- Publishing Time Heatmap -->
         <div class="heatmap-section" style="margin-top: 20px;">
-            <h3 class="heatmap-title">发布时间热力图（最佳发布时段分析）</h3>
+            <h3 class="heatmap-title">Best Publishing Times (Peak Engagement Analysis)</h3>
             <div class="heatmap-grid">
-                <!-- 生成24小时热力图 -->
+                <!-- Generate 24-hour heatmap -->
                 <div class="heatmap-cell low" title="00:00"></div>
                 <div class="heatmap-cell low" title="01:00"></div>
                 <div class="heatmap-cell low" title="02:00"></div>
@@ -1063,64 +1067,263 @@
     </main>
     
     <script>
-        // 时间筛选
+        // Initialize ECharts instance
+        let performanceTrendsChart;
+        
+        // Initialize chart when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePerformanceTrendsChart();
+            
+            // Make chart responsive
+            window.addEventListener('resize', function() {
+                if (performanceTrendsChart) performanceTrendsChart.resize();
+            });
+        });
+        
+        // Performance Trends Chart
+        function initializePerformanceTrendsChart() {
+            const chartDom = document.getElementById('performanceTrendsChart');
+            performanceTrendsChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        crossStyle: {
+                            color: '#999'
+                        }
+                    }
+                },
+                toolbox: {
+                    feature: {
+                        dataView: { show: true, readOnly: false },
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                legend: {
+                    data: ['Views', 'Click-through Rate', 'Conversion Rate', 'Demo Requests']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        name: 'Views',
+                        min: 0,
+                        max: 400000,
+                        interval: 50000,
+                        axisLabel: {
+                            formatter: function(value) {
+                                return value / 1000 + 'K';
+                            }
+                        }
+                    },
+                    {
+                        type: 'value',
+                        name: 'Rate (%)',
+                        min: 0,
+                        max: 25,
+                        interval: 5,
+                        axisLabel: {
+                            formatter: '{value}%'
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Views',
+                        type: 'bar',
+                        data: [262000, 289000, 267000, 284000, 307000, 335000, 360000],
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: '#9333ea' },
+                                { offset: 1, color: '#e0c3fc' }
+                            ])
+                        }
+                    },
+                    {
+                        name: 'Click-through Rate',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        data: [12.0, 13.2, 12.5, 14.5, 15.3, 14.2, 16.0],
+                        itemStyle: {
+                            color: '#10b981'
+                        }
+                    },
+                    {
+                        name: 'Conversion Rate',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        data: [4.0, 4.9, 5.0, 5.2, 6.3, 5.8, 6.5],
+                        itemStyle: {
+                            color: '#f59e0b'
+                        }
+                    },
+                    {
+                        name: 'Demo Requests',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        data: [2.0, 2.2, 2.3, 2.8, 3.3, 3.0, 3.5],
+                        itemStyle: {
+                            color: '#3b82f6'
+                        }
+                    }
+                ]
+            };
+            
+            performanceTrendsChart.setOption(option);
+        }
+        
+        // Update chart based on selected metric
+        function updatePerformanceChart(metric) {
+            if (!performanceTrendsChart) return;
+            
+            let seriesVisibility = {
+                'Views': [true, false, false, false],
+                'Click-through': [false, true, false, false],
+                'Demo Requests': [false, false, false, true],
+                'Purchases': [false, false, true, false]
+            };
+            
+            let visibility = seriesVisibility[metric] || [true, true, true, true];
+            
+            performanceTrendsChart.setOption({
+                series: [
+                    { type: 'bar', barWidth: visibility[0] ? '60%' : '0%' },
+                    { type: 'line', lineStyle: { opacity: visibility[1] ? 1 : 0 }, itemStyle: { opacity: visibility[1] ? 1 : 0 } },
+                    { type: 'line', lineStyle: { opacity: visibility[2] ? 1 : 0 }, itemStyle: { opacity: visibility[2] ? 1 : 0 } },
+                    { type: 'line', lineStyle: { opacity: visibility[3] ? 1 : 0 }, itemStyle: { opacity: visibility[3] ? 1 : 0 } }
+                ]
+            });
+        }
+        
+        // Time filter
         document.querySelectorAll('.time-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                console.log('切换时间范围:', this.textContent);
+                console.log('Switch time range:', this.textContent);
+                
+                // Update chart data based on time range
+                updatePerformanceDataByTime(this.textContent);
             });
         });
         
-        // 图表按钮切换
+        // Update performance data based on time range
+        function updatePerformanceDataByTime(timeRange) {
+            let xAxisData, viewsData, ctrData, conversionData, demoData;
+            
+            switch(timeRange) {
+                case 'Today':
+                    xAxisData = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'];
+                    viewsData = [12000, 18000, 42000, 68000, 52000, 39000, 25000];
+                    ctrData = [8.0, 10.2, 15.5, 18.5, 16.3, 14.2, 11.0];
+                    conversionData = [2.0, 3.9, 5.5, 6.2, 5.3, 4.8, 3.5];
+                    demoData = [1.0, 1.2, 2.3, 3.8, 3.3, 2.0, 1.5];
+                    break;
+                case 'Last 30 Days':
+                    xAxisData = Array.from({length: 30}, (_, i) => `Day ${i + 1}`);
+                    viewsData = Array.from({length: 30}, () => Math.floor(Math.random() * 100000 + 200000));
+                    ctrData = Array.from({length: 30}, () => (Math.random() * 8 + 10).toFixed(1));
+                    conversionData = Array.from({length: 30}, () => (Math.random() * 3 + 4).toFixed(1));
+                    demoData = Array.from({length: 30}, () => (Math.random() * 2 + 2).toFixed(1));
+                    break;
+                case 'Last 90 Days':
+                    xAxisData = Array.from({length: 12}, (_, i) => `Week ${i + 1}`);
+                    viewsData = Array.from({length: 12}, () => Math.floor(Math.random() * 500000 + 1500000));
+                    ctrData = Array.from({length: 12}, () => (Math.random() * 6 + 12).toFixed(1));
+                    conversionData = Array.from({length: 12}, () => (Math.random() * 2 + 5).toFixed(1));
+                    demoData = Array.from({length: 12}, () => (Math.random() * 1.5 + 2.5).toFixed(1));
+                    break;
+                default: // Last 7 Days
+                    xAxisData = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                    viewsData = [262000, 289000, 267000, 284000, 307000, 335000, 360000];
+                    ctrData = [12.0, 13.2, 12.5, 14.5, 15.3, 14.2, 16.0];
+                    conversionData = [4.0, 4.9, 5.0, 5.2, 6.3, 5.8, 6.5];
+                    demoData = [2.0, 2.2, 2.3, 2.8, 3.3, 3.0, 3.5];
+            }
+            
+            if (performanceTrendsChart) {
+                performanceTrendsChart.setOption({
+                    xAxis: [{ data: xAxisData }],
+                    series: [
+                        { data: viewsData },
+                        { data: ctrData },
+                        { data: conversionData },
+                        { data: demoData }
+                    ]
+                });
+            }
+        }
+        
+        // Chart button switch
         document.querySelectorAll('.chart-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const parent = this.parentElement;
                 parent.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                console.log('切换指标:', this.textContent);
+                console.log('Switch metric:', this.textContent);
+                
+                // Update chart to show selected metric
+                updatePerformanceChart(this.textContent);
             });
         });
         
-        // 对比模式切换
+        // Comparison mode toggle
         document.querySelector('.switch input').addEventListener('change', function() {
-            console.log('对比模式:', this.checked ? '开启' : '关闭');
+            console.log('Comparison mode:', this.checked ? 'On' : 'Off');
         });
         
-        // 内容项点击
+        // Content item click
         document.querySelectorAll('.content-item').forEach(item => {
             item.addEventListener('click', function() {
                 const title = this.querySelector('.content-title').textContent;
-                console.log('查看内容详情:', title);
+                console.log('View content details:', title);
             });
         });
         
-        // 查看全部
+        // View all
         document.querySelector('.view-all-btn').addEventListener('click', function() {
-            console.log('查看全部内容');
+            console.log('View all content');
         });
         
-        // 热力图单元格悬停
+        // Heatmap cell hover
         document.querySelectorAll('.heatmap-cell').forEach(cell => {
             cell.addEventListener('mouseenter', function() {
                 const time = this.getAttribute('title');
-                console.log('时间段:', time);
+                console.log('Time period:', time);
             });
         });
         
-        // 导出报告
+        // Export report
         document.querySelector('.btn-secondary').addEventListener('click', function() {
-            if (this.textContent.includes('导出报告')) {
-                console.log('导出分析报告');
+            if (this.textContent.includes('Export Report')) {
+                console.log('Export analytics report');
             }
         });
         
-        // 创建分析报告
+        // Create analytics report
         document.querySelector('.btn-primary').addEventListener('click', function() {
-            console.log('创建新的分析报告');
+            console.log('Create new analytics report');
         });
         
-        // 动画效果 - 数字增长
+        // Animation effect - number growth
         const animateValue = (element, start, end, duration) => {
             const startTimestamp = Date.now();
             const step = (timestamp) => {
@@ -1134,10 +1337,10 @@
             window.requestAnimationFrame(step);
         };
         
-        // 页面加载时的动画
+        // Page load animation
         window.addEventListener('load', () => {
-            // 这里可以添加数字增长动画
-            console.log('效果分析页面加载完成');
+            // Add number growth animation here
+            console.log('Performance analytics page loaded');
         });
     </script>
 </body>

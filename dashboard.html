@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数据概览 - 短视频营销DAM</title>
+    <title>Data Overview - Eureka Robot Vacuum Marketing</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Header navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -74,14 +74,14 @@
             gap: 12px;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -110,7 +110,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -143,7 +143,7 @@
             background: #e4e6e9;
         }
         
-        /* 统计卡片 */
+        /* Statistics cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -230,7 +230,7 @@
             color: #ea4335;
         }
         
-        /* 内容区域 */
+        /* Content area */
         .content-section {
             background: #fff;
             border-radius: 12px;
@@ -253,7 +253,7 @@
             color: #1a1a1a;
         }
         
-        /* 图表容器 */
+        /* Chart container */
         .chart-container {
             padding: 24px;
             height: 300px;
@@ -265,7 +265,7 @@
             font-size: 18px;
         }
         
-        /* 表格样式 */
+        /* Table styles */
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -292,7 +292,7 @@
             background: #f8f9fa;
         }
         
-        /* 标签页 */
+        /* Tab navigation */
         .tabs {
             display: flex;
             border-bottom: 1px solid #e5e7eb;
@@ -319,7 +319,7 @@
             border-bottom-color: #1a73e8;
         }
         
-        /* 时间选择器 */
+        /* Time picker */
         .time-selector {
             display: flex;
             gap: 8px;
@@ -346,7 +346,7 @@
             border-color: #1a73e8;
         }
         
-        /* 评分星级 */
+        /* Rating stars */
         .rating {
             display: flex;
             gap: 2px;
@@ -360,8 +360,17 @@
         .star.filled {
             color: #fbbc04;
         }
+
+        /* Tab content visibility */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: 1fr;
@@ -379,13 +388,15 @@
             }
         }
     </style>
+    <!-- ECharts Library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Header navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">数据概览</h1>
+                <h1 class="app-title">Data Overview</h1>
             </div>
             
             <div class="header-actions">
@@ -395,26 +406,26 @@
                         <circle cx="12" cy="5" r="1"></circle>
                         <circle cx="12" cy="19" r="1"></circle>
                     </svg>
-                    更多操作
+                    More Actions
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">数据概览</h2>
-                <p class="page-subtitle">实时监控短视频营销效果，洞察内容价值</p>
+                <h2 class="page-title">Data Overview</h2>
+                <p class="page-subtitle">Real-time monitoring of Eureka robot vacuum sales performance and market insights</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2v6m0 4v6m0 4v2M8 12h8M4 12h2m12 0h2"></path>
                     </svg>
-                    自定义看板
+                    Customize Dashboard
                 </button>
                 <button class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -422,117 +433,118 @@
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
-                    导出报告
+                    Export Report
                 </button>
             </div>
         </div>
         
-        <!-- 统计卡片 -->
+        <!-- Statistics cards -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-header">
                     <div>
-                        <div class="stat-title">素材总量</div>
-                        <div class="stat-value">12,845</div>
+                        <div class="stat-title">Total Units Sold</div>
+                        <div class="stat-value">24,567</div>
                         <div class="stat-change positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            <span>+189% 较上月</span>
+                            <span>+26% vs Last Month</span>
                         </div>
                     </div>
-                    <div class="stat-icon blue">📹</div>
+                    <div class="stat-icon blue">🤖</div>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-header">
                     <div>
-                        <div class="stat-title">爆款率</div>
-                        <div class="stat-value">12.5%</div>
+                        <div class="stat-title">Customer Satisfaction</div>
+                        <div class="stat-value">94.5%</div>
                         <div class="stat-change positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            <span>+4.2% 提升</span>
+                            <span>+4.2% Increase</span>
                         </div>
                     </div>
-                    <div class="stat-icon green">🎯</div>
+                    <div class="stat-icon green">⭐</div>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-header">
                     <div>
-                        <div class="stat-title">素材复用率</div>
+                        <div class="stat-title">Demo Conversion Rate</div>
                         <div class="stat-value">45.3%</div>
                         <div class="stat-change positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                                 <polyline points="17 6 23 6 23 12"></polyline>
                             </svg>
-                            <span>+36.3% 优化</span>
+                            <span>+36.3% Improvement</span>
                         </div>
                     </div>
-                    <div class="stat-icon yellow">♻️</div>
+                    <div class="stat-icon yellow">💼</div>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-header">
                     <div>
-                        <div class="stat-title">平均制作周期</div>
-                        <div class="stat-value">2.8天</div>
+                        <div class="stat-title">Avg. Return Rate</div>
+                        <div class="stat-value">2.8%</div>
                         <div class="stat-change positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
                                 <polyline points="17 18 23 18 23 12"></polyline>
                             </svg>
-                            <span>-40% 缩短</span>
+                            <span>-40% Reduction</span>
                         </div>
                     </div>
-                    <div class="stat-icon red">⏱️</div>
+                    <div class="stat-icon red">📦</div>
                 </div>
             </div>
         </div>
         
-        <!-- 播放量趋势图表 -->
+        <!-- Views trend chart -->
         <div class="content-section">
             <div class="section-header">
-                <h3 class="section-title">播放量趋势</h3>
+                <h3 class="section-title">Sales Trend</h3>
                 <div class="time-selector">
-                    <button class="time-btn">日</button>
-                    <button class="time-btn active">周</button>
-                    <button class="time-btn">月</button>
-                    <button class="time-btn">年</button>
+                    <button class="time-btn">Day</button>
+                    <button class="time-btn active">Week</button>
+                    <button class="time-btn">Month</button>
+                    <button class="time-btn">Year</button>
                 </div>
             </div>
-            <div class="chart-container">
-                📈 播放量趋势图表区域
+            <div class="chart-container" id="salesTrendChart" style="height: 300px;">
+                <!-- ECharts Sales Trend will be rendered here -->
             </div>
         </div>
         
-        <!-- TOP表现素材 -->
+        <!-- Top performing content -->
         <div class="content-section">
             <div class="tabs">
-                <div class="tab active">TOP播放量</div>
-                <div class="tab">TOP互动率</div>
-                <div class="tab">TOP转化率</div>
-                <div class="tab">最新发布</div>
+                <div class="tab active" data-tab="best-sellers">Best Sellers</div>
+                <div class="tab" data-tab="top-rated">Top Rated</div>
+                <div class="tab" data-tab="demo-views">Demo Views</div>
+                <div class="tab" data-tab="new-models">New Models</div>
             </div>
             
-            <div style="overflow-x: auto;">
+            <!-- Best Sellers Tab Content -->
+            <div class="tab-content active" id="best-sellers-content" style="overflow-x: auto;">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 40%;">素材名称</th>
-                            <th>发布平台</th>
-                            <th>播放量</th>
-                            <th>完播率</th>
-                            <th>互动率</th>
-                            <th>评分</th>
+                            <th style="width: 40%;">Product Model</th>
+                            <th>Channel</th>
+                            <th>Units Sold</th>
+                            <th>Return Rate</th>
+                            <th>Satisfaction</th>
+                            <th>Rating</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -540,7 +552,7 @@
                             <td>
                                 <div style="display: flex; align-items: center; gap: 12px;">
                                     <div style="width: 60px; height: 40px; background: #4285f4; border-radius: 4px;"></div>
-                                    <span>春季新品发布视频</span>
+                                    <span>Eureka J20 Ultra</span>
                                 </div>
                             </td>
                             <td>
@@ -548,9 +560,9 @@
                                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="#000000"/>
                                 </svg>
                             </td>
-                            <td>523.4万</td>
-                            <td>78.5%</td>
-                            <td>15.2%</td>
+                            <td>5,234</td>
+                            <td>1.5%</td>
+                            <td>96.2%</td>
                             <td>
                                 <div class="rating">
                                     <span class="star filled">⭐</span>
@@ -565,7 +577,7 @@
                             <td>
                                 <div style="display: flex; align-items: center; gap: 12px;">
                                     <div style="width: 60px; height: 40px; background: #34a853; border-radius: 4px;"></div>
-                                    <span>用户真实评测</span>
+                                    <span>Eureka E10s Pro</span>
                                 </div>
                             </td>
                             <td>
@@ -575,9 +587,9 @@
                                     <circle cx="17.5" cy="6.5" r="1.5" fill="#E4405F"/>
                                 </svg>
                             </td>
-                            <td>234.1万</td>
-                            <td>65.3%</td>
-                            <td>18.7%</td>
+                            <td>2,341</td>
+                            <td>2.3%</td>
+                            <td>94.7%</td>
                             <td>
                                 <div class="rating">
                                     <span class="star filled">⭐</span>
@@ -592,7 +604,7 @@
                             <td>
                                 <div style="display: flex; align-items: center; gap: 12px;">
                                     <div style="width: 60px; height: 40px; background: #ea4335; border-radius: 4px;"></div>
-                                    <span>限时优惠活动</span>
+                                    <span>Eureka Groove NV356E</span>
                                 </div>
                             </td>
                             <td>
@@ -600,9 +612,9 @@
                                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
                                 </svg>
                             </td>
-                            <td>156.8万</td>
-                            <td>52.1%</td>
-                            <td>12.3%</td>
+                            <td>1,568</td>
+                            <td>3.1%</td>
+                            <td>92.3%</td>
                             <td>
                                 <div class="rating">
                                     <span class="star filled">⭐</span>
@@ -617,7 +629,7 @@
                             <td>
                                 <div style="display: flex; align-items: center; gap: 12px;">
                                     <div style="width: 60px; height: 40px; background: #fbbc04; border-radius: 4px;"></div>
-                                    <span>产品使用教程</span>
+                                    <span>Eureka RapidClean Pro</span>
                                 </div>
                             </td>
                             <td>
@@ -626,9 +638,9 @@
                                     <path d="M10 15V9L15 12L10 15Z" fill="white"/>
                                 </svg>
                             </td>
-                            <td>89.5万</td>
-                            <td>82.7%</td>
-                            <td>9.8%</td>
+                            <td>895</td>
+                            <td>2.7%</td>
+                            <td>89.8%</td>
                             <td>
                                 <div class="rating">
                                     <span class="star filled">⭐</span>
@@ -642,39 +654,594 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Top Rated Tab Content -->
+            <div class="tab-content" id="top-rated-content" style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Product Model</th>
+                            <th>Customer Rating</th>
+                            <th>Reviews</th>
+                            <th>Most Praised Feature</th>
+                            <th>Satisfaction</th>
+                            <th>Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #4285f4; border-radius: 4px;"></div>
+                                    <span>Eureka J20 Ultra</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                </div>
+                            </td>
+                            <td>3,458</td>
+                            <td>Self-Empty Station</td>
+                            <td>98.5%</td>
+                            <td>97.2%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #9c27b0; border-radius: 4px;"></div>
+                                    <span>Eureka J15 Pro Max</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                </div>
+                            </td>
+                            <td>2,891</td>
+                            <td>Pet Hair Removal</td>
+                            <td>97.8%</td>
+                            <td>96.5%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #00acc1; border-radius: 4px;"></div>
+                                    <span>Eureka Groove NV500</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                </div>
+                            </td>
+                            <td>1,234</td>
+                            <td>Quiet Operation</td>
+                            <td>96.3%</td>
+                            <td>95.8%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #43a047; border-radius: 4px;"></div>
+                                    <span>Eureka E10s Pro</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                            </td>
+                            <td>1,567</td>
+                            <td>Value for Money</td>
+                            <td>94.7%</td>
+                            <td>93.2%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Demo Views Tab Content -->
+            <div class="tab-content" id="demo-views-content" style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Video Title</th>
+                            <th>Platform</th>
+                            <th>Views</th>
+                            <th>Watch Time</th>
+                            <th>Conversion Rate</th>
+                            <th>Engagement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #ff6b6b; border-radius: 4px;"></div>
+                                    <span>Eureka vs Competition: Pet Hair Test</span>
+                                </div>
+                            </td>
+                            <td>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" title="YouTube">
+                                    <rect x="2" y="5" width="20" height="14" rx="2" fill="#FF0000"/>
+                                    <path d="M10 15V9L15 12L10 15Z" fill="white"/>
+                                </svg>
+                            </td>
+                            <td>8.5M</td>
+                            <td>4:32</td>
+                            <td>15.8%</td>
+                            <td>92%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #4ecdc4; border-radius: 4px;"></div>
+                                    <span>Self-Emptying in Action</span>
+                                </div>
+                            </td>
+                            <td>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" title="TikTok">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="#000000"/>
+                                </svg>
+                            </td>
+                            <td>6.2M</td>
+                            <td>0:58</td>
+                            <td>18.2%</td>
+                            <td>89%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #45aaf2; border-radius: 4px;"></div>
+                                    <span>Smart Mapping Technology Demo</span>
+                                </div>
+                            </td>
+                            <td>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" title="Instagram">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="#E4405F" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="4" stroke="#E4405F" stroke-width="2"/>
+                                    <circle cx="17.5" cy="6.5" r="1.5" fill="#E4405F"/>
+                                </svg>
+                            </td>
+                            <td>4.3M</td>
+                            <td>1:15</td>
+                            <td>12.5%</td>
+                            <td>86%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #f39c12; border-radius: 4px;"></div>
+                                    <span>Unboxing & First Setup</span>
+                                </div>
+                            </td>
+                            <td>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" title="YouTube">
+                                    <rect x="2" y="5" width="20" height="14" rx="2" fill="#FF0000"/>
+                                    <path d="M10 15V9L15 12L10 15Z" fill="white"/>
+                                </svg>
+                            </td>
+                            <td>3.8M</td>
+                            <td>8:45</td>
+                            <td>9.8%</td>
+                            <td>78%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- New Models Tab Content -->
+            <div class="tab-content" id="new-models-content" style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Model Name</th>
+                            <th>Launch Date</th>
+                            <th>Key Feature</th>
+                            <th>Pre-Orders</th>
+                            <th>Interest Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #e91e63; border-radius: 4px;"></div>
+                                    <span>Eureka J25 Ultra Pro</span>
+                                </div>
+                            </td>
+                            <td>Coming Q1 2025</td>
+                            <td>AI Vision 2.0</td>
+                            <td>12,456</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <div style="flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 95%; height: 100%; background: #10b981;"></div>
+                                    </div>
+                                    <span style="font-size: 12px; color: #666;">95%</span>
+                                </div>
+                            </td>
+                            <td><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Pre-Launch</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #3f51b5; border-radius: 4px;"></div>
+                                    <span>Eureka E15s Max</span>
+                                </div>
+                            </td>
+                            <td>Launched 2 weeks ago</td>
+                            <td>Dual Brush System</td>
+                            <td>8,234</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <div style="flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 88%; height: 100%; background: #3b82f6;"></div>
+                                    </div>
+                                    <span style="font-size: 12px; color: #666;">88%</span>
+                                </div>
+                            </td>
+                            <td><span style="background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 4px; font-size: 12px;">New Launch</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #ff9800; border-radius: 4px;"></div>
+                                    <span>Eureka Groove AI</span>
+                                </div>
+                            </td>
+                            <td>Launched 1 month ago</td>
+                            <td>Voice Control</td>
+                            <td>5,678</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <div style="flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 82%; height: 100%; background: #f59e0b;"></div>
+                                    </div>
+                                    <span style="font-size: 12px; color: #666;">82%</span>
+                                </div>
+                            </td>
+                            <td><span style="background: #fef3c7; color: #92400e; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Growing</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 60px; height: 40px; background: #00bcd4; border-radius: 4px;"></div>
+                                    <span>Eureka Mini Pro</span>
+                                </div>
+                            </td>
+                            <td>Coming Q2 2025</td>
+                            <td>Compact Design</td>
+                            <td>3,456</td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <div style="flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden;">
+                                        <div style="width: 72%; height: 100%; background: #06b6d4;"></div>
+                                    </div>
+                                    <span style="font-size: 12px; color: #666;">72%</span>
+                                </div>
+                            </td>
+                            <td><span style="background: #e0f2fe; color: #075985; padding: 4px 8px; border-radius: 4px; font-size: 12px;">In Development</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
-        <!-- 平台分布 -->
+        <!-- Platform distribution -->
         <div class="content-section">
             <div class="section-header">
-                <h3 class="section-title">平台分布</h3>
-                <button class="btn btn-secondary">查看详情</button>
+                <h3 class="section-title">Channel Distribution</h3>
+                <button class="btn btn-secondary">View Details</button>
             </div>
-            <div class="chart-container">
-                🍩 平台分布饼图区域
+            <div class="chart-container" id="channelDistributionChart" style="height: 300px;">
+                <!-- ECharts Channel Distribution will be rendered here -->
             </div>
         </div>
     </main>
     
     <script>
-        // 标签页切换
+        // Initialize ECharts instances
+        let salesTrendChart;
+        let channelDistributionChart;
+
+        // Initialize charts when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSalesTrendChart();
+            initializeChannelDistributionChart();
+            
+            // Make charts responsive
+            window.addEventListener('resize', function() {
+                if (salesTrendChart) salesTrendChart.resize();
+                if (channelDistributionChart) channelDistributionChart.resize();
+            });
+        });
+
+        // Sales Trend Chart
+        function initializeSalesTrendChart() {
+            const chartDom = document.getElementById('salesTrendChart');
+            salesTrendChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['Eureka J20 Ultra', 'Eureka E10s Pro', 'Eureka Groove', 'Eureka RapidClean'],
+                    top: 10
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'Units Sold',
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                series: [
+                    {
+                        name: 'Eureka J20 Ultra',
+                        type: 'line',
+                        smooth: true,
+                        data: [820, 932, 901, 934, 1290, 1330, 1520],
+                        itemStyle: {
+                            color: '#4285f4'
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(66, 133, 244, 0.3)' },
+                                { offset: 1, color: 'rgba(66, 133, 244, 0.05)' }
+                            ])
+                        }
+                    },
+                    {
+                        name: 'Eureka E10s Pro',
+                        type: 'line',
+                        smooth: true,
+                        data: [320, 302, 301, 334, 390, 430, 420],
+                        itemStyle: {
+                            color: '#34a853'
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(52, 168, 83, 0.3)' },
+                                { offset: 1, color: 'rgba(52, 168, 83, 0.05)' }
+                            ])
+                        }
+                    },
+                    {
+                        name: 'Eureka Groove',
+                        type: 'line',
+                        smooth: true,
+                        data: [220, 182, 191, 234, 290, 330, 310],
+                        itemStyle: {
+                            color: '#ea4335'
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(234, 67, 53, 0.3)' },
+                                { offset: 1, color: 'rgba(234, 67, 53, 0.05)' }
+                            ])
+                        }
+                    },
+                    {
+                        name: 'Eureka RapidClean',
+                        type: 'line',
+                        smooth: true,
+                        data: [120, 132, 101, 134, 90, 130, 110],
+                        itemStyle: {
+                            color: '#fbbc04'
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(251, 188, 4, 0.3)' },
+                                { offset: 1, color: 'rgba(251, 188, 4, 0.05)' }
+                            ])
+                        }
+                    }
+                ]
+            };
+            
+            salesTrendChart.setOption(option);
+        }
+
+        // Channel Distribution Chart
+        function initializeChannelDistributionChart() {
+            const chartDom = document.getElementById('channelDistributionChart');
+            channelDistributionChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['Amazon', 'Official Website', 'Retail Stores', 'TikTok Shop', 'Other Channels']
+                },
+                series: [
+                    {
+                        name: 'Channel Distribution',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: [
+                            {
+                                value: 8234,
+                                name: 'Amazon',
+                                itemStyle: { color: '#FF9900' }
+                            },
+                            {
+                                value: 5435,
+                                name: 'Official Website',
+                                itemStyle: { color: '#4285f4' }
+                            },
+                            {
+                                value: 4580,
+                                name: 'Retail Stores',
+                                itemStyle: { color: '#34a853' }
+                            },
+                            {
+                                value: 2484,
+                                name: 'TikTok Shop',
+                                itemStyle: { color: '#000000' }
+                            },
+                            {
+                                value: 1834,
+                                name: 'Other Channels',
+                                itemStyle: { color: '#ea4335' }
+                            }
+                        ]
+                    }
+                ]
+            };
+            
+            channelDistributionChart.setOption(option);
+        }
+
+        // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Remove active class from all tabs
                 const tabs = this.parentElement.querySelectorAll('.tab');
                 tabs.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show the corresponding tab content
+                const tabName = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabName + '-content');
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                }
             });
         });
         
-        // 时间选择器
+        // Time picker with chart update
         document.querySelectorAll('.time-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Update chart data based on time range
+                updateSalesTrendData(this.textContent);
             });
         });
         
-        // 模拟数据更新
+        // Update sales trend data based on time range
+        function updateSalesTrendData(timeRange) {
+            let xAxisData, seriesData;
+            
+            switch(timeRange) {
+                case 'Day':
+                    xAxisData = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'];
+                    seriesData = [
+                        [20, 32, 101, 234, 190, 130, 120],
+                        [10, 22, 61, 134, 90, 80, 70],
+                        [5, 12, 31, 64, 50, 40, 30],
+                        [2, 8, 21, 34, 30, 20, 15]
+                    ];
+                    break;
+                case 'Month':
+                    xAxisData = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+                    seriesData = [
+                        [5740, 6032, 6501, 7234],
+                        [2140, 2232, 2401, 2634],
+                        [1540, 1632, 1701, 1834],
+                        [740, 832, 801, 934]
+                    ];
+                    break;
+                case 'Year':
+                    xAxisData = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    seriesData = [
+                        [12000, 13200, 15100, 13400, 16900, 18300, 18200, 19300, 21000, 20100, 23200, 25100],
+                        [6200, 6800, 7100, 7300, 7900, 8300, 8100, 8600, 9000, 9200, 9800, 10200],
+                        [4200, 4800, 5100, 5300, 5900, 6300, 6100, 6600, 7000, 7200, 7800, 8200],
+                        [2200, 2800, 3100, 3300, 3900, 4300, 4100, 4600, 5000, 5200, 5800, 6200]
+                    ];
+                    break;
+                default: // Week
+                    xAxisData = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                    seriesData = [
+                        [820, 932, 901, 934, 1290, 1330, 1520],
+                        [320, 302, 301, 334, 390, 430, 420],
+                        [220, 182, 191, 234, 290, 330, 310],
+                        [120, 132, 101, 134, 90, 130, 110]
+                    ];
+            }
+            
+            if (salesTrendChart) {
+                salesTrendChart.setOption({
+                    xAxis: { data: xAxisData },
+                    series: [
+                        { data: seriesData[0] },
+                        { data: seriesData[1] },
+                        { data: seriesData[2] },
+                        { data: seriesData[3] }
+                    ]
+                });
+            }
+        }
+        
+        // Simulate data updates
         setInterval(() => {
             const statValues = document.querySelectorAll('.stat-value');
             statValues.forEach((stat, index) => {
@@ -685,8 +1252,8 @@
                     
                     if (stat.textContent.includes('%')) {
                         stat.textContent = newValue.toFixed(1) + '%';
-                    } else if (stat.textContent.includes('天')) {
-                        stat.textContent = newValue.toFixed(1) + '天';
+                    } else if (index === 3) { // For return rate stat
+                        stat.textContent = Math.abs(newValue).toFixed(1) + '%';
                     } else {
                         stat.textContent = Math.round(newValue).toLocaleString();
                     }

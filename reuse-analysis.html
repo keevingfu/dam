@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>复用分析 - 短视频营销DAM</title>
+    <title>Reuse Analysis - Eureka Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top Navigation */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #00bcd4;
         }
         
-        /* 主内容区 */
+        /* Main Content Area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1600px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page Header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button Styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 核心指标卡片 */
+        /* Core Metrics Cards */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -227,7 +227,7 @@
             color: #9c27b0;
         }
         
-        /* 复用关系图 */
+        /* Reuse Relationship Graph */
         .relationship-section {
             background: #fff;
             padding: 24px;
@@ -275,7 +275,7 @@
             border-color: #00bcd4;
         }
         
-        /* 关系图容器 */
+        /* Relationship Graph Container */
         .relationship-graph {
             height: 400px;
             background: #f8f9fa;
@@ -287,7 +287,7 @@
             overflow: hidden;
         }
         
-        /* 节点样式 */
+        /* Node Styles */
         .node {
             position: absolute;
             width: 120px;
@@ -334,7 +334,7 @@
             margin-top: 4px;
         }
         
-        /* 连接线 */
+        /* Connection Lines */
         .connection {
             position: absolute;
             background: #e5e7eb;
@@ -348,7 +348,7 @@
             height: 3px;
         }
         
-        /* 复用排行榜 */
+        /* Reuse Rankings */
         .ranking-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -453,7 +453,7 @@
             color: #00bcd4;
         }
         
-        /* 复用建议 */
+        /* Reuse Suggestions */
         .suggestions-section {
             background: #fff;
             padding: 24px;
@@ -519,7 +519,7 @@
             font-weight: 500;
         }
         
-        /* 时间线 */
+        /* Timeline */
         .timeline-section {
             background: #fff;
             padding: 24px;
@@ -589,7 +589,7 @@
             color: #666;
         }
         
-        /* 响应式设计 */
+        /* Responsive Design */
         @media (max-width: 1200px) {
             .ranking-section {
                 grid-template-columns: 1fr;
@@ -614,11 +614,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top Navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">复用分析</h1>
+                <h1 class="app-title">Reuse Analysis</h1>
             </div>
             
             <div class="header-actions">
@@ -626,43 +626,43 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 3h18v18H3zM12 8v8m-4-4h8"></path>
                     </svg>
-                    设置规则
+                    Set Rules
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main Content -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">复用分析</h2>
-                <p class="page-subtitle">追踪素材复用效果，最大化内容价值</p>
+                <h2 class="page-title">Reuse Analysis</h2>
+                <p class="page-subtitle">Track asset reuse effectiveness and maximize content value for Eureka campaigns</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
-                    导出报告
+                    Export Report
                 </button>
                 <button class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                         <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
                     </svg>
-                    复用建议
+                    Reuse Suggestions
                 </button>
             </div>
         </div>
         
-        <!-- 核心指标 -->
+        <!-- Core Metrics -->
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-header">
                     <div class="metric-info">
-                        <div class="metric-title">素材复用率</div>
+                        <div class="metric-title">Asset Reuse Rate</div>
                         <div class="metric-value">45.3%</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
@@ -679,7 +679,7 @@
             <div class="metric-card">
                 <div class="metric-header">
                     <div class="metric-info">
-                        <div class="metric-title">复用素材数</div>
+                        <div class="metric-title">Reused Assets</div>
                         <div class="metric-value">3,456</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
@@ -696,8 +696,8 @@
             <div class="metric-card">
                 <div class="metric-header">
                     <div class="metric-info">
-                        <div class="metric-title">节省成本</div>
-                        <div class="metric-value">¥45.6万</div>
+                        <div class="metric-title">Cost Savings</div>
+                        <div class="metric-value">$68.4K</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
@@ -713,8 +713,8 @@
             <div class="metric-card">
                 <div class="metric-header">
                     <div class="metric-info">
-                        <div class="metric-title">平均复用次数</div>
-                        <div class="metric-value">5.2次</div>
+                        <div class="metric-title">Avg. Reuse Count</div>
+                        <div class="metric-value">5.2x</div>
                         <div class="metric-change change-positive">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
@@ -728,50 +728,50 @@
             </div>
         </div>
         
-        <!-- 复用关系图 -->
+        <!-- Reuse Relationship Graph -->
         <div class="relationship-section">
             <div class="section-header">
-                <h3 class="section-title">复用关系图谱</h3>
+                <h3 class="section-title">Reuse Relationship Map</h3>
                 <div class="view-mode">
-                    <button class="mode-btn active">树状图</button>
-                    <button class="mode-btn">网络图</button>
-                    <button class="mode-btn">时间轴</button>
+                    <button class="mode-btn active">Tree View</button>
+                    <button class="mode-btn">Network View</button>
+                    <button class="mode-btn">Timeline</button>
                 </div>
             </div>
             <div class="relationship-graph">
-                <!-- 主节点 -->
+                <!-- Main Node -->
                 <div class="node primary" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
                     <div class="node-icon">🎬</div>
-                    <div class="node-label">母版素材</div>
-                    <div class="node-value">12次复用</div>
+                    <div class="node-label">Master Asset</div>
+                    <div class="node-value">12 Reuses</div>
                 </div>
                 
-                <!-- 衍生节点 -->
+                <!-- Derivative Nodes -->
                 <div class="node" style="top: 20%; left: 20%;">
                     <div class="node-icon">📱</div>
-                    <div class="node-label"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>版</div>
-                    <div class="node-value">89万播放</div>
+                    <div class="node-label">TikTok Version</div>
+                    <div class="node-value">890K Views</div>
                 </div>
                 
                 <div class="node" style="top: 20%; right: 20%;">
                     <div class="node-icon">📕</div>
-                    <div class="node-label"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></svg>版</div>
-                    <div class="node-value">56万播放</div>
+                    <div class="node-label">Instagram Reels</div>
+                    <div class="node-value">560K Views</div>
                 </div>
                 
                 <div class="node" style="bottom: 20%; left: 20%;">
                     <div class="node-icon">🎥</div>
-                    <div class="node-label"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>版</div>
-                    <div class="node-value">72万播放</div>
+                    <div class="node-label">Facebook Video</div>
+                    <div class="node-value">720K Views</div>
                 </div>
                 
                 <div class="node" style="bottom: 20%; right: 20%;">
                     <div class="node-icon">📺</div>
-                    <div class="node-label"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 4px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>版</div>
-                    <div class="node-value">45万播放</div>
+                    <div class="node-label">YouTube Shorts</div>
+                    <div class="node-value">450K Views</div>
                 </div>
                 
-                <!-- 连接线 -->
+                <!-- Connection Lines -->
                 <div class="connection strong" style="width: 150px; top: 50%; left: 40%; transform: rotate(-35deg);"></div>
                 <div class="connection strong" style="width: 150px; top: 50%; right: 40%; transform: rotate(35deg);"></div>
                 <div class="connection" style="width: 150px; bottom: 50%; left: 40%; transform: rotate(35deg);"></div>
@@ -779,74 +779,74 @@
             </div>
         </div>
         
-        <!-- 复用排行榜 -->
+        <!-- Reuse Rankings -->
         <div class="ranking-section">
-            <!-- 高复用素材榜 -->
+            <!-- High Reuse Assets Ranking -->
             <div class="ranking-card">
-                <h3 class="section-title">高复用素材 TOP 10</h3>
+                <h3 class="section-title">Most Reused Assets TOP 10</h3>
                 <div class="ranking-list">
                     <div class="ranking-item">
                         <span class="rank-number top1">1</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">产品360度展示模板</div>
-                            <div class="ranking-meta">首次使用：2个月前</div>
+                            <div class="ranking-title">Eureka 360° Product Demo Template</div>
+                            <div class="ranking-meta">First used: 2 months ago</div>
                         </div>
-                        <span class="ranking-count">156次</span>
+                        <span class="ranking-count">156 times</span>
                     </div>
                     
                     <div class="ranking-item">
                         <span class="rank-number top2">2</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">开箱体验通用片头</div>
-                            <div class="ranking-meta">首次使用：3个月前</div>
+                            <div class="ranking-title">Eureka Unboxing Experience Intro</div>
+                            <div class="ranking-meta">First used: 3 months ago</div>
                         </div>
-                        <span class="ranking-count">128次</span>
+                        <span class="ranking-count">128 times</span>
                     </div>
                     
                     <div class="ranking-item">
                         <span class="rank-number top3">3</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">品牌logo结尾动画</div>
-                            <div class="ranking-meta">首次使用：5个月前</div>
+                            <div class="ranking-title">Eureka Brand Logo Outro Animation</div>
+                            <div class="ranking-meta">First used: 5 months ago</div>
                         </div>
-                        <span class="ranking-count">96次</span>
+                        <span class="ranking-count">96 times</span>
                     </div>
                     
                     <div class="ranking-item">
                         <span class="rank-number">4</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">悬念式开头模板</div>
-                            <div class="ranking-meta">首次使用：1个月前</div>
+                            <div class="ranking-title">Smart Navigation Demo Template</div>
+                            <div class="ranking-meta">First used: 1 month ago</div>
                         </div>
-                        <span class="ranking-count">72次</span>
+                        <span class="ranking-count">72 times</span>
                     </div>
                     
                     <div class="ranking-item">
                         <span class="rank-number">5</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">对比效果展示</div>
-                            <div class="ranking-meta">首次使用：2个月前</div>
+                            <div class="ranking-title">Before/After Cleaning Comparison</div>
+                            <div class="ranking-meta">First used: 2 months ago</div>
                         </div>
-                        <span class="ranking-count">68次</span>
+                        <span class="ranking-count">68 times</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 复用效果榜 -->
+            <!-- Reuse Effectiveness Ranking -->
             <div class="ranking-card">
-                <h3 class="section-title">复用效果最佳 TOP 10</h3>
+                <h3 class="section-title">Best Performing Reused Assets TOP 10</h3>
                 <div class="ranking-list">
                     <div class="ranking-item">
                         <span class="rank-number top1">1</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">618大促爆款框架</div>
-                            <div class="ranking-meta">累计播放：2,356万</div>
+                            <div class="ranking-title">Black Friday Sale Framework</div>
+                            <div class="ranking-meta">Total views: 23.56M</div>
                         </div>
                         <span class="ranking-count">ROI 3.8</span>
                     </div>
@@ -855,8 +855,8 @@
                         <span class="rank-number top2">2</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">新品发布标准模板</div>
-                            <div class="ranking-meta">累计播放：1,823万</div>
+                            <div class="ranking-title">Eureka J15 Pro Launch Template</div>
+                            <div class="ranking-meta">Total views: 18.23M</div>
                         </div>
                         <span class="ranking-count">ROI 3.5</span>
                     </div>
@@ -865,8 +865,8 @@
                         <span class="rank-number top3">3</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">用户见证系列片段</div>
-                            <div class="ranking-meta">累计播放：1,567万</div>
+                            <div class="ranking-title">Customer Testimonial Series</div>
+                            <div class="ranking-meta">Total views: 15.67M</div>
                         </div>
                         <span class="ranking-count">ROI 3.2</span>
                     </div>
@@ -875,8 +875,8 @@
                         <span class="rank-number">4</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">产品评测标准流程</div>
-                            <div class="ranking-meta">累计播放：1,234万</div>
+                            <div class="ranking-title">Professional Review Template</div>
+                            <div class="ranking-meta">Total views: 12.34M</div>
                         </div>
                         <span class="ranking-count">ROI 2.9</span>
                     </div>
@@ -885,8 +885,8 @@
                         <span class="rank-number">5</span>
                         <div class="ranking-preview">🎬</div>
                         <div class="ranking-info">
-                            <div class="ranking-title">限时优惠倒计时</div>
-                            <div class="ranking-meta">累计播放：986万</div>
+                            <div class="ranking-title">Limited Time Offer Countdown</div>
+                            <div class="ranking-meta">Total views: 9.86M</div>
                         </div>
                         <span class="ranking-count">ROI 2.7</span>
                     </div>
@@ -894,85 +894,85 @@
             </div>
         </div>
         
-        <!-- 复用建议 -->
+        <!-- Reuse Suggestions -->
         <div class="suggestions-section">
-            <h3 class="section-title">智能复用建议</h3>
+            <h3 class="section-title">Smart Reuse Recommendations</h3>
             <div class="suggestion-list">
                 <div class="suggestion-item">
                     <div class="suggestion-icon">💡</div>
                     <div class="suggestion-content">
-                        <div class="suggestion-title">发现高价值片段</div>
-                        <div class="suggestion-desc">"黄金3秒开头"在最近5个爆款视频中都有使用，建议加入复用素材库</div>
+                        <div class="suggestion-title">High-Value Segment Found</div>
+                        <div class="suggestion-desc">The "Smart Mapping in Action" intro is featured in 5 top-performing videos. Consider adding to reuse library</div>
                     </div>
-                    <span class="suggestion-action">立即收藏 →</span>
+                    <span class="suggestion-action">Add to Library →</span>
                 </div>
                 
                 <div class="suggestion-item">
                     <div class="suggestion-icon">🎯</div>
                     <div class="suggestion-content">
-                        <div class="suggestion-title">跨平台复用机会</div>
-                        <div class="suggestion-desc">"新品开箱"系列在<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>表现优异，建议调整后投放<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></svg>和<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+                        <div class="suggestion-title">Cross-Platform Opportunity</div>
+                        <div class="suggestion-desc">"Eureka J15 Pro Unboxing" series performing well on TikTok. Consider adapting for Instagram Reels and YouTube Shorts</div>
                     </div>
-                    <span class="suggestion-action">查看详情 →</span>
+                    <span class="suggestion-action">View Details →</span>
                 </div>
                 
                 <div class="suggestion-item">
                     <div class="suggestion-icon">📊</div>
                     <div class="suggestion-content">
-                        <div class="suggestion-title">复用效率提升</div>
-                        <div class="suggestion-desc">检测到15个低复用高质量素材，建议重新包装后再次投放</div>
+                        <div class="suggestion-title">Efficiency Improvement</div>
+                        <div class="suggestion-desc">Found 15 high-quality assets with low reuse rate. Consider repackaging for new campaigns</div>
                     </div>
-                    <span class="suggestion-action">查看列表 →</span>
+                    <span class="suggestion-action">View List →</span>
                 </div>
                 
                 <div class="suggestion-item">
                     <div class="suggestion-icon">⚡</div>
                     <div class="suggestion-content">
-                        <div class="suggestion-title">热点复用提醒</div>
-                        <div class="suggestion-desc">母亲节相关素材去年效果优秀，建议提前准备今年的复用计划</div>
+                        <div class="suggestion-title">Trending Content Alert</div>
+                        <div class="suggestion-desc">Prime Day robot vacuum content performed well last year. Plan ahead for this year's campaign</div>
                     </div>
-                    <span class="suggestion-action">制定计划 →</span>
+                    <span class="suggestion-action">Create Plan →</span>
                 </div>
             </div>
         </div>
         
-        <!-- 复用时间线 -->
+        <!-- Reuse Timeline -->
         <div class="timeline-section">
-            <h3 class="section-title">复用历史时间线</h3>
+            <h3 class="section-title">Reuse History Timeline</h3>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-time">2024年3月15日 14:30</div>
-                        <div class="timeline-title">创建母版素材</div>
-                        <div class="timeline-desc">上传"618大促主推视频"原始素材</div>
+                        <div class="timeline-time">March 15, 2024 14:30</div>
+                        <div class="timeline-title">Master Asset Created</div>
+                        <div class="timeline-desc">Uploaded "Eureka J15 Pro Launch" original video asset</div>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-time">2024年3月16日 10:00</div>
-                        <div class="timeline-title">首次复用</div>
-                        <div class="timeline-desc">调整为TikTok竖版，播放量突破100万</div>
+                        <div class="timeline-time">March 16, 2024 10:00</div>
+                        <div class="timeline-title">First Reuse</div>
+                        <div class="timeline-desc">Adapted for TikTok vertical format, reached 1M views</div>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-time">2024年3月18日 15:20</div>
-                        <div class="timeline-title">跨平台复用</div>
-                        <div class="timeline-desc">适配<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></svg>、<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>、<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin: 0 2px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>等多平台版本</div>
+                        <div class="timeline-time">March 18, 2024 15:20</div>
+                        <div class="timeline-title">Cross-Platform Deployment</div>
+                        <div class="timeline-desc">Adapted for Instagram, Facebook, and YouTube platforms</div>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-time">2024年3月20日 09:45</div>
-                        <div class="timeline-title">二次创作</div>
-                        <div class="timeline-desc">基于原素材创作系列视频，累计播放超500万</div>
+                        <div class="timeline-time">March 20, 2024 09:45</div>
+                        <div class="timeline-title">Series Creation</div>
+                        <div class="timeline-desc">Created robot vacuum cleaning series based on original asset, total views exceeded 5M</div>
                     </div>
                 </div>
             </div>
@@ -980,68 +980,68 @@
     </main>
     
     <script>
-        // 视图模式切换
+        // View mode switching
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                console.log('切换视图:', this.textContent);
+                console.log('Switch view:', this.textContent);
             });
         });
         
-        // 排行榜项目点击
+        // Ranking item click
         document.querySelectorAll('.ranking-item').forEach(item => {
             item.addEventListener('click', function() {
                 const title = this.querySelector('.ranking-title').textContent;
-                console.log('查看素材详情:', title);
+                console.log('View asset details:', title);
             });
         });
         
-        // 建议项点击
+        // Suggestion item click
         document.querySelectorAll('.suggestion-item').forEach(item => {
             item.addEventListener('click', function() {
                 const action = this.querySelector('.suggestion-action').textContent;
-                console.log('执行操作:', action);
+                console.log('Execute action:', action);
             });
         });
         
-        // 节点点击
+        // Node click
         document.querySelectorAll('.node').forEach(node => {
             node.addEventListener('click', function() {
                 const label = this.querySelector('.node-label').textContent;
-                console.log('查看节点:', label);
+                console.log('View node:', label);
             });
         });
         
-        // 复用建议按钮
+        // Reuse suggestions button
         document.querySelector('.btn-primary').addEventListener('click', function() {
-            console.log('生成复用建议');
-            alert('正在分析素材库，生成智能复用建议...');
+            console.log('Generate reuse suggestions');
+            alert('Analyzing asset library to generate smart reuse recommendations...');
         });
         
-        // 导出报告
+        // Export report
         document.querySelector('.btn-secondary').addEventListener('click', function() {
-            if (this.textContent.includes('导出报告')) {
-                console.log('导出复用分析报告');
-                alert('复用分析报告导出中...');
+            if (this.textContent.includes('Export Report')) {
+                console.log('Export reuse analysis report');
+                alert('Exporting reuse analysis report...');
             }
         });
         
-        // 页面加载动画
+        // Page load animation
         window.addEventListener('load', () => {
-            // 数字动画
+            // Number animation
             const animateValue = (element, start, end, duration) => {
                 const startTimestamp = Date.now();
                 const step = () => {
                     const progress = Math.min((Date.now() - startTimestamp) / duration, 1);
                     const current = Math.floor(progress * (end - start) + start);
                     
-                    if (element.textContent.includes('万')) {
-                        element.textContent = '¥' + (current / 10).toFixed(1) + '万';
+                    if (element.textContent.includes('K')) {
+                        element.textContent = '$' + current.toFixed(1) + 'K';
                     } else if (element.textContent.includes('%')) {
                         element.textContent = current + '%';
-                    } else if (element.textContent.includes('次')) {
-                        element.textContent = current + '次';
+                    } else if (element.textContent.includes('x')) {
+                        element.textContent = current.toFixed(1) + 'x';
                     } else {
                         element.textContent = current.toLocaleString();
                     }
@@ -1053,16 +1053,16 @@
                 window.requestAnimationFrame(step);
             };
             
-            // 应用动画
+            // Apply animation
             document.querySelectorAll('.metric-value').forEach(element => {
                 const text = element.textContent;
                 let endValue = 0;
                 
-                if (text.includes('万')) {
-                    endValue = parseFloat(text) * 10;
+                if (text.includes('K')) {
+                    endValue = parseFloat(text);
                 } else if (text.includes('%')) {
                     endValue = parseFloat(text);
-                } else if (text.includes('次')) {
+                } else if (text.includes('x')) {
                     endValue = parseFloat(text);
                 } else {
                     endValue = parseInt(text.replace(/,/g, ''));

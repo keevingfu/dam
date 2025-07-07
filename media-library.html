@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>素材库 - 短视频营销DAM</title>
+    <title>Media Library - Eureka Robot Vacuum Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top Navigation Bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #9333ea;
         }
         
-        /* 主内容区 */
+        /* Main Content Area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page Title Bar */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button Styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 搜索和筛选栏 */
+        /* Search and Filter Bar */
         .filter-bar {
             background: #fff;
             padding: 16px 20px;
@@ -193,7 +193,7 @@
             border-color: #9333ea;
         }
         
-        /* 视图切换 */
+        /* View Toggle */
         .view-toggle {
             display: flex;
             gap: 4px;
@@ -218,7 +218,7 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
-        /* 标签页 */
+        /* Tabs */
         .tabs {
             display: flex;
             border-bottom: 1px solid #e5e7eb;
@@ -258,7 +258,16 @@
             border-radius: 10px;
         }
         
-        /* 素材网格 */
+        /* Tab content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Media Grid */
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -451,7 +460,7 @@
             color: #9333ea;
         }
         
-        /* 批量操作栏 */
+        /* Batch Actions Bar */
         .batch-actions {
             position: fixed;
             bottom: 20px;
@@ -479,7 +488,7 @@
             color: #666;
         }
         
-        /* 上传区域 */
+        /* Upload Zone */
         .upload-zone {
             position: fixed;
             top: 0;
@@ -521,7 +530,7 @@
             color: #666;
         }
         
-        /* 响应式设计 */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .filter-bar {
                 flex-direction: column;
@@ -539,11 +548,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top Navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">素材库</h1>
+                <h1 class="app-title">Media Library</h1>
             </div>
             
             <div class="header-actions">
@@ -551,19 +560,19 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
                     </svg>
-                    浏览器插件
+                    Browser Extension
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main Content Area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page Title Bar -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">素材库</h2>
-                <p class="page-subtitle">集中管理所有视频素材，支持智能搜索和标签管理</p>
+                <h2 class="page-title">Media Library</h2>
+                <p class="page-subtitle">Centrally manage all robot vacuum video content with smart search and tag management</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
@@ -571,7 +580,7 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                    高级搜索
+                    Advanced Search
                 </button>
                 <button class="btn btn-primary" onclick="showUpload()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -579,15 +588,15 @@
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
                     </svg>
-                    上传素材
+                    Upload Media
                 </button>
             </div>
         </div>
         
-        <!-- 搜索和筛选栏 -->
+        <!-- Search and Filter Bar -->
         <div class="filter-bar">
             <div class="search-box">
-                <input type="text" class="search-input" placeholder="搜索素材名称、标签或描述...">
+                <input type="text" class="search-input" placeholder="Search media name, tags, or description...">
                 <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="m21 21-4.35-4.35"></path>
@@ -595,27 +604,27 @@
             </div>
             
             <select class="filter-select">
-                <option>所有类型</option>
-                <option>视频</option>
-                <option>图片</option>
-                <option>音频</option>
+                <option>All Types</option>
+                <option>Videos</option>
+                <option>Images</option>
+                <option>Audio</option>
             </select>
             
             <select class="filter-select">
-                <option>所有平台</option>
+                <option>All Platforms</option>
                 <option>TikTok</option>
                 <option>Instagram</option>
                 <option>Facebook</option>
                 <option>YouTube</option>
-                <option>视频号</option>
+                <option>Twitter</option>
             </select>
             
             <select class="filter-select">
-                <option>上传时间</option>
-                <option>今天</option>
-                <option>本周</option>
-                <option>本月</option>
-                <option>全部</option>
+                <option>Upload Time</option>
+                <option>Today</option>
+                <option>This Week</option>
+                <option>This Month</option>
+                <option>All Time</option>
             </select>
             
             <div style="flex: 1;"></div>
@@ -639,39 +648,41 @@
             </div>
         </div>
         
-        <!-- 素材内容区 -->
+        <!-- Media Content Area -->
         <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden;">
             <div class="tabs">
-                <div class="tab active">全部素材 (845)</div>
-                <div class="tab">视频 (612)</div>
-                <div class="tab">图片 (198)</div>
-                <div class="tab">音频 (35)</div>
-                <div class="tab">
-                    收藏夹
+                <div class="tab active" data-tab="all-media">All Media (845)</div>
+                <div class="tab" data-tab="product-demos">Product Demos (312)</div>
+                <div class="tab" data-tab="feature-highlights">Feature Highlights (198)</div>
+                <div class="tab" data-tab="customer-reviews">Customer Reviews (235)</div>
+                <div class="tab" data-tab="installation-guides">Installation Guides (100)</div>
+                <div class="tab" data-tab="favorites">
+                    Favorites
                     <span class="tab-badge">12</span>
                 </div>
             </div>
             
-            <div class="media-grid">
+            <!-- All Media Tab Content -->
+            <div class="media-grid tab-content active" id="all-media-content">
                 <div class="media-card" onclick="toggleSelect(this)">
                     <div class="media-checkbox"></div>
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E产品展示%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EProduct Demo%3C/text%3E%3C/svg%3E" alt="Media preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
                         <span class="media-duration">1:05</span>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">产品360度展示</h3>
+                        <h3 class="media-title">Eureka J15 Pro Ultra 360° View</h3>
                         <div class="media-meta">
                             <span class="media-date">2024-03-15</span>
-                            <span class="media-status status-published">已发布</span>
+                            <span class="media-status status-published">Published</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">产品展示</span>
-                            <span class="tag">3D动画</span>
-                            <span class="tag">新品</span>
+                            <span class="tag">Product Demo</span>
+                            <span class="tag">3D Animation</span>
+                            <span class="tag">New Model</span>
                         </div>
                     </div>
                 </div>
@@ -679,22 +690,22 @@
                 <div class="media-card" onclick="toggleSelect(this)">
                     <div class="media-checkbox"></div>
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E用户反馈%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ECustomer Review%3C/text%3E%3C/svg%3E" alt="Media preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
                         <span class="media-duration">0:48</span>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">用户真实反馈合集</h3>
+                        <h3 class="media-title">Real Customer Reviews Compilation</h3>
                         <div class="media-meta">
                             <span class="media-date">2024-03-14</span>
-                            <span class="media-status status-published">已发布</span>
+                            <span class="media-status status-published">Published</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">用户评价</span>
-                            <span class="tag">口碑营销</span>
-                            <span class="tag" style="background: #fef7e0; color: #f9ab00;">爆款</span>
+                            <span class="tag">Customer Reviews</span>
+                            <span class="tag">Testimonials</span>
+                            <span class="tag" style="background: #fef7e0; color: #f9ab00;">Trending</span>
                         </div>
                     </div>
                 </div>
@@ -702,22 +713,22 @@
                 <div class="media-card" onclick="toggleSelect(this)">
                     <div class="media-checkbox"></div>
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E教程指南%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ESetup Guide%3C/text%3E%3C/svg%3E" alt="Media preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
                         <span class="media-duration">2:15</span>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">产品使用教程</h3>
+                        <h3 class="media-title">Quick Setup & Installation Guide</h3>
                         <div class="media-meta">
                             <span class="media-date">2024-03-13</span>
-                            <span class="media-status status-draft">草稿</span>
+                            <span class="media-status status-draft">Draft</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">教程</span>
-                            <span class="tag">使用指南</span>
-                            <span class="tag">新手向</span>
+                            <span class="tag">Tutorial</span>
+                            <span class="tag">Setup Guide</span>
+                            <span class="tag">Beginner-Friendly</span>
                         </div>
                     </div>
                 </div>
@@ -725,22 +736,22 @@
                 <div class="media-card" onclick="toggleSelect(this)">
                     <div class="media-checkbox"></div>
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E品牌故事%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EFeature Highlight%3C/text%3E%3C/svg%3E" alt="Media preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
                         <span class="media-duration">3:20</span>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">品牌创始人访谈</h3>
+                        <h3 class="media-title">Auto-Empty Station Deep Dive</h3>
                         <div class="media-meta">
                             <span class="media-date">2024-03-12</span>
-                            <span class="media-status status-reviewing">审核中</span>
+                            <span class="media-status status-reviewing">Under Review</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">品牌故事</span>
-                            <span class="tag">人物访谈</span>
-                            <span class="tag">深度内容</span>
+                            <span class="tag">Feature Highlight</span>
+                            <span class="tag">Auto-Empty</span>
+                            <span class="tag">Technology</span>
                         </div>
                     </div>
                 </div>
@@ -748,22 +759,22 @@
                 <div class="media-card" onclick="toggleSelect(this)">
                     <div class="media-checkbox"></div>
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E活动预告%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EComparison%3C/text%3E%3C/svg%3E" alt="Media preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
                         <span class="media-duration">0:30</span>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">618大促预热视频</h3>
+                        <h3 class="media-title">Eureka vs. Competitors Comparison</h3>
                         <div class="media-meta">
                             <span class="media-date">2024-03-11</span>
-                            <span class="media-status status-published">已发布</span>
+                            <span class="media-status status-published">Published</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">活动营销</span>
-                            <span class="tag">促销</span>
-                            <span class="tag">618</span>
+                            <span class="tag">Comparison</span>
+                            <span class="tag">Competitive Edge</span>
+                            <span class="tag">Performance</span>
                         </div>
                     </div>
                 </div>
@@ -771,83 +782,441 @@
                 <div class="media-card" onclick="toggleSelect(this)">
                     <div class="media-checkbox"></div>
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E开箱测评%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EUnboxing%3C/text%3E%3C/svg%3E" alt="Media preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
                         <span class="media-duration">1:30</span>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">新品开箱体验</h3>
+                        <h3 class="media-title">J15 Pro Ultra Unboxing Experience</h3>
                         <div class="media-meta">
                             <span class="media-date">2024-03-10</span>
-                            <span class="media-status status-published">已发布</span>
+                            <span class="media-status status-published">Published</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">开箱</span>
-                            <span class="tag">测评</span>
-                            <span class="tag">真实体验</span>
+                            <span class="tag">Unboxing</span>
+                            <span class="tag">First Look</span>
+                            <span class="tag">Premium Package</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Product Demos Tab Content -->
+            <div class="media-grid tab-content" id="product-demos-content" style="display: none;">
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EJ15 Pro Demo%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:05</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Eureka J15 Pro Ultra 360° Product Demo</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-15</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Product Demo</span>
+                            <span class="tag">3D Animation</span>
+                            <span class="tag">New Model</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23673ab7' width='400' height='225'/%3E%3Ctext fill='white' font-size='18' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EE10s Demo%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:30</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Eureka E10s Smart Navigation Demo</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-14</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Product Demo</span>
+                            <span class="tag">Navigation</span>
+                            <span class="tag">LiDAR</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e91e63' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EGroove Demo%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:45</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Eureka Groove NV356E Cleaning Demo</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-13</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Product Demo</span>
+                            <span class="tag">Budget Model</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Highlights Tab Content -->
+            <div class="media-grid tab-content" id="feature-highlights-content" style="display: none;">
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EAuto-Empty%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">3:20</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Auto-Empty Station Deep Dive</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-12</span>
+                            <span class="media-status status-reviewing">Under Review</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Feature Highlight</span>
+                            <span class="tag">Auto-Empty</span>
+                            <span class="tag">Technology</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23795548' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ELiDAR Tech%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:45</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">LiDAR Navigation Technology Explained</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-11</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Feature Highlight</span>
+                            <span class="tag">LiDAR</span>
+                            <span class="tag">Precision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23607d8b' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EApp Control%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:55</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Smart App Control Features</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-10</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Feature Highlight</span>
+                            <span class="tag">App Control</span>
+                            <span class="tag">Smart Home</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Reviews Tab Content -->
+            <div class="media-grid tab-content" id="customer-reviews-content" style="display: none;">
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EReview Mix%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:48</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Real Customer Reviews Compilation</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-14</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Customer Reviews</span>
+                            <span class="tag">Testimonials</span>
+                            <span class="tag" style="background: #fef7e0; color: #f9ab00;">Trending</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23f44336' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPet Owner%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:12</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Pet Owner Success Story</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-13</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Customer Reviews</span>
+                            <span class="tag">Pet Hair</span>
+                            <span class="tag">Success Story</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e57373' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EFamily Review%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:05</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Busy Family Testimonial</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-12</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Customer Reviews</span>
+                            <span class="tag">Family</span>
+                            <span class="tag">Time Saving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Installation Guides Tab Content -->
+            <div class="media-grid tab-content" id="installation-guides-content" style="display: none;">
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EQuick Setup%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:15</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Quick Setup & Installation Guide</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-13</span>
+                            <span class="media-status status-draft">Draft</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Installation Guide</span>
+                            <span class="tag">Setup</span>
+                            <span class="tag">Beginner-Friendly</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23303f9f' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EApp Setup%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">3:00</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Mobile App Connection Tutorial</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-12</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Installation Guide</span>
+                            <span class="tag">App Setup</span>
+                            <span class="tag">WiFi Connection</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%235c6bc0' width='400' height='225'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ETroubleshooting%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">4:30</span>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Common Issues & Troubleshooting</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-11</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Installation Guide</span>
+                            <span class="tag">Troubleshooting</span>
+                            <span class="tag">Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites Tab Content -->
+            <div class="media-grid tab-content" id="favorites-content" style="display: none;">
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EUnboxing%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:30</span>
+                        <div style="position: absolute; top: 8px; right: 8px; background: rgba(255,193,7,0.9); color: #000; padding: 2px 6px; border-radius: 4px; font-size: 11px;">★ Favorite</div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">J15 Pro Ultra Unboxing Experience</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-10</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Unboxing</span>
+                            <span class="tag">First Look</span>
+                            <span class="tag">Premium Package</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-card" onclick="toggleSelect(this)">
+                    <div class="media-checkbox"></div>
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EComparison%3C/text%3E%3C/svg%3E" alt="Media preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">0:30</span>
+                        <div style="position: absolute; top: 8px; right: 8px; background: rgba(255,193,7,0.9); color: #000; padding: 2px 6px; border-radius: 4px; font-size: 11px;">★ Favorite</div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Eureka vs. Competitors Comparison</h3>
+                        <div class="media-meta">
+                            <span class="media-date">2024-03-11</span>
+                            <span class="media-status status-published">Published</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Comparison</span>
+                            <span class="tag">Competitive Edge</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">⭐</div>
+                    <h3 style="margin-bottom: 8px;">Your Favorite Media</h3>
+                    <p>Add more content to your favorites by clicking the star icon on any media card.</p>
+                </div>
+            </div>
         </div>
         
-        <!-- 批量操作栏 -->
+        <!-- Batch Actions Bar -->
         <div class="batch-actions" id="batchActions">
-            <span class="batch-count">已选择 <span id="selectedCount">0</span> 个素材</span>
+            <span class="batch-count">Selected <span id="selectedCount">0</span> media files</span>
             <button class="btn btn-secondary">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-                下载
+                Download
             </button>
             <button class="btn btn-secondary">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
-                编辑标签
+                Edit Tags
             </button>
             <button class="btn btn-secondary">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                 </svg>
-                移动到
+                Move To
             </button>
             <button class="btn btn-secondary" style="color: #ea4335;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="3 6 5 6 21 6"></polyline>
                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                 </svg>
-                删除
+                Delete
             </button>
         </div>
         
-        <!-- 上传区域 -->
+        <!-- Upload Zone -->
         <div class="upload-zone" id="uploadZone">
             <div class="upload-content">
                 <div class="upload-icon">📁</div>
-                <h3 class="upload-title">拖拽文件到此处上传</h3>
-                <p class="upload-hint">支持 MP4、MOV、JPG、PNG 等格式，单个文件最大 2GB</p>
-                <button class="btn btn-primary" style="margin-top: 24px;">选择文件</button>
+                <h3 class="upload-title">Drag and drop files here to upload</h3>
+                <p class="upload-hint">Supports MP4, MOV, JPG, PNG formats. Maximum file size: 2GB</p>
+                <button class="btn btn-primary" style="margin-top: 24px;">Choose Files</button>
             </div>
         </div>
     </main>
     
     <script>
-        // 标签页切换
+        // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Remove active class from all tabs
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show the corresponding tab content
+                const tabName = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabName + '-content');
+                if (targetContent) {
+                    targetContent.style.display = 'grid';
+                }
             });
         });
         
-        // 视图切换
+        // View toggle
         document.querySelectorAll('.view-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
@@ -855,7 +1224,7 @@
             });
         });
         
-        // 素材选择
+        // Media selection
         let selectedCount = 0;
         
         function toggleSelect(card) {
@@ -883,19 +1252,19 @@
             }
         }
         
-        // 显示上传区域
+        // Show upload zone
         function showUpload() {
             document.getElementById('uploadZone').classList.add('active');
         }
         
-        // 点击上传区域外部关闭
+        // Click outside upload zone to close
         document.getElementById('uploadZone').addEventListener('click', function(e) {
             if (e.target === this) {
                 this.classList.remove('active');
             }
         });
         
-        // 拖拽上传
+        // Drag and drop upload
         const uploadZone = document.getElementById('uploadZone');
         
         uploadZone.addEventListener('dragover', (e) => {
@@ -905,12 +1274,12 @@
         uploadZone.addEventListener('drop', (e) => {
             e.preventDefault();
             const files = e.dataTransfer.files;
-            console.log('上传文件:', files);
+            console.log('Uploading files:', files);
             uploadZone.classList.remove('active');
-            alert(`准备上传 ${files.length} 个文件`);
+            alert(`Preparing to upload ${files.length} file(s)`);
         });
         
-        // 全局拖拽上传
+        // Global drag and drop upload
         document.addEventListener('dragover', (e) => {
             e.preventDefault();
             uploadZone.classList.add('active');
@@ -922,9 +1291,9 @@
             }
         });
         
-        // 搜索功能
+        // Search functionality
         document.querySelector('.search-input').addEventListener('input', function(e) {
-            console.log('搜索:', e.target.value);
+            console.log('Search:', e.target.value);
         });
     </script>
 </body>

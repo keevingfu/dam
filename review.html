@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线审阅 - 短视频营销DAM</title>
+    <title>Online Review - Eureka Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #ea4335;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1600px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header bar */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -102,7 +102,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -144,7 +144,7 @@
             background: #2d9141;
         }
         
-        /* 审核状态栏 */
+        /* Review status bar */
         .review-status-bar {
             display: flex;
             justify-content: space-between;
@@ -182,7 +182,7 @@
             background: #34a853;
         }
         
-        /* 审阅容器 */
+        /* Review container */
         .review-container {
             display: grid;
             grid-template-columns: 1fr 360px;
@@ -190,7 +190,7 @@
             height: calc(100vh - 240px);
         }
         
-        /* 视频播放区 */
+        /* Video player area */
         .video-section {
             background: #000;
             border-radius: 12px;
@@ -212,7 +212,7 @@
             font-size: 64px;
         }
         
-        /* 标注层 */
+        /* Annotation layer */
         .annotation-layer {
             position: absolute;
             top: 0;
@@ -264,7 +264,7 @@
             visibility: visible;
         }
         
-        /* 视频控制栏 */
+        /* Video controls bar */
         .video-controls {
             position: absolute;
             bottom: 0;
@@ -342,7 +342,7 @@
             font-size: 13px;
         }
         
-        /* 标注工具栏 */
+        /* Annotation toolbar */
         .annotation-toolbar {
             position: absolute;
             top: 20px;
@@ -376,7 +376,7 @@
             background: #ea4335;
         }
         
-        /* 评论面板 */
+        /* Comment panel */
         .comment-panel {
             background: #fff;
             border-radius: 12px;
@@ -426,7 +426,7 @@
             border-color: #ea4335;
         }
         
-        /* 评论列表 */
+        /* Comment list */
         .comment-list {
             flex: 1;
             overflow-y: auto;
@@ -546,7 +546,7 @@
             font-weight: 500;
         }
         
-        /* 评论输入 */
+        /* Comment input */
         .comment-input-area {
             padding: 16px;
             border-top: 1px solid #e5e7eb;
@@ -623,7 +623,7 @@
             background: #d33b2c;
         }
         
-        /* 版本对比 */
+        /* Version comparison */
         .version-bar {
             background: #f8f9fa;
             padding: 12px 20px;
@@ -665,7 +665,7 @@
             color: #ea4335;
         }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 1200px) {
             .review-container {
                 grid-template-columns: 1fr;
@@ -679,11 +679,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">在线审阅</h1>
+                <h1 class="app-title">Online Review</h1>
             </div>
             
             <div class="header-actions">
@@ -694,19 +694,19 @@
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
-                    参与人员
+                    Participants
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header bar -->
         <div class="page-header">
             <div class="review-header">
                 <div>
-                    <h2 class="page-title">618大促主推视频 - 第二版审核</h2>
+                    <h2 class="page-title">Eureka X10 Pro Launch Video - Version 2 Review</h2>
                 </div>
                 <div class="page-actions">
                     <button class="btn btn-secondary">
@@ -715,13 +715,13 @@
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                        导出批注
+                        Export Annotations
                     </button>
                     <button class="btn btn-primary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
-                        审核通过
+                        Approve Review
                     </button>
                 </div>
             </div>
@@ -730,82 +730,82 @@
                 <div class="status-info">
                     <div class="status-item">
                         <span class="status-dot pending"></span>
-                        <span>待处理批注：5个</span>
+                        <span>Pending Comments: 5</span>
                     </div>
                     <div class="status-item">
                         <span class="status-dot approved"></span>
-                        <span>已解决：12个</span>
+                        <span>Resolved: 12</span>
                     </div>
                     <div class="status-item">
-                        <span>参与审核：4人</span>
+                        <span>Reviewers: 4</span>
                     </div>
                 </div>
                 <div>
-                    <span style="font-size: 13px; color: #666;">提交时间：2小时前</span>
+                    <span style="font-size: 13px; color: #666;">Submitted: 2 hours ago</span>
                 </div>
             </div>
         </div>
         
-        <!-- 版本对比栏 -->
+        <!-- Version comparison bar -->
         <div class="version-bar">
-            <span class="version-label">当前版本：</span>
+            <span class="version-label">Current Version:</span>
             <select class="version-select">
-                <option>第二版（当前）</option>
-                <option>第一版</option>
-                <option>初稿</option>
+                <option>Version 2 (Current)</option>
+                <option>Version 1</option>
+                <option>Initial Draft</option>
             </select>
-            <button class="compare-btn">版本对比</button>
+            <button class="compare-btn">Compare Versions</button>
         </div>
         
-        <!-- 审阅容器 -->
+        <!-- Review container -->
         <div class="review-container">
-            <!-- 视频播放区 -->
+            <!-- Video player area -->
             <div class="video-section">
                 <div class="video-player">
                     <div class="video-placeholder">🎬</div>
                     
-                    <!-- 标注层 -->
+                    <!-- Annotation layer -->
                     <div class="annotation-layer" id="annotationLayer">
                         <div class="annotation-point" style="left: 30%; top: 25%;">
                             1
-                            <div class="annotation-tooltip">字体太小，看不清楚</div>
+                            <div class="annotation-tooltip">Font too small for mobile viewing</div>
                         </div>
                         <div class="annotation-point" style="left: 65%; top: 40%;">
                             2
-                            <div class="annotation-tooltip">产品特写不够清晰</div>
+                            <div class="annotation-tooltip">Product detail not clear enough</div>
                         </div>
                         <div class="annotation-point" style="left: 45%; top: 70%;">
                             3
-                            <div class="annotation-tooltip">Logo位置需要调整</div>
+                            <div class="annotation-tooltip">Logo position needs adjustment</div>
                         </div>
                     </div>
                     
-                    <!-- 标注工具栏 -->
+                    <!-- Annotation toolbar -->
                     <div class="annotation-toolbar">
-                        <button class="tool-btn active" title="选择">
+                        <button class="tool-btn active" title="Select">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
                                 <path d="M13 13l6 6"></path>
                             </svg>
                         </button>
-                        <button class="tool-btn" title="圆圈">
+                        <button class="tool-btn" title="Circle">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                             </svg>
                         </button>
-                        <button class="tool-btn" title="矩形">
+                        <button class="tool-btn" title="Rectangle">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                             </svg>
                         </button>
-                        <button class="tool-btn" title="画笔">
+                        <button class="tool-btn" title="Brush">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
                                 <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
                                 <path d="M2 2l7.586 7.586"></path>
                             </svg>
                         </button>
-                        <button class="tool-btn" title="文字">
+                        <button class="tool-btn" title="Text">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="4 7 4 4 20 4 20 7"></polyline>
                                 <line x1="9" y1="20" x2="15" y2="20"></line>
@@ -814,7 +814,7 @@
                         </button>
                     </div>
                     
-                    <!-- 视频控制栏 -->
+                    <!-- Video controls bar -->
                     <div class="video-controls">
                         <button class="play-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -837,34 +837,34 @@
                 </div>
             </div>
             
-            <!-- 评论面板 -->
+            <!-- Comment panel -->
             <div class="comment-panel">
                 <div class="panel-header">
-                    <h3 class="panel-title">批注与讨论</h3>
+                    <h3 class="panel-title">Comments & Discussion</h3>
                     <div class="comment-filter">
-                        <button class="filter-btn active">全部</button>
-                        <button class="filter-btn">待处理</button>
-                        <button class="filter-btn">已解决</button>
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Pending</button>
+                        <button class="filter-btn">Resolved</button>
                     </div>
                 </div>
                 
                 <div class="comment-list">
-                    <!-- 评论1 -->
+                    <!-- Comment 1 -->
                     <div class="comment-item">
                         <div class="comment-header">
                             <div class="comment-author">
-                                <div class="author-avatar">王</div>
+                                <div class="author-avatar">JW</div>
                                 <div class="author-info">
-                                    <span class="author-name">王经理</span>
-                                    <span class="comment-time">10分钟前</span>
+                                    <span class="author-name">John Wang</span>
+                                    <span class="comment-time">10 minutes ago</span>
                                 </div>
                             </div>
                             <div class="comment-status">
-                                <span class="status-badge pending">待处理</span>
+                                <span class="status-badge pending">Pending</span>
                             </div>
                         </div>
                         <div class="comment-content">
-                            开头3秒的文案字体太小了，在手机上看不清楚，建议放大到现在的1.5倍
+                            The text in the first 3 seconds is too small for mobile devices. Suggest increasing font size by 1.5x
                         </div>
                         <div class="comment-meta">
                             <span class="meta-item">
@@ -875,27 +875,27 @@
                                 00:03
                             </span>
                             <span class="meta-item priority-high">
-                                高优先级
+                                High Priority
                             </span>
                         </div>
                     </div>
                     
-                    <!-- 评论2 -->
+                    <!-- Comment 2 -->
                     <div class="comment-item">
                         <div class="comment-header">
                             <div class="comment-author">
-                                <div class="author-avatar">李</div>
+                                <div class="author-avatar">LD</div>
                                 <div class="author-info">
-                                    <span class="author-name">李设计师</span>
-                                    <span class="comment-time">25分钟前</span>
+                                    <span class="author-name">Laura Davis</span>
+                                    <span class="comment-time">25 minutes ago</span>
                                 </div>
                             </div>
                             <div class="comment-status">
-                                <span class="status-badge resolved">已解决</span>
+                                <span class="status-badge resolved">Resolved</span>
                             </div>
                         </div>
                         <div class="comment-content">
-                            背景音乐节奏很好，但是音量稍微有点大，可能会盖过口播声音
+                            Background music rhythm is great, but volume might be too loud and cover the voiceover
                         </div>
                         <div class="comment-meta">
                             <span class="meta-item">
@@ -903,30 +903,30 @@
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                全程
+                                Throughout
                             </span>
                             <span class="meta-item priority-medium">
-                                中优先级
+                                Medium Priority
                             </span>
                         </div>
                     </div>
                     
-                    <!-- 评论3 -->
+                    <!-- Comment 3 -->
                     <div class="comment-item">
                         <div class="comment-header">
                             <div class="comment-author">
-                                <div class="author-avatar">张</div>
+                                <div class="author-avatar">ZM</div>
                                 <div class="author-info">
-                                    <span class="author-name">张运营</span>
-                                    <span class="comment-time">1小时前</span>
+                                    <span class="author-name">Zhang Ming</span>
+                                    <span class="comment-time">1 hour ago</span>
                                 </div>
                             </div>
                             <div class="comment-status">
-                                <span class="status-badge pending">待处理</span>
+                                <span class="status-badge pending">Pending</span>
                             </div>
                         </div>
                         <div class="comment-content">
-                            产品展示部分建议增加一个360度旋转的镜头，让用户看得更清楚。另外价格标签的位置能不能再突出一些？
+                            For the product showcase section, suggest adding a 360-degree rotation shot to show the Eureka X10 Pro features clearly. Also, can we make the price tag more prominent?
                         </div>
                         <div class="comment-meta">
                             <span class="meta-item">
@@ -937,27 +937,27 @@
                                 00:25-00:35
                             </span>
                             <span class="meta-item priority-high">
-                                高优先级
+                                High Priority
                             </span>
                         </div>
                     </div>
                     
-                    <!-- 评论4 -->
+                    <!-- Comment 4 -->
                     <div class="comment-item">
                         <div class="comment-header">
                             <div class="comment-author">
-                                <div class="author-avatar">陈</div>
+                                <div class="author-avatar">MC</div>
                                 <div class="author-info">
-                                    <span class="author-name">陈总监</span>
-                                    <span class="comment-time">2小时前</span>
+                                    <span class="author-name">Michael Chen</span>
+                                    <span class="comment-time">2 hours ago</span>
                                 </div>
                             </div>
                             <div class="comment-status">
-                                <span class="status-badge resolved">已解决</span>
+                                <span class="status-badge resolved">Resolved</span>
                             </div>
                         </div>
                         <div class="comment-content">
-                            整体效果不错！建议在结尾加上品牌slogan，加深用户印象
+                            Overall effect looks great! Suggest adding the Eureka brand slogan at the end to strengthen brand impression
                         </div>
                         <div class="comment-meta">
                             <span class="meta-item">
@@ -968,33 +968,33 @@
                                 00:55
                             </span>
                             <span class="meta-item priority-low">
-                                低优先级
+                                Low Priority
                             </span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 评论输入 -->
+                <!-- Comment input -->
                 <div class="comment-input-area">
                     <div class="input-wrapper">
-                        <textarea class="comment-input" placeholder="添加批注..."></textarea>
+                        <textarea class="comment-input" placeholder="Add a comment..."></textarea>
                         <div class="input-actions">
                             <div class="input-tools">
-                                <button class="tool-icon" title="附件">
+                                <button class="tool-icon" title="Attachment">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
                                     </svg>
                                 </button>
-                                <button class="tool-icon" title="优先级">
+                                <button class="tool-icon" title="Priority">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
                                 </button>
-                                <button class="tool-icon" title="@提及">
+                                <button class="tool-icon" title="@Mention">
                                     @
                                 </button>
                             </div>
-                            <button class="send-btn">发送</button>
+                            <button class="send-btn">Send</button>
                         </div>
                     </div>
                 </div>
@@ -1003,37 +1003,37 @@
     </main>
     
     <script>
-        // 标注工具切换
+        // Annotation tool toggle
         document.querySelectorAll('.tool-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                console.log('切换工具:', this.getAttribute('title'));
+                console.log('Tool switched:', this.getAttribute('title'));
             });
         });
         
-        // 添加标注点
+        // Add annotation point
         document.getElementById('annotationLayer').addEventListener('click', function(e) {
             if (e.target === this) {
                 const rect = this.getBoundingClientRect();
                 const x = ((e.clientX - rect.left) / rect.width) * 100;
                 const y = ((e.clientY - rect.top) / rect.height) * 100;
                 
-                console.log('添加标注点:', x, y);
-                // 这里可以添加创建新标注点的逻辑
+                console.log('Add annotation point:', x, y);
+                // Logic for creating new annotation points can be added here
             }
         });
         
-        // 评论筛选
+        // Comment filtering
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                console.log('筛选:', this.textContent);
+                console.log('Filter:', this.textContent);
             });
         });
         
-        // 播放控制
+        // Play control
         document.querySelector('.play-btn').addEventListener('click', function() {
             const isPlaying = this.querySelector('polygon');
             if (isPlaying) {
@@ -1052,7 +1052,7 @@
             }
         });
         
-        // 时间轴点击
+        // Timeline click
         document.querySelector('.timeline').addEventListener('click', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -1060,38 +1060,38 @@
             document.querySelector('.timeline-progress').style.width = percentage + '%';
         });
         
-        // 评论标记点击
+        // Comment marker click
         document.querySelectorAll('.comment-marker').forEach(marker => {
             marker.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('跳转到评论时间点');
+                console.log('Jump to comment timestamp');
             });
         });
         
-        // 发送评论
+        // Send comment
         document.querySelector('.send-btn').addEventListener('click', function() {
             const input = document.querySelector('.comment-input');
             if (input.value.trim()) {
-                console.log('发送评论:', input.value);
+                console.log('Send comment:', input.value);
                 input.value = '';
             }
         });
         
-        // 工具图标点击
+        // Tool icon click
         document.querySelectorAll('.tool-icon').forEach(icon => {
             icon.addEventListener('click', function() {
-                console.log('工具:', this.getAttribute('title'));
+                console.log('Tool:', this.getAttribute('title'));
             });
         });
         
-        // 版本切换
+        // Version switch
         document.querySelector('.version-select').addEventListener('change', function() {
-            console.log('切换版本:', this.value);
+            console.log('Switch version:', this.value);
         });
         
-        // 版本对比
+        // Version comparison
         document.querySelector('.compare-btn').addEventListener('click', function() {
-            console.log('版本对比');
+            console.log('Compare versions');
         });
     </script>
 </body>

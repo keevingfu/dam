@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>竞品收集 - 短视频营销DAM</title>
+    <title>Competitor Analysis - Eureka Robot Vacuum Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #ea4335;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 账号监控区域 */
+        /* Account monitoring section */
         .accounts-section {
             background: #fff;
             border-radius: 12px;
@@ -159,7 +159,7 @@
             color: #1a1a1a;
         }
         
-        /* 账号卡片 */
+        /* Account cards */
         .accounts-grid {
             padding: 20px;
             display: grid;
@@ -233,7 +233,7 @@
             border-radius: 50%;
         }
         
-        /* 添加账号卡片 */
+        /* Add account card */
         .add-account-card {
             background: transparent;
             border: 2px dashed #e5e7eb;
@@ -252,7 +252,7 @@
             color: #ea4335;
         }
         
-        /* 素材内容区 */
+        /* Content section */
         .content-section {
             background: #fff;
             border-radius: 12px;
@@ -260,7 +260,7 @@
             overflow: hidden;
         }
         
-        /* 标签页 */
+        /* Tabs */
         .tabs {
             display: flex;
             border-bottom: 1px solid #e5e7eb;
@@ -286,7 +286,7 @@
             border-bottom-color: #ea4335;
         }
         
-        /* 筛选栏 */
+        /* Filter bar */
         .filter-bar {
             padding: 16px 20px;
             border-bottom: 1px solid #e5e7eb;
@@ -325,8 +325,20 @@
             font-size: 13px;
         }
         
-        /* 素材网格 */
+        /* Media grid */
         .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 24px;
+        }
+
+        /* Tab content visibility */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
@@ -487,7 +499,7 @@
             gap: 4px;
         }
         
-        /* 快速操作 */
+        /* Quick actions */
         .quick-actions {
             position: absolute;
             top: 8px;
@@ -523,7 +535,7 @@
             transform: scale(1.1);
         }
         
-        /* 浏览器插件提示 */
+        /* Browser plugin banner */
         .plugin-banner {
             background: linear-gradient(135deg, #ea4335 0%, #dc3545 100%);
             color: white;
@@ -571,7 +583,7 @@
             background: rgba(255,255,255,0.3);
         }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 768px) {
             .accounts-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -594,11 +606,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">竞品收集</h1>
+                <h1 class="app-title">Competitor Analysis</h1>
             </div>
             
             <div class="header-actions">
@@ -607,123 +619,123 @@
                         <polyline points="23 4 23 10 17 10"></polyline>
                         <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
                     </svg>
-                    同步更新
+                    Sync Updates
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">竞品收集</h2>
-                <p class="page-subtitle">收集和分析竞品优质内容，洞察行业趋势</p>
+                <h2 class="page-title">Competitor Analysis</h2>
+                <p class="page-subtitle">Collect and analyze competitor content, gain insights into market trends</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"></path>
                     </svg>
-                    浏览器插件
+                    Browser Extension
                 </button>
                 <button class="btn btn-primary" onclick="collectContent()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                     </svg>
-                    收集素材
+                    Collect Content
                 </button>
             </div>
         </div>
         
-        <!-- 浏览器插件提示 -->
+        <!-- Browser plugin banner -->
         <div class="plugin-banner">
             <div class="plugin-content">
                 <div class="plugin-icon">🚀</div>
                 <div class="plugin-text">
-                    <h3>安装浏览器插件，一键收集各平台优质素材</h3>
-                    <p>支持TikTok、Instagram、Facebook等主流平台，智能识别并保存高清素材</p>
+                    <h3>Install browser extension to collect high-quality content with one click</h3>
+                    <p>Supports TikTok, Instagram, Facebook, YouTube and other major platforms for smart content capture</p>
                 </div>
             </div>
-            <button class="plugin-btn">立即安装</button>
+            <button class="plugin-btn">Install Now</button>
         </div>
         
-        <!-- 竞品账号监控 -->
+        <!-- Competitor accounts monitoring -->
         <div class="accounts-section">
             <div class="section-header">
-                <h3 class="section-title">竞品账号监控</h3>
-                <button class="btn btn-secondary" onclick="addAccount()">添加账号</button>
+                <h3 class="section-title">Competitor Accounts Monitoring</h3>
+                <button class="btn btn-secondary" onclick="addAccount()">Add Account</button>
             </div>
             <div class="accounts-grid">
                 <div class="account-card">
-                    <div class="account-icon">🏢</div>
-                    <div class="account-name">竞品A官方</div>
+                    <div class="account-icon">🤖</div>
+                    <div class="account-name">iRobot Roomba</div>
                     <div class="account-platform">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="TikTok">
                             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                         </svg>
                     </div>
-                    <div class="account-stats">245.3万粉丝</div>
+                    <div class="account-stats">2.45M followers</div>
                     <div class="account-status">
                         <span class="status-dot"></span>
-                        监控中
+                        Monitoring
                     </div>
                 </div>
                 
                 <div class="account-card">
-                    <div class="account-icon">🏪</div>
-                    <div class="account-name">竞品B旗舰店</div>
+                    <div class="account-icon">🌀</div>
+                    <div class="account-name">Dyson</div>
                     <div class="account-platform">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="Instagram">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
                         </svg>
                     </div>
-                    <div class="account-stats">89.7万粉丝</div>
+                    <div class="account-stats">897K followers</div>
                     <div class="account-status">
                         <span class="status-dot"></span>
-                        监控中
+                        Monitoring
                     </div>
                 </div>
                 
                 <div class="account-card">
-                    <div class="account-icon">🎯</div>
-                    <div class="account-name">行业KOL-张大师</div>
+                    <div class="account-icon">🦈</div>
+                    <div class="account-name">Shark Clean</div>
                     <div class="account-platform">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="Facebook">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </div>
-                    <div class="account-stats">156.2万粉丝</div>
+                    <div class="account-stats">1.56M followers</div>
                     <div class="account-status">
                         <span class="status-dot"></span>
-                        监控中
+                        Monitoring
                     </div>
                 </div>
                 
                 <div class="account-card">
-                    <div class="account-icon">🌟</div>
-                    <div class="account-name">竞品C创意号</div>
+                    <div class="account-icon">⚡</div>
+                    <div class="account-name">Roborock</div>
                     <div class="account-platform">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" title="YouTube">
                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                     </div>
-                    <div class="account-stats">67.8万粉丝</div>
+                    <div class="account-stats">678K followers</div>
                     <div class="account-status">
                         <span class="status-dot"></span>
-                        监控中
+                        Monitoring
                     </div>
                 </div>
                 
                 <div class="account-card">
                     <div class="account-icon">💡</div>
-                    <div class="account-name">行业趋势研究</div>
-                    <div class="account-platform">视频号</div>
-                    <div class="account-stats">34.5万粉丝</div>
+                    <div class="account-name">Tech Review Channel</div>
+                    <div class="account-platform">YouTube</div>
+                    <div class="account-stats">345K followers</div>
                     <div class="account-status">
                         <span class="status-dot"></span>
-                        监控中
+                        Monitoring
                     </div>
                 </div>
                 
@@ -732,58 +744,60 @@
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                    <span style="margin-top: 8px;">添加账号</span>
+                    <span style="margin-top: 8px;">Add Account</span>
                 </div>
             </div>
         </div>
         
-        <!-- 收集的素材 -->
+        <!-- Collected content -->
         <div class="content-section">
             <div class="tabs">
-                <div class="tab active">最新收集</div>
-                <div class="tab">爆款素材</div>
-                <div class="tab">创意参考</div>
-                <div class="tab">数据分析</div>
+                <div class="tab active" data-tab="latest-collection">Latest Collection</div>
+                <div class="tab" data-tab="trending-content">Trending Content</div>
+                <div class="tab" data-tab="marketing-strategies">Marketing Strategies</div>
+                <div class="tab" data-tab="pricing-analysis">Pricing Analysis</div>
             </div>
             
             <div class="filter-bar">
                 <select class="filter-select">
-                    <option>全部平台</option>
+                    <option>All Platforms</option>
                     <option>TikTok</option>
                     <option>Instagram</option>
                     <option>Facebook</option>
                     <option>YouTube</option>
-                    <option>视频号</option>
+                    <option>Amazon</option>
                 </select>
                 
                 <select class="filter-select">
-                    <option>全部账号</option>
-                    <option>竞品A官方</option>
-                    <option>竞品B旗舰店</option>
-                    <option>行业KOL</option>
+                    <option>All Accounts</option>
+                    <option>iRobot Roomba</option>
+                    <option>Dyson</option>
+                    <option>Shark Clean</option>
+                    <option>Roborock</option>
                 </select>
                 
                 <select class="filter-select">
-                    <option>全部类型</option>
-                    <option>产品展示</option>
-                    <option>用户评测</option>
-                    <option>活动营销</option>
-                    <option>品牌故事</option>
+                    <option>All Types</option>
+                    <option>Product Features</option>
+                    <option>Customer Reviews</option>
+                    <option>Promotional Campaigns</option>
+                    <option>Brand Stories</option>
                 </select>
                 
                 <div class="date-range">
-                    <span>时间范围：</span>
+                    <span>Date Range:</span>
                     <input type="date" class="date-input">
-                    <span>至</span>
+                    <span>to</span>
                     <input type="date" class="date-input">
                 </div>
             </div>
             
-            <div class="media-grid">
-                <!-- 素材卡片1 -->
+            <!-- Latest Collection Tab Content -->
+            <div class="tab-content active" id="latest-collection-content">
+                <!-- Latest collected content -->
                 <div class="media-card">
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e91e63' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E竞品爆款%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e91e63' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ERoomba j7%2B%3C/text%3E%3C/svg%3E" alt="Content preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
@@ -794,12 +808,12 @@
                             </svg>
                         </span>
                         <div class="quick-actions">
-                            <button class="action-btn" title="收藏">
+                            <button class="action-btn" title="Save">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </button>
-                            <button class="action-btn" title="分析">
+                            <button class="action-btn" title="Analyze">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <path d="M8 12h4m2 0h0"></path>
@@ -808,30 +822,29 @@
                         </div>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">竞品A - 新品发布视频</h3>
+                        <h3 class="media-title">iRobot Roomba - j7+ Self-Emptying Feature Demo</h3>
                         <div class="media-meta">
                             <span class="media-date">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                2小时前
+                                2 hours ago
                             </span>
-                            <span class="trending-badge">🔥 爆款</span>
+                            <span style="font-size: 11px; color: #ea4335;">🆕 Latest</span>
                         </div>
                         <div class="media-stats">
-                            <span class="media-stat">👁 523万</span>
-                            <span class="media-stat">❤️ 45.2万</span>
-                            <span class="media-stat">💬 8.9万</span>
-                            <span class="media-stat">🔄 3.2万</span>
+                            <span class="media-stat">👁 5.23M</span>
+                            <span class="media-stat">❤️ 452K</span>
+                            <span class="media-stat">💬 89K</span>
+                            <span class="media-stat">🔄 32K</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 素材卡片2 -->
                 <div class="media-card">
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23795548' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E创意参考%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23795548' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EDyson 360 Heurist%3C/text%3E%3C/svg%3E" alt="Content preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
@@ -842,12 +855,12 @@
                             </svg>
                         </span>
                         <div class="quick-actions">
-                            <button class="action-btn" title="收藏">
+                            <button class="action-btn" title="Save">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </button>
-                            <button class="action-btn" title="分析">
+                            <button class="action-btn" title="Analyze">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <path d="M8 12h4m2 0h0"></path>
@@ -856,46 +869,41 @@
                         </div>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">行业KOL - 产品深度评测</h3>
+                        <h3 class="media-title">Dyson - Advanced Navigation Technology Explained</h3>
                         <div class="media-meta">
                             <span class="media-date">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                5小时前
+                                5 hours ago
                             </span>
-                            <span style="font-size: 11px; color: #1a73e8;">值得学习</span>
+                            <span style="font-size: 11px; color: #1a73e8;">Worth Studying</span>
                         </div>
                         <div class="media-stats">
-                            <span class="media-stat">👁 234万</span>
-                            <span class="media-stat">❤️ 18.7万</span>
-                            <span class="media-stat">💬 3.2万</span>
-                            <span class="media-stat">⭐ 2.8万</span>
+                            <span class="media-stat">👁 2.34M</span>
+                            <span class="media-stat">❤️ 187K</span>
+                            <span class="media-stat">💬 32K</span>
+                            <span class="media-stat">⭐ 28K</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 素材卡片3 -->
+
                 <div class="media-card">
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23607d8b' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E营销活动%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='400' height='225'/%3E%3Ctext fill='white' font-size='18' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ENeato D7%3C/text%3E%3C/svg%3E" alt="Content preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
-                        <span class="media-duration">0:25</span>
-                        <span class="media-source source-kuaishou">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Facebook">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </span>
+                        <span class="media-duration">1:55</span>
+                        <span class="media-source source-douyin">TikTok</span>
                         <div class="quick-actions">
-                            <button class="action-btn" title="收藏">
+                            <button class="action-btn" title="Save">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </button>
-                            <button class="action-btn" title="分析">
+                            <button class="action-btn" title="Analyze">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <path d="M8 12h4m2 0h0"></path>
@@ -904,46 +912,45 @@
                         </div>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">竞品B - 限时优惠活动</h3>
+                        <h3 class="media-title">Neato - LaserSmart Technology Demonstration</h3>
                         <div class="media-meta">
                             <span class="media-date">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                昨天
+                                1 day ago
                             </span>
-                            <span style="font-size: 11px; color: #f9ab00;">活动营销</span>
+                            <span style="font-size: 11px; color: #ea4335;">🆕 Latest</span>
                         </div>
                         <div class="media-stats">
-                            <span class="media-stat">👁 156万</span>
-                            <span class="media-stat">❤️ 12.3万</span>
-                            <span class="media-stat">💬 2.1万</span>
-                            <span class="media-stat">🛒 5.6万</span>
+                            <span class="media-stat">👁 1.12M</span>
+                            <span class="media-stat">❤️ 98K</span>
+                            <span class="media-stat">💬 24K</span>
+                            <span class="media-stat">🔄 18K</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 素材卡片4 -->
+            </div>
+
+            <!-- Trending Content Tab Content -->
+            <div class="tab-content" id="trending-content-content">
+                <!-- Trending/viral content -->
                 <div class="media-card">
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E用户故事%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff6b6b' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EViral Roomba%3C/text%3E%3C/svg%3E" alt="Content preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
-                        <span class="media-duration">2:15</span>
-                        <span class="media-source source-douyin">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="TikTok">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                            </svg>
-                        </span>
+                        <span class="media-duration">0:15</span>
+                        <span class="media-source source-douyin">TikTok</span>
                         <div class="quick-actions">
-                            <button class="action-btn" title="收藏">
+                            <button class="action-btn" title="Save">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </button>
-                            <button class="action-btn" title="分析">
+                            <button class="action-btn" title="Analyze">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <path d="M8 12h4m2 0h0"></path>
@@ -952,46 +959,41 @@
                         </div>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">竞品C - 用户真实故事分享</h3>
+                        <h3 class="media-title">Roomba vs Cat - Funny Interaction Goes Viral</h3>
                         <div class="media-meta">
                             <span class="media-date">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                2天前
+                                6 hours ago
                             </span>
-                            <span style="font-size: 11px; color: #34a853;">情感营销</span>
+                            <span class="trending-badge">🔥 Trending #1</span>
                         </div>
                         <div class="media-stats">
-                            <span class="media-stat">👁 89万</span>
-                            <span class="media-stat">❤️ 8.9万</span>
-                            <span class="media-stat">💬 1.5万</span>
-                            <span class="media-stat">🔄 2.1万</span>
+                            <span class="media-stat">👁 15.7M</span>
+                            <span class="media-stat">❤️ 2.3M</span>
+                            <span class="media-stat">💬 456K</span>
+                            <span class="media-stat">🔄 1.2M</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 素材卡片5 -->
+
                 <div class="media-card">
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E技术展示%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234ecdc4' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EShark vs Roomba%3C/text%3E%3C/svg%3E" alt="Content preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
-                        <span class="media-duration">1:45</span>
-                        <span class="media-source source-xiaohongshu">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Instagram">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
-                            </svg>
-                        </span>
+                        <span class="media-duration">2:45</span>
+                        <span class="media-source source-xiaohongshu">YouTube</span>
                         <div class="quick-actions">
-                            <button class="action-btn" title="收藏">
+                            <button class="action-btn" title="Save">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </button>
-                            <button class="action-btn" title="分析">
+                            <button class="action-btn" title="Analyze">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <path d="M8 12h4m2 0h0"></path>
@@ -1000,46 +1002,41 @@
                         </div>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">竞品A - 黑科技功能演示</h3>
+                        <h3 class="media-title">Ultimate Robot Vacuum Comparison Battle</h3>
                         <div class="media-meta">
                             <span class="media-date">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                3天前
+                                1 day ago
                             </span>
-                            <span style="font-size: 11px; color: #9c27b0;">技术创新</span>
+                            <span class="trending-badge">🔥 Trending #3</span>
                         </div>
                         <div class="media-stats">
-                            <span class="media-stat">👁 178万</span>
-                            <span class="media-stat">❤️ 15.6万</span>
-                            <span class="media-stat">💬 4.2万</span>
-                            <span class="media-stat">⭐ 3.8万</span>
+                            <span class="media-stat">👁 8.9M</span>
+                            <span class="media-stat">❤️ 567K</span>
+                            <span class="media-stat">💬 123K</span>
+                            <span class="media-stat">🔄 445K</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 素材卡片6 -->
+
                 <div class="media-card">
                     <div class="media-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='20' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E品牌联名%3C/text%3E%3C/svg%3E" alt="素材预览">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23a8e6cf' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ERoborock Unboxing%3C/text%3E%3C/svg%3E" alt="Content preview">
                         <div class="media-overlay">
                             <div class="play-btn">▶️</div>
                         </div>
-                        <span class="media-duration">0:45</span>
-                        <span class="media-source source-kuaishou">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" title="Facebook">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </span>
+                        <span class="media-duration">3:20</span>
+                        <span class="media-source source-xiaohongshu">Instagram</span>
                         <div class="quick-actions">
-                            <button class="action-btn" title="收藏">
+                            <button class="action-btn" title="Save">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </button>
-                            <button class="action-btn" title="分析">
+                            <button class="action-btn" title="Analyze">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <path d="M8 12h4m2 0h0"></path>
@@ -1048,22 +1045,288 @@
                         </div>
                     </div>
                     <div class="media-info">
-                        <h3 class="media-title">竞品B - 品牌联名款发布</h3>
+                        <h3 class="media-title">Roborock S8 Pro Ultra - Satisfying Unboxing ASMR</h3>
                         <div class="media-meta">
                             <span class="media-date">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                4天前
+                                2 days ago
                             </span>
-                            <span style="font-size: 11px; color: #ff5722;">品牌合作</span>
+                            <span class="trending-badge">🔥 Trending #7</span>
                         </div>
                         <div class="media-stats">
-                            <span class="media-stat">👁 267万</span>
-                            <span class="media-stat">❤️ 22.3万</span>
-                            <span class="media-stat">💬 5.8万</span>
-                            <span class="media-stat">🔄 4.5万</span>
+                            <span class="media-stat">👁 4.2M</span>
+                            <span class="media-stat">❤️ 334K</span>
+                            <span class="media-stat">💬 67K</span>
+                            <span class="media-stat">🔄 198K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Strategies Tab Content -->
+            <div class="tab-content" id="marketing-strategies-content">
+                <!-- Marketing campaigns and strategies -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23667eea' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBlack Friday Campaign%3C/text%3E%3C/svg%3E" alt="Content preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:30</span>
+                        <span class="media-source source-kuaishou">Facebook</span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="Save">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Analyze">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Shark - Black Friday Limited Time Discount Strategy</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Yesterday
+                            </span>
+                            <span style="font-size: 11px; color: #667eea;">💡 Marketing Strategy</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 3.1M</span>
+                            <span class="media-stat">❤️ 234K</span>
+                            <span class="media-stat">💬 45K</span>
+                            <span class="media-stat">🛒 78K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23f093fb' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EInfluencer Collab%3C/text%3E%3C/svg%3E" alt="Content preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">4:15</span>
+                        <span class="media-source source-xiaohongshu">Instagram</span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="Save">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Analyze">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">iRobot - Lifestyle Influencer Partnership Campaign</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                2 days ago
+                            </span>
+                            <span style="font-size: 11px; color: #f093fb;">🤝 Influencer Marketing</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 1.8M</span>
+                            <span class="media-stat">❤️ 145K</span>
+                            <span class="media-stat">💬 28K</span>
+                            <span class="media-stat">💎 52K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ffa726' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EUGC Campaign%3C/text%3E%3C/svg%3E" alt="Content preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:05</span>
+                        <span class="media-source source-douyin">TikTok</span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="Save">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Analyze">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Dyson - User Generated Content Challenge #MyDysonClean</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                3 days ago
+                            </span>
+                            <span style="font-size: 11px; color: #ffa726;">📱 UGC Campaign</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 5.4M</span>
+                            <span class="media-stat">❤️ 678K</span>
+                            <span class="media-stat">💬 134K</span>
+                            <span class="media-stat">#️⃣ 23K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Analysis Tab Content -->
+            <div class="tab-content" id="pricing-analysis-content">
+                <!-- Pricing strategies and comparisons -->
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPrice Comparison%3C/text%3E%3C/svg%3E" alt="Content preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">3:45</span>
+                        <span class="media-source source-kuaishou">YouTube</span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="Save">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Analyze">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Comprehensive Robot Vacuum Price Analysis 2024</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                4 days ago
+                            </span>
+                            <span style="font-size: 11px; color: #ff5722;">💰 Pricing Analysis</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 2.67M</span>
+                            <span class="media-stat">❤️ 223K</span>
+                            <span class="media-stat">💬 58K</span>
+                            <span class="media-stat">📊 45K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EValue Proposition%3C/text%3E%3C/svg%3E" alt="Content preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">2:20</span>
+                        <span class="media-source source-xiaohongshu">Instagram</span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="Save">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Analyze">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">Roborock - Price vs Performance Value Proposition</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                1 week ago
+                            </span>
+                            <span style="font-size: 11px; color: #4caf50;">💎 Value Strategy</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 1.45M</span>
+                            <span class="media-stat">❤️ 134K</span>
+                            <span class="media-stat">💬 34K</span>
+                            <span class="media-stat">💰 29K</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-preview">
+                        <img src="data:image/svg+xml,%3Csvg width='400' height='225' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='400' height='225'/%3E%3Ctext fill='white' font-size='16' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBundle Deals%3C/text%3E%3C/svg%3E" alt="Content preview">
+                        <div class="media-overlay">
+                            <div class="play-btn">▶️</div>
+                        </div>
+                        <span class="media-duration">1:55</span>
+                        <span class="media-source source-kuaishou">Facebook</span>
+                        <div class="quick-actions">
+                            <button class="action-btn" title="Save">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Analyze">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 12h4m2 0h0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3 class="media-title">iRobot - Bundle Package Pricing Strategy Analysis</h3>
+                        <div class="media-meta">
+                            <span class="media-date">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                5 days ago
+                            </span>
+                            <span style="font-size: 11px; color: #9c27b0;">📦 Bundle Strategy</span>
+                        </div>
+                        <div class="media-stats">
+                            <span class="media-stat">👁 934K</span>
+                            <span class="media-stat">❤️ 87K</span>
+                            <span class="media-stat">💬 19K</span>
+                            <span class="media-stat">🛒 34K</span>
                         </div>
                     </div>
                 </div>
@@ -1072,58 +1335,70 @@
     </main>
     
     <script>
-        // 收集素材
+        // Collect content
         function collectContent() {
-            alert('打开素材收集功能...');
+            alert('Opening content collection feature...');
         }
         
-        // 添加账号
+        // Add account
         function addAccount() {
-            alert('添加监控账号功能开发中...');
+            alert('Add monitoring account feature in development...');
         }
         
-        // 标签页切换
+        // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Remove active class from all tabs
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
                 
-                // 这里可以添加切换内容的逻辑
-                console.log('切换到:', this.textContent.trim());
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show the corresponding tab content
+                const tabName = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabName + '-content');
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+                
+                console.log('Switched to:', this.textContent.trim());
             });
         });
         
-        // 素材卡片点击
+        // Media card click
         document.querySelectorAll('.media-card').forEach(card => {
             card.addEventListener('click', function(e) {
-                // 如果点击的是操作按钮，不触发卡片点击事件
+                // If clicking action button, don't trigger card click event
                 if (e.target.closest('.action-btn')) {
                     return;
                 }
-                console.log('查看素材详情');
+                console.log('View content details');
             });
         });
         
-        // 快速操作按钮
+        // Quick action buttons
         document.querySelectorAll('.action-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const title = this.getAttribute('title');
-                console.log(`执行操作: ${title}`);
+                console.log(`Execute action: ${title}`);
             });
         });
         
-        // 账号卡片点击
+        // Account card click
         document.querySelectorAll('.account-card:not(.add-account-card)').forEach(card => {
             card.addEventListener('click', function() {
-                console.log('查看账号详情:', this.querySelector('.account-name').textContent);
+                console.log('View account details:', this.querySelector('.account-name').textContent);
             });
         });
         
-        // 筛选功能
+        // Filter functionality
         document.querySelectorAll('.filter-select').forEach(select => {
             select.addEventListener('change', function(e) {
-                console.log('筛选条件变更:', e.target.value);
+                console.log('Filter changed:', e.target.value);
             });
         });
     </script>

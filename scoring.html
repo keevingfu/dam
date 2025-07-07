@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>素材评分 - 短视频营销DAM</title>
+    <title>Content Scoring - Eureka Robot Vacuum Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top Navigation Bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #ff9800;
         }
         
-        /* 主内容区 */
+        /* Main Content Area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page Header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button Styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 评分统计 */
+        /* Scoring Statistics */
         .scoring-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -207,7 +207,7 @@
             color: #666;
         }
         
-        /* 筛选栏 */
+        /* Filter Section */
         .filter-section {
             background: #fff;
             padding: 16px 20px;
@@ -257,7 +257,7 @@
             color: #999;
         }
         
-        /* 素材列表 */
+        /* Content List */
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -397,7 +397,7 @@
             gap: 4px;
         }
         
-        /* 评分详情 */
+        /* Score Details */
         .score-details {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -422,7 +422,7 @@
             color: #ff9800;
         }
         
-        /* 评分规则说明 */
+        /* Scoring Rules Description */
         .scoring-rules {
             background: #fff;
             padding: 24px;
@@ -510,7 +510,7 @@
             color: #ff9800;
         }
         
-        /* 空状态 */
+        /* Empty State */
         .empty-state {
             text-align: center;
             padding: 80px 20px;
@@ -537,7 +537,7 @@
             margin-bottom: 24px;
         }
         
-        /* 响应式设计 */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .scoring-stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -565,11 +565,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top Navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">素材评分</h1>
+                <h1 class="app-title">Content Scoring</h1>
             </div>
             
             <div class="header-actions">
@@ -577,19 +577,19 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2v6m0 4v6m0 4v2M8 12h8M4 12h2m12 0h2"></path>
                     </svg>
-                    评分设置
+                    Scoring Settings
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main Content Area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">素材评分</h2>
-                <p class="page-subtitle">多维度智能评分，科学评估素材价值</p>
+                <h2 class="page-title">Content Scoring</h2>
+                <p class="page-subtitle">AI-powered multi-dimensional scoring for Eureka robot vacuum content</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
@@ -597,7 +597,7 @@
                         <polyline points="23 4 23 10 17 10"></polyline>
                         <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
                     </svg>
-                    重新评分
+                    Rescore All
                 </button>
                 <button class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -605,116 +605,116 @@
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
-                    导出评分报告
+                    Export Scoring Report
                 </button>
             </div>
         </div>
         
-        <!-- 评分统计 -->
+        <!-- Scoring Statistics -->
         <div class="scoring-stats">
             <div class="stat-card">
                 <div class="stat-icon s-rank">S</div>
                 <div class="stat-value">68</div>
-                <div class="stat-label">S级素材</div>
+                <div class="stat-label">S-Rank Content</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon a-rank">A</div>
                 <div class="stat-value">234</div>
-                <div class="stat-label">A级素材</div>
+                <div class="stat-label">A-Rank Content</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon b-rank">B</div>
                 <div class="stat-value">456</div>
-                <div class="stat-label">B级素材</div>
+                <div class="stat-label">B-Rank Content</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon c-rank">C</div>
                 <div class="stat-value">187</div>
-                <div class="stat-label">C级素材</div>
+                <div class="stat-label">C-Rank Content</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon total">📊</div>
                 <div class="stat-value">945</div>
-                <div class="stat-label">已评分素材</div>
+                <div class="stat-label">Scored Content</div>
             </div>
         </div>
         
-        <!-- 评分规则说明 -->
+        <!-- Scoring Rules Description -->
         <div class="scoring-rules">
             <div class="rules-header">
-                <h3 class="rules-title">评分规则说明</h3>
-                <button class="toggle-btn" onclick="toggleRules()">展开详情 ↓</button>
+                <h3 class="rules-title">Scoring Criteria</h3>
+                <button class="toggle-btn" onclick="toggleRules()">Show Details ↓</button>
             </div>
             <div class="rules-content" id="rulesContent">
                 <div class="rule-category">
-                    <h4 class="category-title">内容质量（40%）</h4>
+                    <h4 class="category-title">Product Demo Quality (40%)</h4>
                     <ul class="rule-list">
-                        <li class="rule-item">画面清晰度和稳定性</li>
-                        <li class="rule-item">剪辑节奏和转场流畅度</li>
-                        <li class="rule-item">音频质量和背景音乐匹配度</li>
-                        <li class="rule-item">字幕和特效的专业程度</li>
+                        <li class="rule-item">Video clarity and stability of robot vacuum in action</li>
+                        <li class="rule-item">Smooth transitions showing different cleaning modes</li>
+                        <li class="rule-item">Clear audio demonstrating quiet operation</li>
+                        <li class="rule-item">Professional captions highlighting key features</li>
                     </ul>
                 </div>
                 
                 <div class="rule-category">
-                    <h4 class="category-title">数据表现（30%）</h4>
+                    <h4 class="category-title">Performance Metrics (30%)</h4>
                     <ul class="rule-list">
-                        <li class="rule-item">播放量和完播率</li>
-                        <li class="rule-item">互动率（点赞、评论、分享）</li>
-                        <li class="rule-item">转化效果和引流数据</li>
-                        <li class="rule-item">用户留存和复看率</li>
+                        <li class="rule-item">View count and completion rate</li>
+                        <li class="rule-item">Engagement rate (likes, comments, shares)</li>
+                        <li class="rule-item">Conversion rate and traffic to product page</li>
+                        <li class="rule-item">User retention and repeat viewing</li>
                     </ul>
                 </div>
                 
                 <div class="rule-category">
-                    <h4 class="category-title">创意价值（20%）</h4>
+                    <h4 class="category-title">Creative Value (20%)</h4>
                     <ul class="rule-list">
-                        <li class="rule-item">内容创意和独特性</li>
-                        <li class="rule-item">品牌调性匹配度</li>
-                        <li class="rule-item">话题热度和传播潜力</li>
-                        <li class="rule-item">目标人群精准度</li>
+                        <li class="rule-item">Unique demonstration approach and creativity</li>
+                        <li class="rule-item">Alignment with Eureka brand values</li>
+                        <li class="rule-item">Trending topics and viral potential</li>
+                        <li class="rule-item">Target audience relevance</li>
                     </ul>
                 </div>
                 
                 <div class="rule-category">
-                    <h4 class="category-title">复用潜力（10%）</h4>
+                    <h4 class="category-title">Reusability Potential (10%)</h4>
                     <ul class="rule-list">
-                        <li class="rule-item">素材的通用性和可编辑性</li>
-                        <li class="rule-item">跨平台适配能力</li>
-                        <li class="rule-item">二次创作空间</li>
-                        <li class="rule-item">素材元素的独立价值</li>
+                        <li class="rule-item">Content versatility and editability</li>
+                        <li class="rule-item">Cross-platform adaptability</li>
+                        <li class="rule-item">Potential for repurposing</li>
+                        <li class="rule-item">Value of individual content elements</li>
                     </ul>
                 </div>
             </div>
         </div>
         
-        <!-- 筛选栏 -->
+        <!-- Filter Section -->
         <div class="filter-section">
             <div class="filter-group">
                 <select class="filter-select">
-                    <option>全部等级</option>
-                    <option>S级</option>
-                    <option>A级</option>
-                    <option>B级</option>
-                    <option>C级</option>
-                    <option>未评分</option>
+                    <option>All Ranks</option>
+                    <option>S-Rank</option>
+                    <option>A-Rank</option>
+                    <option>B-Rank</option>
+                    <option>C-Rank</option>
+                    <option>Unscored</option>
                 </select>
                 <select class="filter-select">
-                    <option>全部类型</option>
-                    <option>视频</option>
-                    <option>图片</option>
-                    <option>音频</option>
+                    <option>All Types</option>
+                    <option>Video</option>
+                    <option>Image</option>
+                    <option>Audio</option>
                 </select>
                 <select class="filter-select">
-                    <option>评分时间</option>
-                    <option>今天</option>
-                    <option>最近7天</option>
-                    <option>最近30天</option>
-                    <option>全部</option>
+                    <option>Scoring Date</option>
+                    <option>Today</option>
+                    <option>Last 7 Days</option>
+                    <option>Last 30 Days</option>
+                    <option>All Time</option>
                 </select>
             </div>
             <div class="search-box">
@@ -722,13 +722,13 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="m21 21-4.35-4.35"></path>
                 </svg>
-                <input type="text" class="search-input" placeholder="搜索素材名称...">
+                <input type="text" class="search-input" placeholder="Search content name...">
             </div>
         </div>
         
-        <!-- 素材列表 -->
+        <!-- Content List -->
         <div class="content-grid">
-            <!-- S级素材 -->
+            <!-- S-Rank Content -->
             <div class="content-card">
                 <div class="content-preview">
                     <div class="preview-image">🎬</div>
@@ -738,39 +738,39 @@
                     </div>
                 </div>
                 <div class="content-info">
-                    <h3 class="content-title">618大促主推视频 - 限时秒杀版</h3>
+                    <h3 class="content-title">Eureka J15 Pro Max Demo - Deep Cleaning Technology</h3>
                     <div class="content-meta">
                         <span class="meta-item">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            3天前
+                            3 days ago
                         </span>
-                        <span class="meta-item">综合评分：95</span>
+                        <span class="meta-item">Overall Score: 95</span>
                     </div>
                     <div class="score-details">
                         <div class="score-item">
-                            <div class="score-label">内容</div>
+                            <div class="score-label">Demo</div>
                             <div class="score-value">38</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">数据</div>
+                            <div class="score-label">Metrics</div>
                             <div class="score-value">28</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">创意</div>
+                            <div class="score-label">Creative</div>
                             <div class="score-value">19</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">复用</div>
+                            <div class="score-label">Reuse</div>
                             <div class="score-value">10</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- A级素材 -->
+            <!-- A-Rank Content -->
             <div class="content-card">
                 <div class="content-preview">
                     <div class="preview-image">🎬</div>
@@ -780,39 +780,39 @@
                     </div>
                 </div>
                 <div class="content-info">
-                    <h3 class="content-title">新品开箱测评 - 真实体验分享</h3>
+                    <h3 class="content-title">Eureka E10s Unboxing - First Impressions Review</h3>
                     <div class="content-meta">
                         <span class="meta-item">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            5天前
+                            5 days ago
                         </span>
-                        <span class="meta-item">综合评分：86</span>
+                        <span class="meta-item">Overall Score: 86</span>
                     </div>
                     <div class="score-details">
                         <div class="score-item">
-                            <div class="score-label">内容</div>
+                            <div class="score-label">Demo</div>
                             <div class="score-value">35</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">数据</div>
+                            <div class="score-label">Metrics</div>
                             <div class="score-value">25</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">创意</div>
+                            <div class="score-label">Creative</div>
                             <div class="score-value">18</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">复用</div>
+                            <div class="score-label">Reuse</div>
                             <div class="score-value">8</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- B级素材 -->
+            <!-- B-Rank Content -->
             <div class="content-card">
                 <div class="content-preview">
                     <div class="preview-image">🎬</div>
@@ -822,39 +822,39 @@
                     </div>
                 </div>
                 <div class="content-info">
-                    <h3 class="content-title">产品使用教程 - 新手入门篇</h3>
+                    <h3 class="content-title">Eureka Robot Vacuum Tutorial - Getting Started Guide</h3>
                     <div class="content-meta">
                         <span class="meta-item">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            1周前
+                            1 week ago
                         </span>
-                        <span class="meta-item">综合评分：72</span>
+                        <span class="meta-item">Overall Score: 72</span>
                     </div>
                     <div class="score-details">
                         <div class="score-item">
-                            <div class="score-label">内容</div>
+                            <div class="score-label">Demo</div>
                             <div class="score-value">30</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">数据</div>
+                            <div class="score-label">Metrics</div>
                             <div class="score-value">20</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">创意</div>
+                            <div class="score-label">Creative</div>
                             <div class="score-value">15</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">复用</div>
+                            <div class="score-label">Reuse</div>
                             <div class="score-value">7</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- C级素材 -->
+            <!-- C-Rank Content -->
             <div class="content-card">
                 <div class="content-preview">
                     <div class="preview-image">🎬</div>
@@ -864,39 +864,39 @@
                     </div>
                 </div>
                 <div class="content-info">
-                    <h3 class="content-title">日常分享 - 办公室的一天</h3>
+                    <h3 class="content-title">Office Cleaning Day - Quick Eureka Demo</h3>
                     <div class="content-meta">
                         <span class="meta-item">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            2周前
+                            2 weeks ago
                         </span>
-                        <span class="meta-item">综合评分：58</span>
+                        <span class="meta-item">Overall Score: 58</span>
                     </div>
                     <div class="score-details">
                         <div class="score-item">
-                            <div class="score-label">内容</div>
+                            <div class="score-label">Demo</div>
                             <div class="score-value">22</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">数据</div>
+                            <div class="score-label">Metrics</div>
                             <div class="score-value">18</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">创意</div>
+                            <div class="score-label">Creative</div>
                             <div class="score-value">12</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">复用</div>
+                            <div class="score-label">Reuse</div>
                             <div class="score-value">6</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 更多素材卡片 -->
+            <!-- More Content Cards -->
             <div class="content-card">
                 <div class="content-preview">
                     <div class="preview-image">🎬</div>
@@ -906,32 +906,32 @@
                     </div>
                 </div>
                 <div class="content-info">
-                    <h3 class="content-title">母亲节特别企划 - 温情故事</h3>
+                    <h3 class="content-title">Mother's Day Special - Eureka Helps Busy Moms</h3>
                     <div class="content-meta">
                         <span class="meta-item">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            3天前
+                            3 days ago
                         </span>
-                        <span class="meta-item">综合评分：88</span>
+                        <span class="meta-item">Overall Score: 88</span>
                     </div>
                     <div class="score-details">
                         <div class="score-item">
-                            <div class="score-label">内容</div>
+                            <div class="score-label">Demo</div>
                             <div class="score-value">36</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">数据</div>
+                            <div class="score-label">Metrics</div>
                             <div class="score-value">26</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">创意</div>
+                            <div class="score-label">Creative</div>
                             <div class="score-value">18</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">复用</div>
+                            <div class="score-label">Reuse</div>
                             <div class="score-value">8</div>
                         </div>
                     </div>
@@ -947,32 +947,32 @@
                     </div>
                 </div>
                 <div class="content-info">
-                    <h3 class="content-title">护肤黑科技 - 成分大揭秘</h3>
+                    <h3 class="content-title">Eureka J20 Ultra - Advanced Navigation Technology Explained</h3>
                     <div class="content-meta">
                         <span class="meta-item">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            1天前
+                            1 day ago
                         </span>
-                        <span class="meta-item">综合评分：92</span>
+                        <span class="meta-item">Overall Score: 92</span>
                     </div>
                     <div class="score-details">
                         <div class="score-item">
-                            <div class="score-label">内容</div>
+                            <div class="score-label">Demo</div>
                             <div class="score-value">37</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">数据</div>
+                            <div class="score-label">Metrics</div>
                             <div class="score-value">27</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">创意</div>
+                            <div class="score-label">Creative</div>
                             <div class="score-value">19</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">复用</div>
+                            <div class="score-label">Reuse</div>
                             <div class="score-value">9</div>
                         </div>
                     </div>
@@ -982,70 +982,70 @@
     </main>
     
     <script>
-        // 展开/收起评分规则
+        // Toggle scoring rules
         function toggleRules() {
             const content = document.getElementById('rulesContent');
             const btn = document.querySelector('.toggle-btn');
             
             if (content.classList.contains('show')) {
                 content.classList.remove('show');
-                btn.textContent = '展开详情 ↓';
+                btn.textContent = 'Show Details ↓';
             } else {
                 content.classList.add('show');
-                btn.textContent = '收起详情 ↑';
+                btn.textContent = 'Hide Details ↑';
             }
         }
         
-        // 筛选功能
+        // Filter functionality
         document.querySelectorAll('.filter-select').forEach(select => {
             select.addEventListener('change', function() {
-                console.log('筛选条件变更:', this.value);
-                // 这里可以添加筛选逻辑
+                console.log('Filter changed:', this.value);
+                // Add filter logic here
             });
         });
         
-        // 搜索功能
+        // Search functionality
         document.querySelector('.search-input').addEventListener('input', function(e) {
-            console.log('搜索关键词:', e.target.value);
-            // 这里可以添加搜索逻辑
+            console.log('Search keyword:', e.target.value);
+            // Add search logic here
         });
         
-        // 素材卡片点击
+        // Content card click
         document.querySelectorAll('.content-card').forEach(card => {
             card.addEventListener('click', function() {
                 const title = this.querySelector('.content-title').textContent;
-                console.log('查看素材详情:', title);
-                // 这里可以添加跳转到详情页的逻辑
+                console.log('View content details:', title);
+                // Add navigation to details page logic here
             });
         });
         
-        // 播放按钮点击（阻止冒泡）
+        // Play button click (prevent bubbling)
         document.querySelectorAll('.play-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('播放素材');
+                console.log('Play content');
             });
         });
         
-        // 导出报告
+        // Export report
         document.querySelector('.btn-primary').addEventListener('click', function() {
-            console.log('导出评分报告');
-            alert('评分报告导出中...');
+            console.log('Export scoring report');
+            alert('Exporting scoring report...');
         });
         
-        // 重新评分
+        // Rescore all
         document.querySelector('.btn-secondary').addEventListener('click', function() {
-            if (this.textContent.includes('重新评分')) {
-                console.log('重新评分所有素材');
-                if (confirm('确定要重新评分所有素材吗？这可能需要几分钟时间。')) {
-                    alert('开始重新评分...');
+            if (this.textContent.includes('Rescore All')) {
+                console.log('Rescore all content');
+                if (confirm('Are you sure you want to rescore all content? This may take a few minutes.')) {
+                    alert('Starting rescoring process...');
                 }
             }
         });
         
-        // 页面加载动画
+        // Page load animation
         window.addEventListener('load', () => {
-            // 统计数字动画
+            // Statistics number animation
             document.querySelectorAll('.stat-value').forEach(element => {
                 const finalValue = parseInt(element.textContent);
                 let currentValue = 0;

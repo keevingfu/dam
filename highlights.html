@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爆点片段 - 短视频营销DAM</title>
+    <title>Key Moments - Eureka Robot Vacuum Marketing</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Top navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #10b981;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 统计卡片 */
+        /* Statistics cards */
         .stats-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -201,7 +201,7 @@
             color: #666;
         }
         
-        /* 内容区域 */
+        /* Content area */
         .content-section {
             background: #fff;
             border-radius: 12px;
@@ -209,7 +209,7 @@
             overflow: hidden;
         }
         
-        /* 标签页 */
+        /* Tabs */
         .tabs {
             display: flex;
             border-bottom: 1px solid #e5e7eb;
@@ -241,8 +241,17 @@
             font-size: 12px;
             color: #999;
         }
+
+        /* Tab content visibility */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
         
-        /* 筛选栏 */
+        /* Filter bar */
         .filter-bar {
             padding: 16px 20px;
             border-bottom: 1px solid #e5e7eb;
@@ -302,12 +311,21 @@
             color: #999;
         }
         
-        /* 爆点片段网格 */
+        /* Key moments grid */
         .highlights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 16px;
             padding: 20px;
+        }
+
+        /* Tab content visibility */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
         
         .highlight-card {
@@ -442,7 +460,7 @@
             gap: 3px;
         }
         
-        /* 操作按钮 */
+        /* Action buttons */
         .highlight-actions {
             position: absolute;
             top: 8px;
@@ -478,7 +496,7 @@
             transform: scale(1.1);
         }
         
-        /* 使用提示 */
+        /* Usage tip */
         .usage-tip {
             background: #d1fae5;
             border: 1px solid #10b981;
@@ -496,7 +514,7 @@
             font-size: 18px;
         }
         
-        /* 空状态 */
+        /* Empty state */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -520,7 +538,7 @@
             margin-bottom: 20px;
         }
         
-        /* 拖拽提示 */
+        /* Drag drop indicator */
         .drop-zone {
             position: fixed;
             bottom: 20px;
@@ -555,7 +573,7 @@
             text-align: center;
         }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 768px) {
             .stats-cards {
                 grid-template-columns: repeat(2, 1fr);
@@ -577,11 +595,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Top navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">爆点片段</h1>
+                <h1 class="app-title">Key Moments</h1>
             </div>
             
             <div class="header-actions">
@@ -591,85 +609,85 @@
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
                     </svg>
-                    导入片段
+                    Import Clips
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">爆点片段库</h2>
-                <p class="page-subtitle">管理和复用高价值片段，快速创作爆款内容</p>
+                <h2 class="page-title">Key Moments Library</h2>
+                <p class="page-subtitle">Manage and reuse high-impact clips from successful Eureka demos</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                     </svg>
-                    筛选类型
+                    Filter Type
                 </button>
                 <button class="btn btn-primary" onclick="createHighlight()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
-                    创建片段
+                    Create Clip
                 </button>
             </div>
         </div>
         
-        <!-- 统计卡片 -->
+        <!-- Statistics cards -->
         <div class="stats-cards">
             <div class="stat-card">
                 <div class="stat-icon green">💡</div>
                 <div class="stat-value">126</div>
-                <div class="stat-label">爆点片段总数</div>
+                <div class="stat-label">Total Key Moments</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon yellow">🔥</div>
                 <div class="stat-value">45</div>
-                <div class="stat-label">黄金开头</div>
+                <div class="stat-label">Product Demos</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon blue">📈</div>
                 <div class="stat-value">15.2%</div>
-                <div class="stat-label">平均转化率</div>
+                <div class="stat-label">Average Conversion Rate</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon red">🔄</div>
                 <div class="stat-value">3.2k</div>
-                <div class="stat-label">总使用次数</div>
+                <div class="stat-label">Total Usage Count</div>
             </div>
         </div>
         
-        <!-- 内容区域 -->
+        <!-- Content section -->
         <div class="content-section">
             <div class="tabs">
-                <div class="tab active">
-                    黄金开头
+                <div class="tab active" data-tab="product-demos">
+                    Product Demos
                     <span class="tab-count">(45)</span>
                 </div>
-                <div class="tab">
-                    转折点
+                <div class="tab" data-tab="before-after">
+                    Before & After
                     <span class="tab-count">(32)</span>
                 </div>
-                <div class="tab">
-                    情感高潮
+                <div class="tab" data-tab="customer-reviews">
+                    Customer Reviews
                     <span class="tab-count">(28)</span>
                 </div>
-                <div class="tab">
-                    行动引导
+                <div class="tab" data-tab="call-to-action">
+                    Call to Action
                     <span class="tab-count">(21)</span>
                 </div>
-                <div class="tab">
-                    全部片段
+                <div class="tab" data-tab="all-clips">
+                    All Clips
                     <span class="tab-count">(126)</span>
                 </div>
             </div>
@@ -677,33 +695,33 @@
             <div class="filter-bar">
                 <div class="filter-item">
                     <select class="filter-select">
-                        <option>所有项目</option>
-                        <option>春季新品推广</option>
-                        <option>618大促活动</option>
-                        <option>品牌升级宣传</option>
+                        <option>All Projects</option>
+                        <option>Eureka J15 Pro Max</option>
+                        <option>Holiday Campaign</option>
+                        <option>Feature Highlights</option>
                     </select>
                 </div>
                 
                 <div class="filter-item">
                     <select class="filter-select">
-                        <option>使用次数</option>
-                        <option>高频使用 (>50次)</option>
-                        <option>中频使用 (10-50次)</option>
-                        <option>低频使用 (<10次)</option>
+                        <option>Usage Count</option>
+                        <option>High Usage (>50)</option>
+                        <option>Medium Usage (10-50)</option>
+                        <option>Low Usage (<10)</option>
                     </select>
                 </div>
                 
                 <div class="filter-item">
                     <select class="filter-select">
-                        <option>转化率</option>
-                        <option>高转化 (>20%)</option>
-                        <option>中转化 (10%-20%)</option>
-                        <option>低转化 (<10%)</option>
+                        <option>Conversion Rate</option>
+                        <option>High Conversion (>20%)</option>
+                        <option>Medium Conversion (10%-20%)</option>
+                        <option>Low Conversion (<10%)</option>
                     </select>
                 </div>
                 
                 <div class="search-box">
-                    <input type="text" class="search-input" placeholder="搜索片段名称或标签...">
+                    <input type="text" class="search-input" placeholder="Search clips by name or tags...">
                     <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
@@ -713,409 +731,1078 @@
             
             <div class="usage-tip">
                 <span class="tip-icon">💡</span>
-                <span>提示：拖拽片段到剪辑软件或脚本编辑器中快速复用，支持批量选择</span>
+                <span>Tip: Drag clips to your editing software or timeline for quick reuse. Batch selection supported.</span>
             </div>
             
-            <div class="highlights-grid">
-                <!-- 片段卡片1 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E黄金3秒%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:03</span>
-                        <span class="highlight-type type-hook">开头钩子</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">悬念式开头</div>
-                        <div class="highlight-meta">
-                            <span>使用 156 次</span>
-                            <span>12.5%</span>
+            <!-- Product Demos Tab Content -->
+            <div class="tab-content active" id="product-demos-content">
+                <div class="highlights-grid">
+                    <!-- Product Demo Clips -->
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
                         </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                                89万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                </svg>
-                                78%
-                            </span>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ESelf-Emptying%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:03</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- 片段卡片2 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E问题痛点%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:05</span>
-                        <span class="highlight-type type-hook">开头钩子</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">用户痛点展示</div>
-                        <div class="highlight-meta">
-                            <span>使用 98 次</span>
-                            <span>15.2%</span>
-                        </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                                67万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                </svg>
-                                82%
-                            </span>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Self-Emptying Station Demo</div>
+                            <div class="highlight-meta">
+                                <span>Used 156 times</span>
+                                <span>12.5%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    890K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    78%
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- 片段卡片3 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%232196f3' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E视觉冲击%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:02</span>
-                        <span class="highlight-type type-hook">开头钩子</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">视觉冲击开场</div>
-                        <div class="highlight-meta">
-                            <span>使用 124 次</span>
-                            <span>18.7%</span>
+                    
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
                         </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                                123万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                </svg>
-                                85%
-                            </span>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPet%20Hair%20Test%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:05</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- 片段卡片4 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23f44336' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ECTA引导%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:04</span>
-                        <span class="highlight-type type-cta">行动引导</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">强力行动号召</div>
-                        <div class="highlight-meta">
-                            <span>使用 87 次</span>
-                            <span>22.1%</span>
-                        </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
-                                56万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 3h18l-1 9H4L3 3Z"></path>
-                                    <path d="M4 12h16v9H4z"></path>
-                                </svg>
-                                8.2%
-                            </span>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Pet Hair Pickup Test</div>
+                            <div class="highlight-meta">
+                                <span>Used 98 times</span>
+                                <span>15.2%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    670K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    82%
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- 片段卡片5 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E情感共鸣%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:06</span>
-                        <span class="highlight-type type-climax">情感高潮</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">情感高潮点</div>
-                        <div class="highlight-meta">
-                            <span>使用 65 次</span>
-                            <span>19.8%</span>
+                    
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
                         </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%232196f3' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EObstacle%20Avoid%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:02</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Obstacle Avoidance Demo</div>
+                            <div class="highlight-meta">
+                                <span>Used 124 times</span>
+                                <span>18.7%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    1.23M
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    85%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
-                                45万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                 </svg>
-                                16.5%
-                            </span>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EVs%20Competitor%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:05</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Eureka vs Competitor Test</div>
+                            <div class="highlight-meta">
+                                <span>Used 112 times</span>
+                                <span>20.3%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    980K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    88%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23795548' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ESmart%20Mapping%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:04</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Smart Mapping Technology</div>
+                            <div class="highlight-meta">
+                                <span>Used 89 times</span>
+                                <span>14.8%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    756K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    79%
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 片段卡片6 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E反转剧情%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:04</span>
-                        <span class="highlight-type type-transition">转折点</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">剧情反转点</div>
-                        <div class="highlight-meta">
-                            <span>使用 43 次</span>
-                            <span>16.5%</span>
+            </div>
+
+            <!-- Before & After Tab Content -->
+            <div class="tab-content" id="before-after-content">
+                <div class="highlights-grid">
+                    <!-- Before & After Clips -->
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
                         </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBefore/After%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:04</span>
+                            <span class="highlight-type type-transition">Before & After</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Dirty vs Clean Comparison</div>
+                            <div class="highlight-meta">
+                                <span>Used 43 times</span>
+                                <span>16.5%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    380K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    72%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
-                                38万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                 </svg>
-                                72%
-                            </span>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e91e63' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPet Hair Clean%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:06</span>
+                            <span class="highlight-type type-transition">Before & After</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Pet Hair Before/After</div>
+                            <div class="highlight-meta">
+                                <span>Used 67 times</span>
+                                <span>19.2%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    542K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    84%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23607d8b' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ECarpet Cleaning%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:05</span>
+                            <span class="highlight-type type-transition">Before & After</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Deep Carpet Cleaning Result</div>
+                            <div class="highlight-meta">
+                                <span>Used 34 times</span>
+                                <span>17.8%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    298K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    76%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EKitchen Floor%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:03</span>
+                            <span class="highlight-type type-transition">Before & After</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Kitchen Floor Transformation</div>
+                            <div class="highlight-meta">
+                                <span>Used 52 times</span>
+                                <span>21.4%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    425K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    89%
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 片段卡片7 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23009688' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E对比效果%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:05</span>
-                        <span class="highlight-type type-hook">开头钩子</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">前后对比展示</div>
-                        <div class="highlight-meta">
-                            <span>使用 112 次</span>
-                            <span>20.3%</span>
+            </div>
+
+            <!-- Customer Reviews Tab Content -->
+            <div class="tab-content" id="customer-reviews-content">
+                <div class="highlights-grid">
+                    <!-- Customer Review Clips -->
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
                         </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EUser%20Review%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:06</span>
+                            <span class="highlight-type type-climax">Customer Review</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Happy Customer Testimonial</div>
+                            <div class="highlight-meta">
+                                <span>Used 65 times</span>
+                                <span>19.8%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    450K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    16.5%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
-                                98万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                 </svg>
-                                88%
-                            </span>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23673ab7' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EPet Owner Story%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:08</span>
+                            <span class="highlight-type type-climax">Customer Review</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Pet Owner Success Story</div>
+                            <div class="highlight-meta">
+                                <span>Used 41 times</span>
+                                <span>23.7%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    623K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    18.9%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23e91e63' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ESenior Customer%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:05</span>
+                            <span class="highlight-type type-climax">Customer Review</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Senior Customer Ease-of-Use</div>
+                            <div class="highlight-meta">
+                                <span>Used 38 times</span>
+                                <span>25.1%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    289K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    21.3%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBusy Family%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:07</span>
+                            <span class="highlight-type type-climax">Customer Review</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Busy Family Lifestyle Solution</div>
+                            <div class="highlight-meta">
+                                <span>Used 29 times</span>
+                                <span>18.4%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    347K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    14.7%
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 片段卡片8 -->
-                <div class="highlight-card" draggable="true">
-                    <div class="highlight-actions">
-                        <button class="action-btn" title="编辑">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" title="删除">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="highlight-preview">
-                        <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E紧迫感%3C/text%3E%3C/svg%3E">
-                        <div class="highlight-play">▶️</div>
-                        <span class="highlight-duration">0:03</span>
-                        <span class="highlight-type type-cta">行动引导</span>
-                    </div>
-                    <div class="highlight-info">
-                        <div class="highlight-title">限时优惠提醒</div>
-                        <div class="highlight-meta">
-                            <span>使用 76 次</span>
-                            <span>24.5%</span>
-                        </div>
-                        <div class="highlight-stats">
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
+            </div>
+
+            <!-- Call to Action Tab Content -->
+            <div class="tab-content" id="call-to-action-content">
+                <div class="highlights-grid">
+                    <!-- Call to Action Clips -->
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
-                                52万
-                            </span>
-                            <span class="highlight-stat">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 3h18l-1 9H4L3 3Z"></path>
-                                    <path d="M4 12h16v9H4z"></path>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                 </svg>
-                                12.3%
-                            </span>
+                            </button>
                         </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23f44336' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ELimited%20Offer%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:04</span>
+                            <span class="highlight-type type-cta">Call to Action</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Limited Time Offer CTA</div>
+                            <div class="highlight-meta">
+                                <span>Used 87 times</span>
+                                <span>22.1%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    560K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                        <path d="M4 12h16v9H4z"></path>
+                                    </svg>
+                                    8.2%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EFlash%20Sale%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:03</span>
+                            <span class="highlight-type type-cta">Call to Action</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Flash Sale Countdown</div>
+                            <div class="highlight-meta">
+                                <span>Used 76 times</span>
+                                <span>24.5%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    520K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                        <path d="M4 12h16v9H4z"></path>
+                                    </svg>
+                                    12.3%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%234caf50' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBuy%20Now%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:02</span>
+                            <span class="highlight-type type-cta">Call to Action</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Direct Buy Now CTA</div>
+                            <div class="highlight-meta">
+                                <span>Used 63 times</span>
+                                <span>19.7%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    398K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                        <path d="M4 12h16v9H4z"></path>
+                                    </svg>
+                                    9.4%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='200' height='112'/%3E%3Ctext fill='white' font-size='12' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EFree%20Shipping%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:03</span>
+                            <span class="highlight-type type-cta">Call to Action</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Free Shipping Incentive</div>
+                            <div class="highlight-meta">
+                                <span>Used 45 times</span>
+                                <span>16.3%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    267K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                        <path d="M4 12h16v9H4z"></path>
+                                    </svg>
+                                    7.8%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Clips Tab Content -->
+            <div class="tab-content" id="all-clips-content">
+                <div class="highlights-grid">
+                    <!-- All Clips (Combined from all categories) -->
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%232196f3' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EObstacle%20Avoid%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:02</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Obstacle Avoidance Demo</div>
+                            <div class="highlight-meta">
+                                <span>Used 124 times</span>
+                                <span>18.7%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    1.23M
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    85%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff9800' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3ESelf-Emptying%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:03</span>
+                            <span class="highlight-type type-hook">Product Demo</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Self-Emptying Station Demo</div>
+                            <div class="highlight-meta">
+                                <span>Used 156 times</span>
+                                <span>12.5%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    890K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    78%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ff5722' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EFlash%20Sale%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:03</span>
+                            <span class="highlight-type type-cta">Call to Action</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Flash Sale Countdown</div>
+                            <div class="highlight-meta">
+                                <span>Used 76 times</span>
+                                <span>24.5%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    520K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3h18l-1 9H4L3 3Z"></path>
+                                        <path d="M4 12h16v9H4z"></path>
+                                    </svg>
+                                    12.3%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%239c27b0' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EUser%20Review%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:06</span>
+                            <span class="highlight-type type-climax">Customer Review</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Happy Customer Testimonial</div>
+                            <div class="highlight-meta">
+                                <span>Used 65 times</span>
+                                <span>19.8%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    450K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    16.5%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card" draggable="true">
+                        <div class="highlight-actions">
+                            <button class="action-btn" title="Edit">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn" title="Delete">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="highlight-preview">
+                            <img src="data:image/svg+xml,%3Csvg width='200' height='112' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%233f51b5' width='200' height='112'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EBefore/After%3C/text%3E%3C/svg%3E">
+                            <div class="highlight-play">▶️</div>
+                            <span class="highlight-duration">0:04</span>
+                            <span class="highlight-type type-transition">Before & After</span>
+                        </div>
+                        <div class="highlight-info">
+                            <div class="highlight-title">Dirty vs Clean Comparison</div>
+                            <div class="highlight-meta">
+                                <span>Used 43 times</span>
+                                <span>16.5%</span>
+                            </div>
+                            <div class="highlight-stats">
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    380K
+                                </span>
+                                <span class="highlight-stat">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    </svg>
+                                    72%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">🎬</div>
+                        <h3 style="margin-bottom: 8px;">All Key Moments</h3>
+                        <p>Complete collection of reusable clips from all categories. Drag clips to your timeline for quick reuse.</p>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 拖拽提示区域 -->
+        <!-- Drag Drop Zone -->
         <div class="drop-zone" id="dropZone">
             <div class="drop-text">
                 🎬<br>
-                拖拽到此处复用
+                Drag here to reuse
             </div>
         </div>
     </main>
     
     <script>
-        // 创建片段
+        // Create clip
         function createHighlight() {
-            alert('创建新片段功能开发中...');
+            alert('Create new clip feature in development...');
         }
         
-        // 标签页切换
+        // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Remove active class from all tabs
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
                 
-                // 这里可以添加切换内容的逻辑
-                console.log('切换到:', this.textContent.trim());
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show the corresponding tab content
+                const tabName = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabName + '-content');
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                }
             });
         });
         
-        // 拖拽功能
+        // Drag functionality
         const highlights = document.querySelectorAll('.highlight-card');
         const dropZone = document.getElementById('dropZone');
         let draggedElement = null;
@@ -1126,7 +1813,7 @@
                 this.classList.add('dragging');
                 dropZone.classList.add('active');
                 
-                // 设置拖拽数据
+                // Set drag data
                 e.dataTransfer.effectAllowed = 'copy';
                 e.dataTransfer.setData('text/plain', this.querySelector('.highlight-title').textContent);
             });
@@ -1138,7 +1825,7 @@
             });
         });
         
-        // 拖拽区域事件
+        // Drop zone events
         dropZone.addEventListener('dragover', function(e) {
             e.preventDefault();
             this.classList.add('over');
@@ -1155,37 +1842,37 @@
             
             if (draggedElement) {
                 const title = draggedElement.querySelector('.highlight-title').textContent;
-                console.log('复用片段:', title);
-                alert(`已复用片段: ${title}`);
+                console.log('Reusing clip:', title);
+                alert(`Clip reused: ${title}`);
             }
         });
         
-        // 播放按钮点击
+        // Play button click
         document.querySelectorAll('.highlight-play').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('播放片段预览');
+                console.log('Playing clip preview');
             });
         });
         
-        // 操作按钮
+        // Action buttons
         document.querySelectorAll('.action-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const action = this.getAttribute('title');
-                console.log(`执行操作: ${action}`);
+                console.log(`Executing action: ${action}`);
             });
         });
         
-        // 搜索功能
+        // Search functionality
         document.querySelector('.search-input').addEventListener('input', function(e) {
-            console.log('搜索片段:', e.target.value);
+            console.log('Searching clips:', e.target.value);
         });
         
-        // 筛选功能
+        // Filter functionality
         document.querySelectorAll('.filter-select').forEach(select => {
             select.addEventListener('change', function(e) {
-                console.log('筛选条件变更:', e.target.value);
+                console.log('Filter changed:', e.target.value);
             });
         });
     </script>

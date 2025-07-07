@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>发布管理 - 短视频营销DAM</title>
+    <title>Publishing Management - Eureka Robot Vacuum DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Header navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #ff6f00;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 选项卡 */
+        /* Tabs */
         .tabs {
             display: flex;
             gap: 32px;
@@ -179,8 +179,17 @@
             border-radius: 10px;
             font-weight: 600;
         }
+
+        /* Tab content visibility */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
         
-        /* 发布列表 */
+        /* Publish列表 */
         .publish-list {
             background: #fff;
             border-radius: 12px;
@@ -221,7 +230,7 @@
             cursor: pointer;
         }
         
-        /* 发布项 */
+        /* Publish项 */
         .publish-item {
             padding: 20px;
             border-bottom: 1px solid #f0f2f5;
@@ -292,7 +301,7 @@
             color: #ff6f00;
         }
         
-        /* 发布状态 */
+        /* Publish状态 */
         .publish-status {
             display: inline-flex;
             align-items: center;
@@ -323,7 +332,7 @@
             color: #c62828;
         }
         
-        /* 平台标签 */
+        /* 平台Tags */
         .platform-tags {
             display: flex;
             gap: 8px;
@@ -358,23 +367,23 @@
             height: 12px;
         }
         
-        .platform-icon.douyin {
-            background: #000;
-        }
-        
-        .platform-icon.xiaohongshu {
+        .platform-icon.instagram {
             background: #E4405F;
         }
         
-        .platform-icon.kuaishou {
-            background: #1877F2;
-        }
-        
-        .platform-icon.bilibili {
+        .platform-icon.youtube {
             background: #FF0000;
         }
         
-        /* 发布进度 */
+        .platform-icon.tiktok {
+            background: #000;
+        }
+        
+        .platform-icon.facebook {
+            background: #1877F2;
+        }
+        
+        /* Publish Progress */
         .publish-progress {
             margin-top: 12px;
         }
@@ -400,7 +409,7 @@
             transition: width 0.3s;
         }
         
-        /* 创建发布弹窗 */
+        /* Create publish modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -440,7 +449,7 @@
             color: #666;
         }
         
-        /* 步骤指示器 */
+        /* Steps indicator */
         .steps {
             display: flex;
             justify-content: space-between;
@@ -543,7 +552,7 @@
             box-shadow: 0 0 0 3px rgba(255,111,0,0.1);
         }
         
-        /* 平台选择 */
+        /* Platform selection */
         .platform-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -587,7 +596,7 @@
             color: #333;
         }
         
-        /* 素材预览 */
+        /* Asset Preview */
         .media-preview {
             background: #f8f9fa;
             border-radius: 8px;
@@ -613,7 +622,7 @@
             color: #666;
         }
         
-        /* 时间选择 */
+        /* Time selection */
         .datetime-picker {
             display: flex;
             gap: 12px;
@@ -628,7 +637,7 @@
             font-size: 14px;
         }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 768px) {
             .page-header {
                 flex-direction: column;
@@ -647,11 +656,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Header navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">发布管理</h1>
+                <h1 class="app-title">Publishing Management</h1>
             </div>
             
             <div class="header-actions">
@@ -659,19 +668,19 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M3 3h18v18H3zM12 8v8m-4-4h8"></path>
                     </svg>
-                    发布日历
+                    Publishing Calendar
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">发布管理</h2>
-                <p class="page-subtitle">多平台智能发布，一键分发管理</p>
+                <h2 class="page-title">Publishing Management</h2>
+                <p class="page-subtitle">Smart multi-platform publishing for robot vacuum content</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
@@ -679,66 +688,67 @@
                         <polyline points="23 4 23 10 17 10"></polyline>
                         <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
                     </svg>
-                    刷新状态
+                    Refresh Status
                 </button>
                 <button class="btn btn-primary" onclick="showPublishModal()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                    创建发布
+                    Create Post
                 </button>
             </div>
         </div>
         
         <!-- 选项卡 -->
         <div class="tabs">
-            <div class="tab active">
-                全部发布
+            <div class="tab active" data-tab="all-posts">
+                All Posts
             </div>
-            <div class="tab">
-                定时待发
+            <div class="tab" data-tab="scheduled">
+                Scheduled
                 <span class="tab-badge">3</span>
             </div>
-            <div class="tab">
-                发布中
+            <div class="tab" data-tab="publishing">
+                Publishing
                 <span class="tab-badge">2</span>
             </div>
-            <div class="tab">
-                已发布
+            <div class="tab" data-tab="published">
+                Published
             </div>
-            <div class="tab">
-                发布失败
+            <div class="tab" data-tab="failed">
+                Failed
             </div>
         </div>
         
-        <!-- 发布列表 -->
+        <!-- All Posts Tab Content -->
+        <div class="tab-content active" id="all-posts-content">
         <div class="publish-list">
             <div class="list-header">
                 <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="搜索发布内容...">
+                    <input type="text" class="search-input" placeholder="Search posts...">
                     <select class="filter-select">
-                        <option>所有平台</option>
-                        <option>TikTok</option>
+                        <option>All Platforms</option>
                         <option>Instagram</option>
-                        <option>Facebook</option>
                         <option>YouTube</option>
+                        <option>TikTok</option>
+                        <option>Facebook</option>
                     </select>
                     <select class="filter-select">
-                        <option>最近7天</option>
-                        <option>最近30天</option>
-                        <option>自定义时间</option>
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>Custom range</option>
                     </select>
                 </div>
             </div>
             
-            <!-- 发布项1 - 定时待发 -->
+            <!-- Post 1 - Scheduled -->
             <div class="publish-item">
                 <div class="item-header">
                     <div class="item-info">
                         <div class="item-title">
-                            618大促主推视频
-                            <span class="publish-status status-scheduled">定时待发</span>
+                            Eureka E20 Plus Smart Cleaning Demo
+                            <span class="publish-status status-scheduled">Scheduled</span>
                         </div>
                         <div class="item-meta">
                             <span class="meta-item">
@@ -746,57 +756,59 @@
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                计划发布：今天 20:00
+                                Scheduled: Today 8:00 PM
                             </span>
                             <span class="meta-item">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
                                 </svg>
-                                创建人：王经理
+                                Created by: Marketing Team
                             </span>
                         </div>
                     </div>
                     <div class="item-actions">
-                        <button class="action-btn">编辑</button>
-                        <button class="action-btn">取消发布</button>
+                        <button class="action-btn">Edit</button>
+                        <button class="action-btn">Cancel</button>
                     </div>
                 </div>
                 <div class="platform-tags">
                     <div class="platform-tag">
-                        <span class="platform-icon douyin">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 5v13M8 9l4-4 4 4M8 15l4 4 4-4" stroke="white" stroke-width="2" fill="none"/>
-                            </svg>
-                        </span>
-                        <span>TikTok</span>
-                    </div>
-                    <div class="platform-tag">
-                        <span class="platform-icon xiaohongshu">
+                        <span class="platform-icon instagram">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
                             </svg>
                         </span>
                         <span>Instagram</span>
                     </div>
                     <div class="platform-tag">
-                        <span class="platform-icon kuaishou">
+                        <span class="platform-icon youtube">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
                             </svg>
                         </span>
-                        <span>Facebook</span>
+                        <span>YouTube</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 发布项2 - 发布中 -->
+            <!-- Post 2 - Publishing -->
             <div class="publish-item">
                 <div class="item-header">
                     <div class="item-info">
                         <div class="item-title">
-                            新品开箱测评
-                            <span class="publish-status status-publishing">发布中</span>
+                            Eureka J15 Pro Ultra Unboxing & Review
+                            <span class="publish-status status-publishing">Publishing</span>
                         </div>
                         <div class="item-meta">
                             <span class="meta-item">
@@ -804,51 +816,53 @@
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                开始时间：5分钟前
+                                Started: 5 minutes ago
                             </span>
                             <span class="meta-item">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
                                 </svg>
-                                创建人：李运营
+                                Created by: Content Creator
                             </span>
                         </div>
                     </div>
                     <div class="item-actions">
-                        <button class="action-btn">查看详情</button>
+                        <button class="action-btn">View Details</button>
                     </div>
                 </div>
                 <div class="platform-tags">
                     <div class="platform-tag">
-                        <span class="platform-icon douyin">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 5v13M8 9l4-4 4 4M8 15l4 4 4-4" stroke="white" stroke-width="2" fill="none"/>
-                            </svg>
-                        </span>
-                        <span>TikTok ✓</span>
-                    </div>
-                    <div class="platform-tag">
-                        <span class="platform-icon xiaohongshu">
+                        <span class="platform-icon instagram">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
                             </svg>
                         </span>
-                        <span>Instagram ...</span>
+                        <span>Instagram ✓</span>
                     </div>
                     <div class="platform-tag">
-                        <span class="platform-icon bilibili">
+                        <span class="platform-icon youtube">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
                             </svg>
                         </span>
                         <span>YouTube ...</span>
                     </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok ...</span>
+                    </div>
                 </div>
                 <div class="publish-progress">
                     <div class="progress-info">
-                        <span>发布进度</span>
-                        <span>1/3 完成</span>
+                        <span>Publishing Progress</span>
+                        <span>1/3 Completed</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 33%;"></div>
@@ -856,13 +870,13 @@
                 </div>
             </div>
             
-            <!-- 发布项3 - 已发布 -->
+            <!-- Post 3 - Published -->
             <div class="publish-item">
                 <div class="item-header">
                     <div class="item-info">
                         <div class="item-title">
-                            母亲节特别企划
-                            <span class="publish-status status-published">已发布</span>
+                            Pet Hair Challenge - Eureka vs Competition
+                            <span class="publish-status status-published">Published</span>
                         </div>
                         <div class="item-meta">
                             <span class="meta-item">
@@ -870,71 +884,73 @@
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                发布时间：2天前
+                                Published: 2 days ago
                             </span>
                             <span class="meta-item">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                     <circle cx="12" cy="12" r="3"></circle>
                                 </svg>
-                                总播放：523万
+                                Total Views: 5.2M
                             </span>
                             <span class="meta-item">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
                                 </svg>
-                                总点赞：45.2万
+                                Total Likes: 452K
                             </span>
                         </div>
                     </div>
                     <div class="item-actions">
-                        <button class="action-btn">数据分析</button>
-                        <button class="action-btn">再次发布</button>
+                        <button class="action-btn">Analytics</button>
+                        <button class="action-btn">Repost</button>
                     </div>
                 </div>
                 <div class="platform-tags">
                     <div class="platform-tag">
-                        <span class="platform-icon douyin">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 5v13M8 9l4-4 4 4M8 15l4 4 4-4" stroke="white" stroke-width="2" fill="none"/>
-                            </svg>
-                        </span>
-                        <span>TikTok</span>
-                    </div>
-                    <div class="platform-tag">
-                        <span class="platform-icon xiaohongshu">
+                        <span class="platform-icon instagram">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
                             </svg>
                         </span>
                         <span>Instagram</span>
                     </div>
                     <div class="platform-tag">
-                        <span class="platform-icon kuaishou">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </span>
-                        <span>Facebook</span>
-                    </div>
-                    <div class="platform-tag">
-                        <span class="platform-icon bilibili">
+                        <span class="platform-icon youtube">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
                             </svg>
                         </span>
                         <span>YouTube</span>
                     </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon facebook">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </div>
                 </div>
             </div>
             
-            <!-- 发布项4 - 失败 -->
+            <!-- Post 4 - Failed -->
             <div class="publish-item">
                 <div class="item-header">
                     <div class="item-info">
                         <div class="item-title">
-                            产品使用教程
-                            <span class="publish-status status-failed">发布失败</span>
+                            How to Use Multi-Floor Mapping Feature
+                            <span class="publish-status status-failed">Failed</span>
                         </div>
                         <div class="item-meta">
                             <span class="meta-item">
@@ -942,7 +958,7 @@
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg>
-                                失败时间：1小时前
+                                Failed: 1 hour ago
                             </span>
                             <span class="meta-item">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -950,18 +966,18 @@
                                     <line x1="12" y1="8" x2="12" y2="12"></line>
                                     <line x1="12" y1="16" x2="12.01" y2="16"></line>
                                 </svg>
-                                原因：视频格式不符合平台要求
+                                Reason: Video format not supported by platform
                             </span>
                         </div>
                     </div>
                     <div class="item-actions">
-                        <button class="action-btn">查看原因</button>
-                        <button class="action-btn">重新发布</button>
+                        <button class="action-btn">View Details</button>
+                        <button class="action-btn">Retry</button>
                     </div>
                 </div>
                 <div class="platform-tags">
                     <div class="platform-tag">
-                        <span class="platform-icon bilibili">
+                        <span class="platform-icon youtube">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
                             </svg>
@@ -971,40 +987,685 @@
                 </div>
             </div>
         </div>
+        </div>
+
+        <!-- Scheduled Tab Content -->
+        <div class="tab-content" id="scheduled-content">
+        <div class="publish-list">
+            <div class="list-header">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search scheduled posts...">
+                    <select class="filter-select">
+                        <option>Next 24 hours</option>
+                        <option>This week</option>
+                        <option>This month</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Scheduled Post 1 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Eureka E20 Plus Smart Cleaning Demo
+                            <span class="publish-status status-scheduled">Scheduled</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Scheduled: Today 8:00 PM
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                Created by: Marketing Team
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">Edit</button>
+                        <button class="action-btn">Cancel</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon instagram">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scheduled Post 2 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Holiday Special: Black Friday Robot Vacuum Deals
+                            <span class="publish-status status-scheduled">Scheduled</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Scheduled: Tomorrow 9:00 AM
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                Created by: Sales Team
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">Edit</button>
+                        <button class="action-btn">Cancel</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon facebook">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon instagram">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scheduled Post 3 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Customer Success Story: Sarah's Pet Hair Solution
+                            <span class="publish-status status-scheduled">Scheduled</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Scheduled: Friday 6:00 PM
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                Created by: Content Creator
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">Edit</button>
+                        <button class="action-btn">Cancel</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Publishing Tab Content -->
+        <div class="tab-content" id="publishing-content">
+        <div class="publish-list">
+            <div class="list-header">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search publishing posts...">
+                    <select class="filter-select">
+                        <option>Show All</option>
+                        <option>Upload in Progress</option>
+                        <option>Processing</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Publishing Post 1 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Eureka J15 Pro Ultra Unboxing & Review
+                            <span class="publish-status status-publishing">Publishing</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Started: 5 minutes ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                Created by: Content Creator
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">View Details</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon instagram">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        <span>Instagram ✓</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube ...</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok ...</span>
+                    </div>
+                </div>
+                <div class="publish-progress">
+                    <div class="progress-info">
+                        <span>Publishing Progress</span>
+                        <span>1/3 Completed</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 33%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publishing Post 2 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Smart Mapping Feature Demonstration
+                            <span class="publish-status status-publishing">Publishing</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Started: 2 minutes ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                Created by: Marketing Team
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">View Details</button>
+                        <button class="action-btn">Cancel</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube ...</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon facebook">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook ...</span>
+                    </div>
+                </div>
+                <div class="publish-progress">
+                    <div class="progress-info">
+                        <span>Publishing Progress</span>
+                        <span>0/2 Completed</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 10%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Published Tab Content -->
+        <div class="tab-content" id="published-content">
+        <div class="publish-list">
+            <div class="list-header">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search published posts...">
+                    <select class="filter-select">
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>Last 90 days</option>
+                        <option>All time</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Sort by date</option>
+                        <option>Sort by views</option>
+                        <option>Sort by engagement</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Published Post 1 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Pet Hair Challenge - Eureka vs Competition
+                            <span class="publish-status status-published">Published</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Published: 2 days ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                Total Views: 5.2M
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                                </svg>
+                                Total Likes: 452K
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">Analytics</button>
+                        <button class="action-btn">Repost</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon instagram">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon facebook">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Published Post 2 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Eureka E20 Plus Review: Worth the Upgrade?
+                            <span class="publish-status status-published">Published</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Published: 1 week ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                Total Views: 3.8M
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                                </svg>
+                                Total Likes: 298K
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">Analytics</button>
+                        <button class="action-btn">Repost</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon instagram">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Published Post 3 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Quick Setup Guide: Getting Started with Eureka
+                            <span class="publish-status status-published">Published</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Published: 2 weeks ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                Total Views: 1.2M
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                                </svg>
+                                Total Likes: 87K
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">Analytics</button>
+                        <button class="action-btn">Repost</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon facebook">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Failed Tab Content -->
+        <div class="tab-content" id="failed-content">
+        <div class="publish-list">
+            <div class="list-header">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search failed posts...">
+                    <select class="filter-select">
+                        <option>All failures</option>
+                        <option>Upload errors</option>
+                        <option>Format issues</option>
+                        <option>API errors</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Failed Post 1 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            How to Use Multi-Floor Mapping Feature
+                            <span class="publish-status status-failed">Failed</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Failed: 1 hour ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                                Reason: Video format not supported by platform
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">View Details</button>
+                        <button class="action-btn">Retry</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon youtube">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/>
+                            </svg>
+                        </span>
+                        <span>YouTube ✗</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Failed Post 2 -->
+            <div class="publish-item">
+                <div class="item-header">
+                    <div class="item-info">
+                        <div class="item-title">
+                            Weekly Cleaning Schedule Tips
+                            <span class="publish-status status-failed">Failed</span>
+                        </div>
+                        <div class="item-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Failed: 3 hours ago
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                                Reason: API rate limit exceeded
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="action-btn">View Details</button>
+                        <button class="action-btn">Retry</button>
+                    </div>
+                </div>
+                <div class="platform-tags">
+                    <div class="platform-tag">
+                        <span class="platform-icon instagram">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        <span>Instagram ✗</span>
+                    </div>
+                    <div class="platform-tag">
+                        <span class="platform-icon tiktok">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </span>
+                        <span>TikTok ✗</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
     </main>
     
-    <!-- 创建发布弹窗 -->
+    <!-- Create Post Modal -->
     <div class="modal-overlay" id="publishModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">创建发布任务</h3>
-                <p class="modal-subtitle">选择素材，配置发布信息，一键分发到多个平台</p>
+                <h3 class="modal-title">Create Publishing Task</h3>
+                <p class="modal-subtitle">Select content, configure settings, and publish to multiple platforms</p>
             </div>
             
-            <!-- 步骤指示器 -->
+            <!-- Step Indicator -->
             <div class="steps">
                 <div class="step active">
                     <div class="step-number">1</div>
-                    <div class="step-label">选择素材</div>
+                    <div class="step-label">Select Content</div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <div class="step-label">选择平台</div>
+                    <div class="step-label">Select Platforms</div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div class="step-label">配置信息</div>
+                    <div class="step-label">Configure</div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
-                    <div class="step-label">确认发布</div>
+                    <div class="step-label">Confirm</div>
                 </div>
             </div>
             
-            <!-- 步骤1：选择素材 -->
+            <!-- Step 1: Select Content -->
             <div class="step-content" id="step1">
                 <div class="form-section">
-                    <h4 class="section-title">选择要发布的素材</h4>
+                    <h4 class="section-title">Select Content to Publish</h4>
                     <div class="media-preview">
                         <div class="preview-placeholder">🎬</div>
                         <div class="preview-info">
@@ -1014,73 +1675,73 @@
                                     <polyline points="17 8 12 3 7 8"></polyline>
                                     <line x1="12" y1="3" x2="12" y2="15"></line>
                                 </svg>
-                                从素材库选择
+                                Select from Library
                             </button>
-                            <p style="margin-top: 12px; font-size: 13px; color: #999;">或拖拽文件到此处</p>
+                            <p style="margin-top: 12px; font-size: 13px; color: #999;">or drag & drop files here</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 步骤2：选择平台 -->
+            <!-- Step 2: Select Platforms -->
             <div class="step-content" id="step2" style="display: none;">
                 <div class="form-section">
-                    <h4 class="section-title">选择发布平台</h4>
+                    <h4 class="section-title">Select Publishing Platforms</h4>
                     <div class="platform-grid">
                         <div class="platform-card selected">
+                            <div class="platform-logo">🎵</div>
+                            <div class="platform-name">Instagram</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">🎥</div>
+                            <div class="platform-name">YouTube</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-logo">🌐</div>
+                            <div class="platform-name">Facebook</div>
+                        </div>
+                        <div class="platform-card">
                             <div class="platform-logo">🎵</div>
                             <div class="platform-name">TikTok</div>
                         </div>
                         <div class="platform-card">
-                            <div class="platform-logo">📕</div>
-                            <div class="platform-name">Instagram</div>
+                            <div class="platform-logo">📧</div>
+                            <div class="platform-name">LinkedIn</div>
                         </div>
                         <div class="platform-card">
-                            <div class="platform-logo">🎬</div>
-                            <div class="platform-name">Facebook</div>
-                        </div>
-                        <div class="platform-card">
-                            <div class="platform-logo">📺</div>
-                            <div class="platform-name">YouTube</div>
-                        </div>
-                        <div class="platform-card">
-                            <div class="platform-logo">📱</div>
-                            <div class="platform-name">视频号</div>
-                        </div>
-                        <div class="platform-card">
-                            <div class="platform-logo">🎞️</div>
-                            <div class="platform-name">西瓜视频</div>
+                            <div class="platform-logo">📢</div>
+                            <div class="platform-name">Twitter</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 步骤3：配置信息 -->
+            <!-- Step 3: Configure Information -->
             <div class="step-content" id="step3" style="display: none;">
                 <div class="form-section">
-                    <h4 class="section-title">基础信息</h4>
+                    <h4 class="section-title">Basic Information</h4>
                     <div class="form-group">
-                        <label class="form-label">发布标题</label>
-                        <input type="text" class="form-input" placeholder="输入视频标题...">
+                        <label class="form-label">Post Title</label>
+                        <input type="text" class="form-input" placeholder="Enter video title...">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">视频描述</label>
-                        <textarea class="form-textarea" placeholder="输入视频描述文案..."></textarea>
+                        <label class="form-label">Video Description</label>
+                        <textarea class="form-textarea" placeholder="Enter video description..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">话题标签</label>
-                        <input type="text" class="form-input" placeholder="#新品上市 #好物推荐">
+                        <label class="form-label">Hashtags</label>
+                        <input type="text" class="form-input" placeholder="#EurekaClean #RobotVacuum #SmartHome">
                     </div>
                 </div>
                 
                 <div class="form-section">
-                    <h4 class="section-title">发布时间</h4>
+                    <h4 class="section-title">Publishing Time</h4>
                     <div class="form-group">
                         <label class="form-label">
-                            <input type="radio" name="publish-time" checked> 立即发布
+                            <input type="radio" name="publish-time" checked> Publish Now
                         </label>
                         <label class="form-label" style="margin-top: 12px;">
-                            <input type="radio" name="publish-time"> 定时发布
+                            <input type="radio" name="publish-time"> Schedule for Later
                         </label>
                         <div class="datetime-picker" style="margin-top: 12px;">
                             <input type="date" class="date-input">
@@ -1090,33 +1751,33 @@
                 </div>
             </div>
             
-            <!-- 步骤4：确认发布 -->
+            <!-- Step 4: Confirm Publishing -->
             <div class="step-content" id="step4" style="display: none;">
                 <div class="form-section">
-                    <h4 class="section-title">确认发布信息</h4>
+                    <h4 class="section-title">Confirm Publishing Details</h4>
                     <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
                         <div style="margin-bottom: 16px;">
-                            <strong>素材名称：</strong>618大促主推视频.mp4
+                            <strong>Content Name:</strong>Eureka-E20-Plus-Demo.mp4
                         </div>
                         <div style="margin-bottom: 16px;">
-                            <strong>发布平台：</strong>TikTok、Instagram、Facebook
+                            <strong>Platforms:</strong>Instagram, YouTube, TikTok
                         </div>
                         <div style="margin-bottom: 16px;">
-                            <strong>发布时间：</strong>今天 20:00
+                            <strong>Publish Time:</strong>Today 8:00 PM
                         </div>
                         <div>
-                            <strong>预计完成：</strong>20:15（15分钟）
+                            <strong>Est. Completion:</strong>8:15 PM (15 minutes)
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 操作按钮 -->
+            <!-- Action Buttons -->
             <div style="display: flex; gap: 12px; margin-top: 32px;">
-                <button class="btn btn-secondary" style="flex: 1;" onclick="closeModal()">取消</button>
-                <button class="btn btn-secondary" id="prevBtn" style="flex: 1; display: none;" onclick="prevStep()">上一步</button>
-                <button class="btn btn-primary" id="nextBtn" style="flex: 1;" onclick="nextStep()">下一步</button>
-                <button class="btn btn-primary" id="publishBtn" style="flex: 1; display: none;" onclick="confirmPublish()">确认发布</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-secondary" id="prevBtn" style="flex: 1; display: none;" onclick="prevStep()">Previous</button>
+                <button class="btn btn-primary" id="nextBtn" style="flex: 1;" onclick="nextStep()">Next</button>
+                <button class="btn btn-primary" id="publishBtn" style="flex: 1; display: none;" onclick="confirmPublish()">Confirm Publish</button>
             </div>
         </div>
     </div>
@@ -1125,19 +1786,19 @@
         let currentStep = 1;
         const totalSteps = 4;
         
-        // 显示发布弹窗
+        // Show publish modal
         function showPublishModal() {
             document.getElementById('publishModal').style.display = 'flex';
         }
         
-        // 关闭弹窗
+        // Close modal
         function closeModal() {
             document.getElementById('publishModal').style.display = 'none';
             currentStep = 1;
             updateStepDisplay();
         }
         
-        // 下一步
+        // Next step
         function nextStep() {
             if (currentStep < totalSteps) {
                 currentStep++;
@@ -1145,7 +1806,7 @@
             }
         }
         
-        // 上一步
+        // Previous step
         function prevStep() {
             if (currentStep > 1) {
                 currentStep--;
@@ -1153,9 +1814,9 @@
             }
         }
         
-        // 更新步骤显示
+        // Update step display
         function updateStepDisplay() {
-            // 更新步骤指示器
+            // Update step indicators
             document.querySelectorAll('.step').forEach((step, index) => {
                 step.classList.remove('active', 'completed');
                 if (index + 1 === currentStep) {
@@ -1165,60 +1826,72 @@
                 }
             });
             
-            // 更新步骤内容
+            // Update step content
             document.querySelectorAll('.step-content').forEach(content => {
                 content.style.display = 'none';
             });
             document.getElementById(`step${currentStep}`).style.display = 'block';
             
-            // 更新按钮
+            // Update buttons
             document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
             document.getElementById('nextBtn').style.display = currentStep < totalSteps ? 'block' : 'none';
             document.getElementById('publishBtn').style.display = currentStep === totalSteps ? 'block' : 'none';
         }
         
-        // 确认发布
+        // Confirm publish
         function confirmPublish() {
-            console.log('确认发布');
+            console.log('Confirming publish...');
             closeModal();
-            alert('发布任务已创建！');
+            alert('Publishing task created successfully!');
         }
         
-        // 点击遮罩关闭
+        // Click overlay to close
         document.getElementById('publishModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
         
-        // 选项卡切换
+        // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Remove active class from all tabs
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                console.log('切换到:', this.textContent.trim());
+                
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show the corresponding tab content
+                const tabName = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabName + '-content');
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                }
             });
         });
         
-        // 平台卡片选择
+        // Platform card selection
         document.querySelectorAll('.platform-card').forEach(card => {
             card.addEventListener('click', function() {
                 this.classList.toggle('selected');
             });
         });
         
-        // 操作按钮
+        // Action buttons
         document.querySelectorAll('.action-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('操作:', this.textContent);
+                console.log('Action:', this.textContent);
             });
         });
         
-        // 发布项点击
+        // Publish item click
         document.querySelectorAll('.publish-item').forEach(item => {
             item.addEventListener('click', function() {
-                console.log('查看发布详情');
+                console.log('View post details');
             });
         });
     </script>

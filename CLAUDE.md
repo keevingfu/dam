@@ -4,31 +4,44 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**DAM (Digital Asset Management)** is a web-based system for managing short-form video marketing content (短视频营销DAM). It's a standalone HTML/CSS/JavaScript application targeting the Chinese market, particularly for platforms like Douyin/TikTok marketing management.
+**DAM (Digital Asset Management)** is a web-based system for managing short-form video marketing content (短视频营销DAM). It's a standalone HTML/CSS/JavaScript application for Eureka Robot Vacuum marketing, targeting multiple platforms (TikTok, Instagram, YouTube, Facebook) with an English-language interface.
 
 ## Architecture
 
 This is a **static web application** with a portal-based architecture:
-- `portal.html` serves as the main entry point that loads other modules via iframes
-- Each HTML file represents a self-contained feature module
+- `index.html` serves as the main entry point (NOT portal.html as mentioned in README)
+- Each HTML file represents a self-contained feature module loaded via iframes
 - No build process, framework dependencies, or external libraries
 - All functionality is implemented with vanilla JavaScript
 
 ## Key Modules
 
-- **portal.html**: Main entry point with navigation to all features
-- **dashboard.html**: Analytics and data overview
-- **media-library.html**: Asset management and storage
-- **projects.html**: Project organization
-- **publishing.html**: Content publishing workflow
-- **performance.html**: Performance metrics and analytics
-- **video-analysis.html**: Video content analysis tools
-- **script-editor.html**: Script writing and editing tools
+### Workspace
+- **dashboard.html**: Analytics and data overview with tabs (Best Sellers, Top Rated, Demo Views, New Models)
+- **projects.html**: Project management with tabs (All Projects, Active, Pending Review, Archived)
+- **tasks.html**: Task management center with tabs (All Tasks, To Do, In Progress, Review, Completed)
+
+### Asset Management
+- **media-library.html**: Central asset storage with tabs (All Media, Product Demos, Feature Highlights, Customer Reviews, Installation Guides, Favorites)
+- **competitor-collection.html**: Competitor content analysis with tabs (Latest Collection, Trending Content, Marketing Strategies, Pricing Analysis)
+- **highlights.html**: Key moments library with tabs (Product Demos, Before & After, Customer Reviews, Call to Action, All Clips)
+- **smart-folders.html**: Rule-based automatic organization
+
+### Creative Collaboration
+- **video-analysis.html**: Collaborative video analysis
+- **script-editor.html**: Script writing with templates (Product Demo, Feature Highlight, Comparison, How-To Guide, Lifestyle, Blank) and asset tabs (Media Library, Key Moments, References)
+- **review.html**: Online review and approval
+- **publishing.html**: Multi-platform publishing with tabs (All Posts, Scheduled, Publishing, Published, Failed)
+
+### Data Analysis
+- **performance.html**: Performance metrics with ECharts visualizations
+- **scoring.html**: Content quality scoring system
+- **reuse-analysis.html**: Asset reuse tracking
 
 ## Development Commands
 
 Since this is a static HTML project with no build system:
-- **Run locally**: Open `portal.html` directly in a web browser or use a local server like `python -m http.server 8000`
+- **Run locally**: Open `index.html` directly in a web browser or use a local server like `python -m http.server 8000`
 - **No build/test/lint commands** - this is pure HTML/CSS/JS without tooling
 
 ## Code Patterns
@@ -42,9 +55,10 @@ Since this is a static HTML project with no build system:
 ### CSS Organization
 - Inline CSS within `<style>` tags in each file
 - Consistent design system with CSS variables
-- Color scheme: Blue (#1a73e8), Green (#34a853), Yellow (#fbbc04), Red (#ea4335)
-- Border radius: 8px for elements, 12px for cards
+- Color scheme: Blue (#1a73e8), Green (#34a853), Yellow (#fbbc04), Red (#ea4335), Purple (#9333ea), Teal (#10b981)
+- Border radius: 8px for elements, 12px for cards, 16px for major sections
 - Flexbox and CSS Grid for layouts
+- Responsive breakpoint at 768px
 
 ### Common UI Components
 - Cards for content display
@@ -52,14 +66,26 @@ Since this is a static HTML project with no build system:
 - Tab navigation for section switching
 - Search/filter inputs with real-time filtering
 - Drag-and-drop zones for file uploads
+- Platform-specific logos (SVG icons for TikTok, Instagram, YouTube, Facebook)
+
+## Navigation System
+
+The application uses a sidebar navigation with collapsible sections:
+1. Click on main menu items to expand/collapse submenus
+2. Submenus load corresponding HTML files in an iframe
+3. Active states are maintained visually
+4. Quick action cards on homepage provide direct access to key features
 
 ## Current State
 
-The project is in a **prototype/demo phase**:
-- UI is fully implemented with Chinese interface
-- Most actions log to console or show "功能开发中..." (Feature in development) alerts
+The project is in a **functional prototype phase**:
+- UI is fully implemented with English interface for Eureka Robot Vacuum marketing
+- Tab-based navigation implemented across all major modules
+- Interactive features including drag-and-drop, modal dialogs, and real-time search
+- ECharts integration for data visualization (dashboard and performance modules)
+- Most actions log to console or show "Feature in development..." alerts
 - No backend API integration yet
-- Static/mock data displayed in UI
+- Static/mock data displayed in UI with Eureka product information
 - Ready for backend integration
 
 ## Development Guidelines
@@ -67,10 +93,13 @@ The project is in a **prototype/demo phase**:
 When adding new features or modifying existing ones:
 1. Maintain the single-file approach - each feature should be self-contained
 2. Follow the existing CSS variable system for consistent theming
-3. Use Chinese language for all UI text
+3. Use English language for all UI text (product is for Eureka Robot Vacuum)
 4. Keep the same interaction patterns (console.log for actions that will connect to backend)
 5. Ensure responsive design with the existing breakpoints
 6. Match the existing visual design language
+7. Add new modules to the navigation menu in portal.html following the existing pattern
+8. Implement tab-based navigation with data-tab attributes for multi-section pages
+9. Use consistent color coding for module types (blue for workspace, purple for assets, etc.)
 
 ## Future Integration Points
 
@@ -80,11 +109,14 @@ Areas marked for backend integration:
 - Search functionality across all modules
 - User authentication (currently no auth system)
 - Project and task management in projects.html and tasks.html
+- Platform API integrations for publishing.html
+- Real-time collaboration features in video-analysis.html
 
 ## Claude AI 交互规则
 
 ### 1. 语言规则
 - **交流语言**：使用中文与用户进行所有对话和交流
+- **UI语言**：所有界面文本使用英文（针对Eureka Robot Vacuum国际市场）
 - **代码语言**：所有代码生成全部使用英文，包括注释、变量名、函数名等
 
 ### 2. 交互原则
@@ -197,3 +229,28 @@ const useVideoLazyLoad = (threshold = 0.1) => {
 - 首屏视频：立即加载缩略图
 - 第二屏视频：延迟1秒加载
 - 其余视频：滚动到可视区域时加载
+
+## Recent Updates
+
+### Phase 1: Initial Setup (Completed)
+- Translated all UI from Chinese to English
+- Customized for Eureka Robot Vacuum marketing
+- Implemented portal-based navigation system
+
+### Phase 2: Data Visualization (Completed)
+- Added ECharts to dashboard.html for sales trends and channel distribution
+- Added ECharts to performance.html for engagement metrics and geographic data
+
+### Phase 3: Tab Implementation (Completed)
+- **tasks.html**: 5 tabs (All Tasks, To Do, In Progress, Review, Completed)
+- **media-library.html**: 6 tabs (All Media, Product Demos, Feature Highlights, Customer Reviews, Installation Guides, Favorites)
+- **competitor-collection.html**: 4 tabs (Latest Collection, Trending Content, Marketing Strategies, Pricing Analysis)
+- **highlights.html**: 5 tabs (Product Demos, Before & After, Customer Reviews, Call to Action, All Clips)
+- **publishing.html**: 5 tabs (All Posts, Scheduled, Publishing, Published, Failed)
+- **script-editor.html**: 3 asset panel tabs (Media Library, Key Moments, References)
+- **dashboard.html**: 4 tabs (Best Sellers, Top Rated, Demo Views, New Models)
+
+### Phase 4: Script Templates (Completed)
+- Implemented 6 script templates in script-editor.html
+- Dynamic content loading based on template selection
+- Pre-populated scenes with Eureka-specific content

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>脚本创作 - 短视频营销DAM</title>
+    <title>Script Editor - Eureka Marketing DAM</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
         
-        /* 顶部导航栏 */
+        /* Header navigation bar */
         .header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -68,14 +68,14 @@
             color: #fbbc04;
         }
         
-        /* 主内容区 */
+        /* Main content area */
         .main-content {
             padding: 80px 20px 20px;
             max-width: 1600px;
             margin: 0 auto;
         }
         
-        /* 页面标题栏 */
+        /* Page header */
         .page-header {
             background: #fff;
             padding: 20px 24px;
@@ -104,7 +104,7 @@
             gap: 12px;
         }
         
-        /* 按钮样式 */
+        /* Button styles */
         .btn {
             padding: 8px 16px;
             border-radius: 8px;
@@ -137,7 +137,7 @@
             background: #e4e6e9;
         }
         
-        /* 编辑器容器 */
+        /* Editor container */
         .editor-container {
             display: grid;
             grid-template-columns: 300px 1fr 350px;
@@ -145,7 +145,7 @@
             height: calc(100vh - 180px);
         }
         
-        /* 模板库 */
+        /* Template library */
         .template-sidebar {
             background: #fff;
             border-radius: 12px;
@@ -242,7 +242,7 @@
             margin: 0 8px;
         }
         
-        /* 分镜编辑区 */
+        /* points镜编辑区 */
         .storyboard-area {
             flex: 1;
             padding: 20px;
@@ -396,7 +396,7 @@
             box-shadow: 0 0 0 3px rgba(251,188,4,0.1);
         }
         
-        /* 素材面板 */
+        /* Asset Panel */
         .asset-panel {
             background: #fff;
             border-radius: 12px;
@@ -429,6 +429,15 @@
         .panel-tab.active {
             color: #fbbc04;
             border-bottom-color: #fbbc04;
+        }
+
+        /* Tab content visibility */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
         
         .asset-search {
@@ -498,7 +507,7 @@
             color: #999;
         }
         
-        /* 添加场景按钮 */
+        /* Add scene button */
         .add-scene-btn {
             width: 100%;
             padding: 16px;
@@ -521,7 +530,7 @@
             background: #fef3c7;
         }
         
-        /* AI助手 */
+        /* AI Assistant */
         .ai-assistant {
             position: fixed;
             bottom: 20px;
@@ -582,7 +591,7 @@
             font-size: 18px;
         }
         
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 1200px) {
             .editor-container {
                 grid-template-columns: 1fr;
@@ -597,11 +606,11 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- Header navigation -->
     <header class="header">
         <div class="header-content">
             <div class="header-left">
-                <h1 class="app-title">脚本创作</h1>
+                <h1 class="app-title">Script Editor</h1>
             </div>
             
             <div class="header-actions">
@@ -610,7 +619,7 @@
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                         <circle cx="12" cy="12" r="3"></circle>
                     </svg>
-                    预览
+                    Preview
                 </button>
                 <button class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -618,19 +627,19 @@
                         <polyline points="17 21 17 13 7 13 7 21"></polyline>
                         <polyline points="7 3 7 8 15 8"></polyline>
                     </svg>
-                    保存脚本
+                    Save Script
                 </button>
             </div>
         </div>
     </header>
     
-    <!-- 主内容区 -->
+    <!-- Main content area -->
     <main class="main-content">
-        <!-- 页面标题栏 -->
+        <!-- Page header -->
         <div class="page-header">
             <div>
-                <h2 class="page-title">新建脚本</h2>
-                <p class="page-subtitle">可视化脚本编辑器，快速生成专业短视频脚本</p>
+                <h2 class="page-title">New Script</h2>
+                <p class="page-subtitle">Visual script editor for creating professional video marketing scripts</p>
             </div>
             <div class="page-actions">
                 <button class="btn btn-secondary">
@@ -639,7 +648,7 @@
                         <polyline points="1 20 1 14 7 14"></polyline>
                         <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
                     </svg>
-                    历史版本
+                    Version History
                 </button>
                 <button class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -647,51 +656,51 @@
                         <circle cx="12" cy="5" r="1"></circle>
                         <circle cx="12" cy="19" r="1"></circle>
                     </svg>
-                    更多操作
+                    More Actions
                 </button>
             </div>
         </div>
         
-        <!-- 编辑器容器 -->
+        <!-- Editor容器 -->
         <div class="editor-container">
-            <!-- 模板库 -->
+            <!-- Template library -->
             <aside class="template-sidebar">
-                <div class="sidebar-header">脚本模板</div>
+                <div class="sidebar-header">Script Templates</div>
                 <div class="template-list">
                     <div class="template-item active">
                         <div class="template-icon">🎯</div>
-                        <div class="template-name">标准带货模板</div>
-                        <div class="template-desc">钩子-痛点-产品-效果-引导</div>
+                        <div class="template-name">Product Demo Script</div>
+                        <div class="template-desc">Hook - Problem - Solution - Features - CTA</div>
                     </div>
                     
                     <div class="template-item">
                         <div class="template-icon">📖</div>
-                        <div class="template-name">剧情种草模板</div>
-                        <div class="template-desc">场景代入-冲突-解决方案</div>
+                        <div class="template-name">Feature Highlight Script</div>
+                        <div class="template-desc">Smart Navigation - Multi-Floor Mapping - Auto-Empty</div>
                     </div>
                     
                     <div class="template-item">
                         <div class="template-icon">🎨</div>
-                        <div class="template-name">产品展示模板</div>
-                        <div class="template-desc">开箱-细节-使用-总结</div>
+                        <div class="template-name">Comparison Script</div>
+                        <div class="template-desc">Traditional vs Eureka - Benefits - Results</div>
                     </div>
                     
                     <div class="template-item">
                         <div class="template-icon">💡</div>
-                        <div class="template-name">知识科普模板</div>
-                        <div class="template-desc">引入-知识点-应用-总结</div>
+                        <div class="template-name">How-To Guide Script</div>
+                        <div class="template-desc">Setup - Features - Tips - Summary</div>
                     </div>
                     
                     <div class="template-item">
                         <div class="template-icon">🎭</div>
-                        <div class="template-name">情感共鸣模板</div>
-                        <div class="template-desc">情境-共鸣-转折-升华</div>
+                        <div class="template-name">Lifestyle Script</div>
+                        <div class="template-desc">Busy Life - Time Saved - Peace of Mind</div>
                     </div>
                     
                     <div class="template-item">
                         <div class="template-icon">✨</div>
-                        <div class="template-name">空白模板</div>
-                        <div class="template-desc">自由创作，不限框架</div>
+                        <div class="template-name">Blank Template</div>
+                        <div class="template-desc">Free-form creative script</div>
                     </div>
                 </div>
             </aside>
@@ -699,30 +708,30 @@
             <!-- 脚本编辑区 -->
             <div class="script-editor">
                 <div class="editor-toolbar">
-                    <button class="toolbar-btn" title="撤销">
+                    <button class="toolbar-btn" title="Undo">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="9 14 4 9 9 4"></polyline>
                             <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
                         </svg>
                     </button>
-                    <button class="toolbar-btn" title="重做">
+                    <button class="toolbar-btn" title="Redo">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="15 14 20 9 15 4"></polyline>
                             <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
                         </svg>
                     </button>
                     <div class="toolbar-separator"></div>
-                    <button class="toolbar-btn" title="加粗">
+                    <button class="toolbar-btn" title="Bold">
                         <strong>B</strong>
                     </button>
-                    <button class="toolbar-btn" title="斜体">
+                    <button class="toolbar-btn" title="Italic">
                         <em>I</em>
                     </button>
-                    <button class="toolbar-btn" title="下划线">
+                    <button class="toolbar-btn" title="Underline">
                         <u>U</u>
                     </button>
                     <div class="toolbar-separator"></div>
-                    <button class="toolbar-btn" title="添加标记">
+                    <button class="toolbar-btn" title="Add Marker">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 20h9"></path>
                             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -735,22 +744,22 @@
                     <div class="scene-block">
                         <div class="scene-number">1</div>
                         <div class="scene-header">
-                            <div class="scene-time">0:00 - 0:03 · 黄金3秒</div>
+                            <div class="scene-time">0:00 - 0:03 · Hook</div>
                             <div class="scene-actions">
-                                <button class="scene-action-btn" title="复制">📋</button>
-                                <button class="scene-action-btn" title="删除">🗑️</button>
+                                <button class="scene-action-btn" title="Copy">📋</button>
+                                <button class="scene-action-btn" title="Delete">🗑️</button>
                             </div>
                         </div>
                         <div class="scene-content">
                             <div class="scene-media">
                                 <div class="media-placeholder">
                                     <div class="media-placeholder-icon">🎬</div>
-                                    <div class="media-placeholder-text">点击添加素材</div>
+                                    <div class="media-placeholder-text">Click to add media</div>
                                 </div>
                             </div>
                             <div class="scene-text">
-                                <input type="text" class="scene-input" placeholder="场景标题..." value="开场钩子">
-                                <textarea class="scene-textarea" placeholder="输入文案内容...">你还在为选择护肤品而烦恼吗？</textarea>
+                                <input type="text" class="scene-input" placeholder="Scene title..." value="Opening Hook">
+                                <textarea class="scene-textarea" placeholder="Enter script content...">Tired of spending hours vacuuming your home?</textarea>
                             </div>
                         </div>
                     </div>
@@ -759,19 +768,19 @@
                     <div class="scene-block">
                         <div class="scene-number">2</div>
                         <div class="scene-header">
-                            <div class="scene-time">0:03 - 0:10 · 痛点展示</div>
+                            <div class="scene-time">0:03 - 0:10 · Problem</div>
                             <div class="scene-actions">
-                                <button class="scene-action-btn" title="复制">📋</button>
-                                <button class="scene-action-btn" title="删除">🗑️</button>
+                                <button class="scene-action-btn" title="Copy">📋</button>
+                                <button class="scene-action-btn" title="Delete">🗑️</button>
                             </div>
                         </div>
                         <div class="scene-content">
                             <div class="scene-media has-media">
-                                <img src="data:image/svg+xml,%3Csvg width='200' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23fbbf24' width='200' height='120'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3E痛点素材%3C/text%3E%3C/svg%3E" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="data:image/svg+xml,%3Csvg width='200' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23fbbf24' width='200' height='120'/%3E%3Ctext fill='white' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EProblem Media%3C/text%3E%3C/svg%3E" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div class="scene-text">
-                                <input type="text" class="scene-input" placeholder="场景标题..." value="用户痛点">
-                                <textarea class="scene-textarea" placeholder="输入文案内容...">每天面对镜子，看着暗沉的皮肤，试过无数产品都没效果...</textarea>
+                                <input type="text" class="scene-input" placeholder="Scene title..." value="Common Pain Points">
+                                <textarea class="scene-textarea" placeholder="Enter script content...">Traditional vacuums are heavy, noisy, and you still have to empty the dustbin yourself...</textarea>
                             </div>
                         </div>
                     </div>
@@ -780,137 +789,254 @@
                     <div class="scene-block">
                         <div class="scene-number">3</div>
                         <div class="scene-header">
-                            <div class="scene-time">0:10 - 0:25 · 产品介绍</div>
+                            <div class="scene-time">0:10 - 0:25 · Solution</div>
                             <div class="scene-actions">
-                                <button class="scene-action-btn" title="复制">📋</button>
-                                <button class="scene-action-btn" title="删除">🗑️</button>
+                                <button class="scene-action-btn" title="Copy">📋</button>
+                                <button class="scene-action-btn" title="Delete">🗑️</button>
                             </div>
                         </div>
                         <div class="scene-content">
                             <div class="scene-media">
                                 <div class="media-placeholder">
                                     <div class="media-placeholder-icon">🎬</div>
-                                    <div class="media-placeholder-text">点击添加素材</div>
+                                    <div class="media-placeholder-text">Click to add media</div>
                                 </div>
                             </div>
                             <div class="scene-text">
-                                <input type="text" class="scene-input" placeholder="场景标题..." value="产品展示">
-                                <textarea class="scene-textarea" placeholder="输入文案内容...">今天给大家推荐这款明星同款精华液，蕴含高浓度烟酰胺...</textarea>
+                                <input type="text" class="scene-input" placeholder="Scene title..." value="Eureka Robot Vacuum">
+                                <textarea class="scene-textarea" placeholder="Enter script content...">Meet the Eureka J15 Pro Ultra - with LiDAR navigation, auto-emptying dock, and hands-free cleaning for up to 75 days...</textarea>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 添加场景按钮 -->
+                    <!-- Add scene button -->
                     <button class="add-scene-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                        添加场景
+                        Add Scene
                     </button>
                 </div>
             </div>
             
-            <!-- 素材面板 -->
+            <!-- Asset Panel -->
             <aside class="asset-panel">
                 <div class="panel-tabs">
-                    <div class="panel-tab active">素材库</div>
-                    <div class="panel-tab">爆点片段</div>
-                    <div class="panel-tab">参考素材</div>
+                    <div class="panel-tab active" data-tab="media-library">Media Library</div>
+                    <div class="panel-tab" data-tab="key-moments">Key Moments</div>
+                    <div class="panel-tab" data-tab="references">References</div>
                 </div>
                 
+                <!-- Media Library Tab Content -->
+                <div class="tab-content active" id="media-library-content">
                 <div class="asset-search">
-                    <input type="text" class="search-input" placeholder="搜索素材...">
+                    <input type="text" class="search-input" placeholder="Search media...">
                 </div>
                 
                 <div class="asset-grid">
                     <div class="asset-item">
                         <div class="asset-preview">🎬</div>
                         <div class="asset-info">
-                            <div class="asset-name">产品展示.mp4</div>
-                            <div class="asset-meta">1:05 · 2天前</div>
+                            <div class="asset-name">eureka-demo.mp4</div>
+                            <div class="asset-meta">1:05 · 2 days ago</div>
                         </div>
                     </div>
                     
                     <div class="asset-item">
                         <div class="asset-preview">🖼️</div>
                         <div class="asset-info">
-                            <div class="asset-name">对比效果.jpg</div>
-                            <div class="asset-meta">1.2MB · 5天前</div>
+                            <div class="asset-name">before-after.jpg</div>
+                            <div class="asset-meta">1.2MB · 5 days ago</div>
                         </div>
                     </div>
                     
                     <div class="asset-item">
                         <div class="asset-preview">🎵</div>
                         <div class="asset-info">
-                            <div class="asset-name">背景音乐.mp3</div>
-                            <div class="asset-meta">0:30 · 1周前</div>
+                            <div class="asset-name">background-music.mp3</div>
+                            <div class="asset-meta">0:30 · 1 week ago</div>
                         </div>
                     </div>
                     
                     <div class="asset-item">
                         <div class="asset-preview">💡</div>
                         <div class="asset-info">
-                            <div class="asset-name">黄金开头</div>
-                            <div class="asset-meta">爆点片段 · 95%</div>
+                            <div class="asset-name">Hook Template</div>
+                            <div class="asset-meta">Key moment · 95%</div>
                         </div>
                     </div>
                     
                     <div class="asset-item">
                         <div class="asset-preview">✨</div>
                         <div class="asset-info">
-                            <div class="asset-name">转场特效</div>
-                            <div class="asset-meta">动效 · 2天前</div>
+                            <div class="asset-name">Transition Effect</div>
+                            <div class="asset-meta">Effect · 2 days ago</div>
                         </div>
                     </div>
                     
                     <div class="asset-item">
                         <div class="asset-preview">📝</div>
                         <div class="asset-info">
-                            <div class="asset-name">文案模板</div>
-                            <div class="asset-meta">参考 · 3天前</div>
+                            <div class="asset-name">Script Template</div>
+                            <div class="asset-meta">Reference · 3 days ago</div>
                         </div>
                     </div>
+                </div>
+                </div>
+
+                <!-- Key Moments Tab Content -->
+                <div class="tab-content" id="key-moments-content">
+                <div class="asset-search">
+                    <input type="text" class="search-input" placeholder="Search key moments...">
+                </div>
+                
+                <div class="asset-grid">
+                    <div class="asset-item">
+                        <div class="asset-preview" style="background: #ff6b6b; color: white;">🔥</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Opening Hook - Pet Hair</div>
+                            <div class="asset-meta">0:03 · 98% success</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview" style="background: #4ecdc4; color: white;">✨</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Self-Empty Demo</div>
+                            <div class="asset-meta">0:05 · 92% engagement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview" style="background: #45aaf2; color: white;">🎯</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Before/After Comparison</div>
+                            <div class="asset-meta">0:04 · 89% conversion</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview" style="background: #fdcb6e; color: white;">🌟</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Customer Testimonial</div>
+                            <div class="asset-meta">0:06 · 87% trust</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview" style="background: #6c5ce7; color: white;">🚀</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Smart Mapping Demo</div>
+                            <div class="asset-meta">0:04 · 85% retention</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview" style="background: #00b894; color: white;">💪</div>
+                        <div class="asset-info">
+                            <div class="asset-name">75-Day Claim CTA</div>
+                            <div class="asset-meta">0:03 · 91% action</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- References Tab Content -->
+                <div class="tab-content" id="references-content">
+                <div class="asset-search">
+                    <input type="text" class="search-input" placeholder="Search references...">
+                </div>
+                
+                <div class="asset-grid">
+                    <div class="asset-item">
+                        <div class="asset-preview">📊</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Competitor Analysis</div>
+                            <div class="asset-meta">PDF · 2 days ago</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">📝</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Product Spec Sheet</div>
+                            <div class="asset-meta">DOC · Updated today</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">🎨</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Brand Guidelines</div>
+                            <div class="asset-meta">PDF · 1 week ago</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">📹</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Viral Video Examples</div>
+                            <div class="asset-meta">Collection · 5 items</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">💬</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Customer Reviews</div>
+                            <div class="asset-meta">CSV · 3 days ago</div>
+                        </div>
+                    </div>
+                    
+                    <div class="asset-item">
+                        <div class="asset-preview">📈</div>
+                        <div class="asset-info">
+                            <div class="asset-name">Performance Data</div>
+                            <div class="asset-meta">Report · Yesterday</div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </aside>
         </div>
     </main>
     
-    <!-- AI助手 -->
+    <!-- AI Assistant -->
     <div class="ai-assistant" onclick="toggleAIMenu()">
         🤖
         <div class="ai-menu" id="aiMenu">
             <div class="ai-menu-item">
                 <span class="ai-menu-icon">✨</span>
-                <span>AI优化文案</span>
+                <span>AI Optimize Script</span>
             </div>
             <div class="ai-menu-item">
                 <span class="ai-menu-icon">🎯</span>
-                <span>生成爆款开头</span>
+                <span>Generate Viral Hook</span>
             </div>
             <div class="ai-menu-item">
                 <span class="ai-menu-icon">⏱️</span>
-                <span>调整节奏</span>
+                <span>Adjust Pacing</span>
             </div>
             <div class="ai-menu-item">
                 <span class="ai-menu-icon">🎬</span>
-                <span>推荐素材</span>
+                <span>Suggest Media</span>
             </div>
             <div class="ai-menu-item">
                 <span class="ai-menu-icon">📊</span>
-                <span>预测效果</span>
+                <span>Predict Performance</span>
             </div>
         </div>
     </div>
     
     <script>
-        // AI菜单切换
+        // AI menu toggle
         function toggleAIMenu() {
             const menu = document.getElementById('aiMenu');
             menu.classList.toggle('show');
         }
         
-        // 点击外部关闭AI菜单
+        // Click outside to close AI menu
         document.addEventListener('click', function(e) {
             const assistant = document.querySelector('.ai-assistant');
             if (!assistant.contains(e.target)) {
@@ -918,22 +1044,140 @@
             }
         });
         
-        // 模板选择
+        // Template data
+        const templateData = {
+            'Product Demo Script': [
+                { number: 1, time: '0:00 - 0:03', type: 'Hook', title: 'Opening Hook', content: 'Tired of spending hours vacuuming your home?' },
+                { number: 2, time: '0:03 - 0:10', type: 'Problem', title: 'Common Pain Points', content: 'Traditional vacuums are heavy, noisy, and you still have to empty the dustbin yourself...' },
+                { number: 3, time: '0:10 - 0:25', type: 'Solution', title: 'Eureka Robot Vacuum', content: 'Meet the Eureka J15 Pro Ultra - with LiDAR navigation, auto-emptying dock, and hands-free cleaning for up to 75 days...' },
+                { number: 4, time: '0:25 - 0:35', type: 'Features', title: 'Key Features', content: 'Smart mapping, pet hair removal, quiet operation, app control...' },
+                { number: 5, time: '0:35 - 0:40', type: 'CTA', title: 'Call to Action', content: 'Click the link below to get 20% off your first Eureka robot vacuum!' }
+            ],
+            'Feature Highlight Script': [
+                { number: 1, time: '0:00 - 0:05', type: 'Feature Intro', title: 'Smart Navigation', content: 'Watch how Eureka\'s LiDAR technology maps your entire home in minutes...' },
+                { number: 2, time: '0:05 - 0:15', type: 'Demo', title: 'Multi-Floor Mapping', content: 'Save up to 4 different floor plans - perfect for multi-story homes...' },
+                { number: 3, time: '0:15 - 0:25', type: 'Benefits', title: 'Auto-Empty Station', content: 'Forget about vacuuming for up to 75 days with our self-emptying dock...' },
+                { number: 4, time: '0:25 - 0:30', type: 'Summary', title: 'Why It Matters', content: 'More time for what you love, less time cleaning.' }
+            ],
+            'Comparison Script': [
+                { number: 1, time: '0:00 - 0:05', type: 'Setup', title: 'The Challenge', content: 'Let\'s see how Eureka compares to traditional vacuums...' },
+                { number: 2, time: '0:05 - 0:15', type: 'Test 1', title: 'Pet Hair Test', content: 'Watch Eureka tackle pet hair that other vacuums leave behind...' },
+                { number: 3, time: '0:15 - 0:25', type: 'Test 2', title: 'Coverage Test', content: 'Eureka cleans 100% of your floor while you\'re away...' },
+                { number: 4, time: '0:25 - 0:35', type: 'Results', title: 'The Verdict', content: 'Eureka: Cleaner floors, less effort, more free time.' }
+            ],
+            'How-To Guide Script': [
+                { number: 1, time: '0:00 - 0:05', type: 'Introduction', title: 'Getting Started', content: 'Setting up your Eureka robot vacuum in 3 easy steps...' },
+                { number: 2, time: '0:05 - 0:20', type: 'Step 1', title: 'Initial Setup', content: 'Download the app, connect to WiFi, and let Eureka map your home...' },
+                { number: 3, time: '0:20 - 0:35', type: 'Step 2', title: 'Customize Settings', content: 'Set no-go zones, cleaning schedules, and suction power...' },
+                { number: 4, time: '0:35 - 0:45', type: 'Step 3', title: 'Maintenance Tips', content: 'Keep your Eureka running perfectly with these simple tips...' }
+            ],
+            'Lifestyle Script': [
+                { number: 1, time: '0:00 - 0:05', type: 'Scene', title: 'Busy Morning', content: 'It\'s 7 AM, you\'re rushing to work...' },
+                { number: 2, time: '0:05 - 0:15', type: 'Problem', title: 'No Time to Clean', content: 'Between work, kids, and life - who has time to vacuum?' },
+                { number: 3, time: '0:15 - 0:25', type: 'Solution', title: 'Eureka to the Rescue', content: 'Schedule Eureka to clean while you\'re at work...' },
+                { number: 4, time: '0:25 - 0:30', type: 'Result', title: 'Come Home to Clean', content: 'Walk into a spotless home every single day.' }
+            ],
+            'Blank Template': [
+                { number: 1, time: '0:00 - 0:05', type: 'Scene 1', title: 'Your Title Here', content: 'Start writing your custom script...' }
+            ]
+        };
+
+        // Load template content
+        function loadTemplate(templateName) {
+            const storyboardArea = document.querySelector('.storyboard-area');
+            const scenes = templateData[templateName] || templateData['Blank Template'];
+            
+            // Clear existing content except the add button
+            const existingScenes = storyboardArea.querySelectorAll('.scene-block');
+            existingScenes.forEach(scene => scene.remove());
+            
+            // Add new scenes
+            scenes.forEach((scene, index) => {
+                const sceneHTML = `
+                    <div class="scene-block">
+                        <div class="scene-number">${scene.number}</div>
+                        <div class="scene-header">
+                            <div class="scene-time">${scene.time} · ${scene.type}</div>
+                            <div class="scene-actions">
+                                <button class="scene-action-btn" title="Copy">📋</button>
+                                <button class="scene-action-btn" title="Delete">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="scene-content">
+                            <div class="scene-media">
+                                <div class="media-placeholder">
+                                    <div class="media-placeholder-icon">🎬</div>
+                                    <div class="media-placeholder-text">Click to add media</div>
+                                </div>
+                            </div>
+                            <div class="scene-text">
+                                <input type="text" class="scene-input" placeholder="Scene title..." value="${scene.title}">
+                                <textarea class="scene-textarea" placeholder="Enter script content...">${scene.content}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                const addButton = storyboardArea.querySelector('.add-scene-btn');
+                addButton.insertAdjacentHTML('beforebegin', sceneHTML);
+            });
+            
+            // Re-attach event listeners for new scenes
+            attachSceneEventListeners();
+        }
+
+        // Attach event listeners to scene elements
+        function attachSceneEventListeners() {
+            // Scene media area drop
+            document.querySelectorAll('.scene-media').forEach(media => {
+                media.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#fbbc04';
+                });
+                
+                media.addEventListener('dragleave', function() {
+                    this.style.borderColor = '#e5e7eb';
+                });
+                
+                media.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#e5e7eb';
+                    const assetName = e.dataTransfer.getData('text/plain');
+                    console.log('Add media:', assetName);
+                });
+            });
+            
+            // Scene action buttons
+            document.querySelectorAll('.scene-action-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const action = this.getAttribute('title');
+                    console.log('Scene action:', action);
+                });
+            });
+        }
+
+        // Template Selection
         document.querySelectorAll('.template-item').forEach(item => {
             item.addEventListener('click', function() {
                 document.querySelectorAll('.template-item').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                console.log('选择模板:', this.querySelector('.template-name').textContent);
+                const templateName = this.querySelector('.template-name').textContent;
+                console.log('Selected template:', templateName);
+                loadTemplate(templateName);
             });
         });
         
-        // 添加场景
+        // Load default template on page load
+        loadTemplate('Product Demo Script');
+        
+        // Add scene
         document.querySelector('.add-scene-btn').addEventListener('click', function() {
-            console.log('添加新场景');
-            // 这里可以添加创建新场景块的逻辑
+            console.log('Add new scene');
+            // Add logic to create new scene block here
         });
         
-        // 素材拖拽
+        // Asset drag and drop
         document.querySelectorAll('.asset-item').forEach(item => {
             item.draggable = true;
             item.addEventListener('dragstart', function(e) {
@@ -942,41 +1186,27 @@
             });
         });
         
-        // 场景媒体区域放置
-        document.querySelectorAll('.scene-media').forEach(media => {
-            media.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.style.borderColor = '#fbbc04';
-            });
-            
-            media.addEventListener('dragleave', function() {
-                this.style.borderColor = '#e5e7eb';
-            });
-            
-            media.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.style.borderColor = '#e5e7eb';
-                const assetName = e.dataTransfer.getData('text/plain');
-                console.log('添加素材:', assetName);
-                // 这里可以添加更新媒体显示的逻辑
-            });
-        });
+        // Initialize event listeners on load
+        attachSceneEventListeners();
         
-        // 场景操作
-        document.querySelectorAll('.scene-action-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const action = this.getAttribute('title');
-                console.log('场景操作:', action);
-            });
-        });
-        
-        // 面板标签切换
+        // Panel tabs toggle
         document.querySelectorAll('.panel-tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Remove active class from all tabs
                 document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                console.log('切换到:', this.textContent);
+                
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show the corresponding tab content
+                const tabName = this.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabName + '-content');
+                if (targetContent) {
+                    targetContent.style.display = 'block';
+                }
             });
         });
         
@@ -984,7 +1214,7 @@
         document.querySelectorAll('.ai-menu-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('AI功能:', this.textContent);
+                console.log('AI feature:', this.textContent);
                 document.getElementById('aiMenu').classList.remove('show');
             });
         });
